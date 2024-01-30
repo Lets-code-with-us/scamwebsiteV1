@@ -1,40 +1,34 @@
 import mongoose from "mongoose";
 
 const blogsSchema = new mongoose.Schema({
-    title:{
-        type:String,
-        requires:true
+    title: {
+        type: String,
+        required: true  // Corrected from "requires" to "required"
     },
-    imageUrl:{
-        type:String,
-        required:true
+    imageUrl: {
+        type: String,
+        required: true
     },
-    Category:{
-        type:String,
-        required:true
+    category: {  // Corrected from "Category" to "category"
+        type: String,
+        required: true
     },
-    content:{
-        type:String,
-        required:true
+    content: {
+        type: String,
+        required: true
     }
-})
+});
 
-
-// blogs schema
 const blogSchema = new mongoose.Schema({
-    user:{
-        type:mongoose.Types.ObjectId,
-        ref:"User"
+    user: {
+        type: mongoose.Types.ObjectId,
+        ref: "User"
     },
-    Blog:[
+    blogs: [  // Corrected from "Blog" to "blogs"
         {
-            blogsSchema
+            type: blogsSchema,
         }
-
     ]
-})
+});
 
-
-
-
-export const Blogs = mongoose.models.blogs || mongoose.model("Blog",blogSchema) 
+export const Blogs = mongoose.models.blogs || mongoose.model("Blogs", blogSchema);  // Corrected from "Blog" to "Blogs"
