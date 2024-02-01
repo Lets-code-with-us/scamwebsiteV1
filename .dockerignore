@@ -1,0 +1,13 @@
+# Ignore all files and directories starting with a dot
+.*
+
+# Ignore specific files
+README.md
+LICENSE
+
+# Ignore directories
+node_modules/
+dist/
+.env
+.sample.env
+.env*
