@@ -18,8 +18,6 @@ export async function POST(request:NextRequest){
             return NextResponse.json({"message":"Server eror"},{status:500})
     
         }
-    
-        console.log(response)
         return NextResponse.json({"message":"success","data":response},{status:200})
     } catch (error:any) {
         console.log("error: ",error)
