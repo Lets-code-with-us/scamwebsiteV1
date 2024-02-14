@@ -26,16 +26,13 @@ export async function POST(request: NextRequest) {
         { status: 400 }
       );
     }
-    const userid = await decrypt.id;
-    
-    const userBlog= await Blogs.findOne({userid})
-
-
-
-
-    const createBlog = await Blogs.create({
+      const createBlog = await Blogs.create({
       user: decrypt.id,
-      blogs: [{ title, imageUrl, category, content }],
+      title,
+      imageUrl,
+      category,
+      content
+    
     });
 
     if (!createBlog) {

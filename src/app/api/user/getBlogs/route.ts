@@ -1,27 +1,20 @@
 import { NextRequest,NextResponse } from "next/server";
 import { dbConnect } from "@/db/dbConnect";
 import { Blogs } from "@/models/blogModel";
-import mongoose from "mongoose";
 
 dbConnect()
-export async function POST(request:NextRequest){
+export async function GET(request:NextRequest & { params: any }){
 
     try {
-        const id = await request.json();
-        if (!id) {
-            return NextResponse.json({ "message": "ID not provided" }, { status: 400 });
-          }
-          const objectId = new mongoose.Types.ObjectId(id);
-        const response = await Blogs.findById(objectId).exec();
-    
-        if(!response){
-            return NextResponse.json({"message":"Server eror"},{status:500})
-    
+        const params = await request.nextUrl.searchParams;
+        const getBlog = await Blogs.findById(params.get('id'));
+        if (!getBlog) {
+            return NextResponse.json({ "message": "Server error" }, { status: 500 });
         }
-        return NextResponse.json({"message":"success","data":response},{status:200})
-    } catch (error:any) {
-        console.log("error: ",error)
-        
+
+        return NextResponse.json({ "data": getBlog }, { status: 200 });
+    } catch (error: any) {
+        console.log("error is: ", error);
     }
 
 
