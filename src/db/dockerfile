@@ -1,0 +1,14 @@
+# Use the official MongoDB image as the base image
+FROM mongo:latest
+
+# Set the working directory inside the container
+WORKDIR /data
+
+# Copy the MongoDB configuration file to the container
+COPY mongod.conf /etc/mongod.conf
+
+# Expose the default MongoDB port
+EXPOSE 27017
+
+# Start the MongoDB server
+CMD ["mongod", "--config", "/etc/mongod.conf"]

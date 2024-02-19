@@ -2,19 +2,28 @@
 
 import React from 'react'
 import { Menu, X } from 'lucide-react'
+import Link from "next/link";
 
 const menuItems = [
   {
     name: 'Home',
-    href: '#',
+    href: '/',
+  },
+  {
+    name: 'Trending',
+    href: '/trend',
   },
   {
     name: 'About',
-    href: '#',
+    href: '/about',
   },
   {
     name: 'Contact',
-    href: '#',
+    href: '/contact',
+  },
+  {
+    name: 'Profile',
+    href: '/profile',
   },
 ]
 
@@ -49,23 +58,25 @@ export function NavBar() {
           <ul className="ml-12 inline-flex space-x-8">
             {menuItems.map((item) => (
               <li key={item.name}>
-                <a
+                <Link
                   href={item.href}
                   className="text-sm font-semibold text-gray-800 hover:text-gray-900"
                 >
                   {item.name}
-                </a>
+                </Link>
               </li>
             ))}
           </ul>
         </div>
         <div className="hidden lg:block">
+          <Link href="/signup">
           <button
             type="button"
             className="rounded-md bg-black px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-black/80 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-black"
-          >
-            Button text
+            >
+            Sign Up
           </button>
+            </Link>
         </div>
         <div className="lg:hidden">
           <Menu onClick={toggleMenu} className="h-6 w-6 cursor-pointer" />
@@ -118,12 +129,15 @@ export function NavBar() {
                     ))}
                   </nav>
                 </div>
+                <Link href="/signup">
+
                 <button
                   type="button"
                   className="mt-4 w-full rounded-md bg-black px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-black/80 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-black"
-                >
-                  Button text
+                  >
+                  Sign Up
                 </button>
+                  </Link>
               </div>
             </div>
           </div>
