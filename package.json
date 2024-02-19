@@ -12,10 +12,12 @@
     "@tsparticles/engine": "^3.2.1",
     "@tsparticles/react": "^3.0.0",
     "@tsparticles/slim": "^3.2.1",
+    "@types/js-cookie": "^3.0.6",
     "axios": "^1.6.7",
     "bcrypt": "^5.1.1",
     "clsx": "^2.1.0",
     "framer-motion": "^11.0.5",
+    "js-cookie": "^3.0.5",
     "jsonwebtoken": "^9.0.2",
     "lucide-react": "^0.331.0",
     "mongoose": "^8.1.1",
@@ -24,6 +26,7 @@
     "nodemailer": "^6.9.8",
     "react": "^18",
     "react-dom": "^18",
+    "react-hot-toast": "^2.4.1",
     "tailwind-merge": "^2.2.1"
   },
   "devDependencies": {
