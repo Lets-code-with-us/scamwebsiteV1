@@ -7,6 +7,7 @@ import axios from "axios";
 import { Toaster } from "react-hot-toast";
 import toast from "react-hot-toast/headless";
 import { useRouter } from "next/navigation";
+import Link from "next/link";
 
 function page() {
   const Router = useRouter();
@@ -52,13 +53,13 @@ function page() {
             </h2>
             <p className="mt-2 text-base text-gray-600">
               Already have an account?{" "}
-              <a
-                href="#"
+              <Link
+                href="/login"
                 title=""
                 className="font-medium text-black transition-all duration-200 hover:underline"
               >
                 Sign In
-              </a>
+              </Link>
             </p>
             <form action="#" method="POST" className="mt-8">
               <div className="space-y-5">

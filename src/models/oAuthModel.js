@@ -17,13 +17,6 @@ const OauthSchema = new mongoose.Schema({
         required:true,
         unique:true
     },
-    blogs:[
-        {
-
-            type:mongoose.Types.ObjectId,
-            ref:Blog
-        }
-    ]
 }) 
 
 

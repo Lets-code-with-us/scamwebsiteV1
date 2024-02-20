@@ -4,7 +4,8 @@ import React from 'react'
 import { Menu, X } from 'lucide-react'
 import Cookies from 'js-cookie';
 import Link from "next/link";
-
+// import { useSession } from 'next-auth/react';
+// import { option } from '@/app/api/auth/[...nextauth]/option';
 const menuItems = [
   {
     name: 'Home',
@@ -29,19 +30,18 @@ const menuItems = [
 ]
 
 export function NavBar() {
-
+  // const session = useSession({ ...option, required: true });
   const [isMenuOpen, setIsMenuOpen] = React.useState(false);
   const [state, setState] = React.useState('Log In');
-  
-  React.useEffect(()=>{
+
+  React.useEffect(() => {
     const cookies = Cookies.get('token');
-    if(cookies){
-      setState('Log Out')
+    if (cookies) {
+      setState('Log Out');
+    } else {
+      setState('Log In');
     }
-  else{
-    setState('Log In')
-  }
-    },[])
+  }, []);
   
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
@@ -82,14 +82,14 @@ export function NavBar() {
           </ul>
         </div>
         <div className="hidden lg:block">
-          <Link href="/signup">
-          <button
-            type="button"
-            className="rounded-md bg-black px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-black/80 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-black"
+          <Link href="/login">
+            <button
+              type="button"
+              className="rounded-md bg-black px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-black/80 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-black"
             >
-            {state}
-          </button>
-            </Link>
+              Log In
+            </button>
+          </Link>
         </div>
         <div className="lg:hidden">
           <Menu onClick={toggleMenu} className="h-6 w-6 cursor-pointer" />
