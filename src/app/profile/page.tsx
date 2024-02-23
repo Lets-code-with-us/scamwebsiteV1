@@ -5,7 +5,14 @@ import Link from "next/link";
 import axios from "axios";
 import toast,{Toaster} from "react-hot-toast";
 import { useRouter } from "next/navigation";
+
 function page() {
+  const [user,setUser] = React.useState('');
+
+  React.useEffect(()=>{
+getUser()
+  },[])
+
   const Router = useRouter();
   async function LogOut(){
     const response  = await axios.get("/api/user/logout")
@@ -22,11 +29,25 @@ function page() {
     }
 
   }
+
+
+  async function getUser() {
+    const response = await axios.get("/api/user/profile");
+    const {data} = await response;
+    if(!data){
+      setUser('Not getting the profile')
+    }
+    else{
+      setUser(data.data) 
+    }
+    
+  }
   return (
     <div>
       <div><Toaster/></div>
       Profile page
       <div className="flex flex-1 items-center justify-center gap-5 mb-20">
+        <div>username :{user}</div>
         <Link href="/addBlog">
           <button
             type="button"

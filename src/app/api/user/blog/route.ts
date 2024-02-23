@@ -12,10 +12,10 @@ export async function POST(request: NextRequest) {
       return NextResponse.json({ message: "Login please" }, { status: 400 });
     }
 
-    const decrypt: JwtPayload = (await JWT.verify(
+    const decrypt: JwtPayload = await JWT.verify(
       token,
       process.env.SECERT_KEY!
-    )) as JwtPayload;
+    ) as JwtPayload;
 
     const res = await request.json();
     const { title, imageUrl, category, content } = await res;
@@ -44,5 +44,6 @@ export async function POST(request: NextRequest) {
     return NextResponse.json({ message: "Blog created" }, { status: 200 });
   } catch (error: any) {
     console.log("error: ", error);
+    return NextResponse.json({"message":error},{status:500})
   }
 }
