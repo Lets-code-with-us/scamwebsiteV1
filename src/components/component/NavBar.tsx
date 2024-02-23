@@ -4,8 +4,7 @@ import React from 'react'
 import { Menu, X } from 'lucide-react'
 import Cookies from 'js-cookie';
 import Link from "next/link";
-// import { useSession } from 'next-auth/react';
-// import { option } from '@/app/api/auth/[...nextauth]/option';
+
 const menuItems = [
   {
     name: 'Home',
@@ -30,16 +29,19 @@ const menuItems = [
 ]
 
 export function NavBar() {
-  // const session = useSession({ ...option, required: true });
+ 
+ 
   const [isMenuOpen, setIsMenuOpen] = React.useState(false);
   const [state, setState] = React.useState('Log In');
-
+  
   React.useEffect(() => {
-    const cookies = Cookies.get('token');
-    if (cookies) {
-      setState('Log Out');
-    } else {
-      setState('Log In');
+    const token = Cookies.get('token');
+    console.log(token)
+    if(token){
+      setState('Log Out')
+    }
+    else{
+      setState('Log In')
     }
   }, []);
   
@@ -87,7 +89,7 @@ export function NavBar() {
               type="button"
               className="rounded-md bg-black px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-black/80 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-black"
             >
-              Log In
+               {state}
             </button>
           </Link>
         </div>

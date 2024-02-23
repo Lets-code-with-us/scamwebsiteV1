@@ -25,7 +25,7 @@ function page() {
 
   async function userLogin() {
     const userData = await axios.post("/api/user/login", { email, password });
-    const response = await userData;
+    const response = userData;
     if (!response) {
       toast.error("Server Error");
     } else {
