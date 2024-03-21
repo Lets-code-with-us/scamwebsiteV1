@@ -2,7 +2,6 @@
 
 import React from 'react'
 import { Menu, X } from 'lucide-react'
-import Cookies from 'js-cookie';
 import Link from "next/link";
 
 const menuItems = [
@@ -34,16 +33,7 @@ export function NavBar() {
   const [isMenuOpen, setIsMenuOpen] = React.useState(false);
   const [state, setState] = React.useState('Log In');
   
-  React.useEffect(() => {
-    const token = Cookies.get('token');
-    console.log(token)
-    if(token){
-      setState('Log Out')
-    }
-    else{
-      setState('Log In')
-    }
-  }, []);
+
   
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);

@@ -1,4 +1,5 @@
-import React from 'react'
+import React from 'react';
+import Image from 'next/image';
 
 import { MapPin } from 'lucide-react'
 const locations = [
@@ -88,8 +89,10 @@ function page() {
           </p>
         </div>
         <div className="w-full space-y-4">
-          <img
+          <Image
             className="h-[200px] w-full rounded-xl object-cover md:h-full"
+            width={400}
+            height={400}
             src="https://img.freepik.com/free-photo/diverse-businesspeople-having-meeting_53876-103954.jpg?t=st=1710393861~exp=1710397461~hmac=bc989c5b22c6ac966baab3cd8be885e4b70024ec498f7ae3f86c701ba6930f79&w=1380"
             alt=""
           />

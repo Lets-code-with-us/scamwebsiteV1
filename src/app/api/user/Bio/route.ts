@@ -1,13 +1,13 @@
 import { NextRequest, NextResponse } from "next/server";
 import { Bio } from "@/models/userBio";
 import { dbConnect } from "@/db/dbConnect";
-// import {User} from "@/models/userModel"
 import JWT, { JwtPayload } from "jsonwebtoken"
+import mongoose from "mongoose";
 
 // connect db
 dbConnect();
 
-export async function POST(request: NextRequest) {
+export async function POST(request: NextRequest,response:NextResponse) {
   try {
     const res = await request.json();
     const { bio, instagramLink, LinkedlnLink, githubLink } = await res;
@@ -22,7 +22,7 @@ export async function POST(request: NextRequest) {
     const decrypt: JwtPayload = await JWT.verify(token, process.env.SECERT_KEY!) as JwtPayload;
 
     const createBio = new Bio({
-        user: decrypt.id,
+        user: new mongoose.Types.ObjectId(decrypt.id),
         bio,
         instagramLink,
         LinkedlnLink,
@@ -30,6 +30,23 @@ export async function POST(request: NextRequest) {
     });
 
     const savedBio = await createBio.save();
+    // const bioData= {
+    //   bio,
+    //   instagramLink,
+    //   LinkedlnLink,
+    //   githubLink
+
+    // }
+
+    // const seetCookie = await JWT.sign(bioData,process.env.SECERT_KEY!, {
+    //   expiresIn: "1h",
+    // })
+
+    // response.cookies.set('bioToken',seetCookie,{
+    //   httpOnly:true
+    // })
+
+
     if (!savedBio) {
       return NextResponse.json({ message: "can't bio" }, { status: 400 });
     }

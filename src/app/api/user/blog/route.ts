@@ -34,6 +34,7 @@ export async function POST(request: NextRequest) {
       content
     
     });
+    
 
     if (!createBlog) {
       return NextResponse.json({ message: "server error" }, { status: 500 });

@@ -86,14 +86,14 @@ function page() {
                         {" "}
                         Password{" "}
                       </label>
-                      <a
-                        href="#"
+                      <Link
+                        href="/forgetPassword"
                         title=""
                         className="text-sm font-semibold text-black hover:underline"
                       >
                         {" "}
                         Forgot password?{" "}
-                      </a>
+                      </Link>
                     </div>
                     <div className="mt-2">
                       <input
