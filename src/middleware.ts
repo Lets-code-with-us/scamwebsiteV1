@@ -12,13 +12,13 @@ export async function middleware(request:NextRequest) {
     const token = request.cookies.get("token")?.value || '';
 
 
-    if(publicPath && token){
-        return NextResponse.redirect(new URL ('/profile',request.nextUrl))
-    }
+    // if(publicPath && token){
+    //     return NextResponse.redirect(new URL ('/profile',request.nextUrl))
+    // }
     
-    if(!publicPath && !token){
-        return NextResponse.redirect(new URL("/login",request.nextUrl))
-    }
+    // if(!publicPath && !token){
+    //     return NextResponse.redirect(new URL("/login",request.nextUrl))
+    // }
     
 
 

@@ -1,5 +1,5 @@
 import {v2 as cloudinary} from "cloudinary"
-import fs from "fs"
+import * as fs from "fs"
 
 cloudinary.config({
 cloud_name:process.env.CLOUD_NAME,
@@ -8,7 +8,7 @@ api_secret:process.env.API_SECRET,
 secure:true
 })
 
-async function UploadFile(path:string){
+async function UploadFile(path:any){
    try {
     if(!path){
         return new Error('No path Founded')

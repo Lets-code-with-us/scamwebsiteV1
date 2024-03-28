@@ -9,6 +9,7 @@ export function BlogPage() {
   // Define state for posts
   const [posts, setPosts] = useState([]);
 
+
   async function getBlogs() {
     try {
       const response = await axios.get("/api/user/giveBlogs");
@@ -16,7 +17,6 @@ export function BlogPage() {
       const postData = data;
       console.log(postData);
       setPosts(postData);
-      // console.log(posts);
     } catch (error) {
       console.error("Error fetching blogs:", error);
     }
@@ -53,23 +53,6 @@ export function BlogPage() {
             </button>
           </div>
         </div>
-        <div className="mt-10 hidden w-full flex-col justify-between space-y-4 md:flex md:flex-row">
-          <div className="flex w-full items-end border-b border-gray-300">
-            {[
-              "Design",
-              "Product",
-              "Software Engineering",
-              "Customer Success",
-            ].map((filter, index) => (
-              <div
-                className="cursor-pointer px-4 py-2 text-base font-semibold leading-normal text-gray-700 first:border-b-2 first:border-black"
-                key={filter}
-              >
-                {filter}
-              </div>
-            ))}
-          </div>
-        </div>
         {/* posts */}
         <div className="grid gap-6 gap-y-10 py-6 md:grid-cols-2 lg:grid-cols-3">
           {posts.map(
@@ -83,7 +66,7 @@ export function BlogPage() {
               },
               index
             ) => (
-              <Link key={post._id} href={`/api/user/getBlogs?id=${post._id}`}>
+              <Link key={post._id} href={`/Blogs/${post._id}`}>
                 <div key={index} className="border">
                   <div className="min-h-min p-3">
                     <p className="mt-4 w-full text-xs font-semibold leading-tight text-gray-700">

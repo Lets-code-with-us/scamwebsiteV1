@@ -5,7 +5,7 @@ import { NextRequest,NextResponse } from "next/server";
 
 dbConnect()
 export async function GET(_request:NextRequest) {
-    const getBlog = await Blogs.findOne({}).sort({_id:1});
+    const getBlog = await Blogs.find({}).sort({_id:-1});
     const blogData = await getBlog;
 
     if(!getBlog){

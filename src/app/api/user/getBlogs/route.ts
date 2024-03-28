@@ -1,7 +1,6 @@
 import { NextRequest,NextResponse } from "next/server";
 import { dbConnect } from "@/db/dbConnect";
 import { Blogs } from "@/models/blogModel";
-
 dbConnect()
 export async function GET(request:NextRequest & { params: any }){
 

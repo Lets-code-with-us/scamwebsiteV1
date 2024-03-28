@@ -19,7 +19,6 @@ function page() {
   useEffect(() => {
     if (
       title.length > 0 &&
-      imageUrl.length > 0 &&
       content.length > 0 &&
       category.length > 0
     ) {
@@ -27,12 +26,25 @@ function page() {
     } else {
       setDisabled(true);
     }
-  }, [title, imageUrl, content, category]);
+  }, [title, content, category]);
+  
+
+  async function fileLoad(e:any){
+    const reader = new FileReader()
+    reader.onload=()=>{
+      if(reader.readyState===2){
+        setImageLink(reader.result as string) // Add type assertion here
+      }
+
+      setImage(e.target.files[0])
+      reader.readAsDataURL(e.target.files[0])
+    }
+  }
 
   async function postblog() {
     try {
-      
-      const data = await axios.post("/api/user/blog", {
+      // const imageurl = await uploadFile(files);
+      const data = await axios.post("/api/user/blog",{
         title,
         imageUrl,
         category,
@@ -58,7 +70,7 @@ NextResponse.json({"message":error},{status:400})
         <Toaster />
       </div>
       <WarningBanner />
-      <div className="px-40 pt-20 pb-40">
+      <div className="px-10 md:px-40 pt-20 pb-40">
         <div className="space-y-5">
           <div>
             <label htmlFor="" className="text-base font-medium text-gray-900">
@@ -84,7 +96,7 @@ NextResponse.json({"message":error},{status:400})
             </label>
             <div className="mt-2">
               <input
-                onChange={(e) => setImage(e.target.value)}
+                onChange={fileLoad}
                 className="flex h-10 w-full rounded-md border border-gray-300 bg-transparent px-3 py-2 text-sm placeholder:text-gray-400 focus:outline-none focus:ring-1 focus:ring-gray-400 focus:ring-offset-1 disabled:cursor-not-allowed disabled:opacity-50"
                 type="file"
                 placeholder="Upload your image"
