@@ -5,46 +5,47 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 import toast, { Toaster } from "react-hot-toast";
 import { useRouter } from "next/navigation";
-import { NextResponse } from "next/server";
+import { CldUploadButton } from 'next-cloudinary';
 import Image from "next/image";
+import { upload } from "@/utils/multer";
 function page() {
   const [title, setTitle] = useState("");
   const [imageUrl, setImage] = useState("");
   const [content, setContent] = useState("");
   const [category, setcatgory] = useState("");
-  const [imagelink,setImageLink] = useState('')
+  const [imagelink, setImageLink] = useState("");
   const [disabled, setDisabled] = useState(false);
   const Router = useRouter();
 
   useEffect(() => {
-    if (
-      title.length > 0 &&
-      content.length > 0 &&
-      category.length > 0
-    ) {
+    if (title.length > 0 && content.length > 0 && category.length > 0) {
       setDisabled(false);
     } else {
       setDisabled(true);
     }
   }, [title, content, category]);
-  
 
-  async function fileLoad(e:any){
-    const reader = new FileReader()
-    reader.onload=()=>{
-      if(reader.readyState===2){
-        setImageLink(reader.result as string) // Add type assertion here
-      }
+  // async function fileLoad(e: any) {
+  //   const reader = new FileReader();
+  //   reader.onload = () => {
+  //     if (reader.readyState === 2) {
+  //       setImageLink(reader.result as string); // Add type assertion here
+  //     }
 
-      setImage(e.target.files[0])
-      reader.readAsDataURL(e.target.files[0])
-    }
+  //     setImage(e.target.files[0]);
+  //     reader.readAsDataURL(e.target.files[0]);
+  //   };
+  // }
+
+  async function uploadImage(result:any){
+    setImage(result.info.secure_url)
+    setImageLink(result.info.secure_url)
+      // return result.info.secure_url
   }
-
   async function postblog() {
     try {
       // const imageurl = await uploadFile(files);
-      const data = await axios.post("/api/user/blog",{
+      const data = await axios.post("/api/user/blog", {
         title,
         imageUrl,
         category,
@@ -59,9 +60,8 @@ function page() {
           Router.push("/trend");
         }, 500);
       }
-    }
-     catch (error:any) {
-NextResponse.json({"message":error},{status:400})
+    } catch (error: any) {
+      toast.error("Something Went Wrong");
     }
   }
   return (
@@ -92,18 +92,29 @@ NextResponse.json({"message":error},{status:400})
           <div>
             <label htmlFor="" className="text-base font-medium text-gray-900">
               {" "}
-              Image {" "}
+              Image{" "}
             </label>
-            <div className="mt-2">
-              <input
+            <div className="mt-2 flex flex-col items-center ">
+              {/* <input
                 onChange={fileLoad}
                 className="flex h-10 w-full rounded-md border border-gray-300 bg-transparent px-3 py-2 text-sm placeholder:text-gray-400 focus:outline-none focus:ring-1 focus:ring-gray-400 focus:ring-offset-1 disabled:cursor-not-allowed disabled:opacity-50"
                 type="file"
                 placeholder="Upload your image"
-              ></input>
-              <div className="flex flex-1 items-center justify-center pt-5">
+              ></input> */}
+              <CldUploadButton className="bg-green-400 rounded-full px-6 py-2" onUpload={uploadImage} uploadPreset="pf0ysyc8" />
 
-              <Image width={600} height={600} src={imagelink ? imagelink : 'https://images.pexels.com/photos/733856/pexels-photo-733856.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1' } alt={"image preview"}/>
+              
+              <div className="flex flex-1 items-center justify-center pt-5">
+                <Image
+                  width={600}
+                  height={600}
+                  src={
+                    imagelink
+                      ? imagelink
+                      : "https://images.pexels.com/photos/733856/pexels-photo-733856.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
+                  }
+                  alt={"image preview"}
+                />
               </div>
             </div>
           </div>

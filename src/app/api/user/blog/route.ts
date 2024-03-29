@@ -2,8 +2,6 @@ import { NextRequest, NextResponse } from "next/server";
 import JWT, { JwtPayload } from "jsonwebtoken";
 import { Blogs } from "@/models/blogModel";
 import { dbConnect } from "@/db/dbConnect";
-import { upload } from "@/utils/multer";
-import UploadFile from "@/utils/cloudinary";
 dbConnect();
 export async function POST(request: NextRequest) {
   try {
@@ -19,30 +17,23 @@ export async function POST(request: NextRequest) {
     ) as JwtPayload;
 
     const res = await request.json();
-    const { title, category, content } = await res;
-    const  file  = await res.files[0];
-    const {path} = file
+    const { title, imageUrl, category, content } = await res;
+   
 
 
-    if (!(title  && category && content)) {
+    if (!(title  && category && imageUrl && content)) {
       return NextResponse.json(
         { message: "All fields are required" },
         { status: 400 }
       );
     }
-    // const localpath = await upload.single(imageUrl);
-    // if (!localpath) {
-    //   return NextResponse.json({ message: "Unable to upload the file" }, { status: 404 });
-    // }
-    const filepath = await UploadFile(path);
-    if(!filepath){
-      return NextResponse.json({"message":"file not able to upload"},{status:404})
-    }
+  
+    
 
     const createBlog = await Blogs.create({
       user: decrypt.id,
       title,
-      imageUrl:filepath,
+      imageUrl,
       category,
       content
     });

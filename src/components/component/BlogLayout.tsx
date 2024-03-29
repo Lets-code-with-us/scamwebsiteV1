@@ -67,32 +67,20 @@ export function BlogPage() {
               index
             ) => (
               <Link key={post._id} href={`/Blogs/${post._id}`}>
-                <div key={index} className="border">
-                  <div className="min-h-min p-3">
-                    <p className="mt-4 w-full text-xs font-semibold leading-tight text-gray-700">
-                      #{post.category}
-                    </p>
-                    <p className="mt-4 flex-1 text-base font-semibold text-gray-900">
-                      {post.title}
-                    </p>
-                    <p className="mt-4 w-full text-sm leading-normal text-gray-600">
-                      {post.title}
-                    </p>
-                    <div className="mt-4 flex space-x-3 ">
-                      <img
-                        className="h-full w-10 rounded-lg"
-                        src={post.imageUrl}
-                        alt="img"
-                      />
-                      <div>
-                        <p className="text-sm font-semibold leading-tight text-gray-900">
-                          {post.user}
-                        </p>
-                        {/* <p className="text-sm leading-tight text-gray-600">{post.date}</p> */}
-                      </div>
-                    </div>
+            <div key={post.title} className="border">
+              <img src={post.imageUrl} className="aspect-video w-full rounded-md" alt="" />
+              <div className="min-h-min p-3">
+                <p className="mt-4 w-full text-xs font-semibold leading-tight text-gray-700">
+                  #{post.category}
+                </p>
+                <p className="mt-4 flex-1 text-base font-semibold text-gray-900">{post.title}</p>
+                {/* <p className="mt-4 w-full text-sm leading-normal text-gray-600">
+                  {post.description}
+                </p> */}
+                   
                   </div>
                 </div>
+
               </Link>
             )
           )}

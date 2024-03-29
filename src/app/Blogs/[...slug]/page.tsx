@@ -50,8 +50,8 @@ function Page({ params }: { params: { slug: string } }) {
           height={1000}
           width={1000}
           className="h-[200px] w-full rounded-xl object-cover md:h-full"
-            src="https://dev-ui-image-assets.s3.ap-south-1.amazonaws.com/google-map.jpg"
-            alt=""
+            src={data.imageUrl}
+            alt="image"
             />
         </div>
         </div>
