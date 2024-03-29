@@ -27,7 +27,7 @@ function Report({blogId}:{blogId:any}) {
       setDisabled(true)
     }
     
-  },[])
+  },[data])
  
 
   return (
