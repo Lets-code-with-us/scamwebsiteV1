@@ -3,6 +3,8 @@ import { dbConnect } from "@/db/dbConnect";
 import { User } from "@/models/userModel";
 import bcrypt from "bcrypt";
 import JWT from "jsonwebtoken";
+import { setCookie } from "cookies-next";
+import { cookies } from "next/headers";
 
 // connect the database
 dbConnect();
@@ -54,9 +56,11 @@ export async function POST(request: NextRequest) {
 
     // set the cookies
 
-    response.cookies.set("token", token, {
-      httpOnly: true,
-    });
+    // response.cookies.set("token", token, {
+    //   httpOnly: true,
+    // });
+
+    setCookie("token",token,{cookies});
 
     return response;
   } catch (error: any) {

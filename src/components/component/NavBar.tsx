@@ -1,8 +1,10 @@
 'use client'
 
-import React from 'react'
+import React,{useEffect} from 'react'
 import { Menu, X } from 'lucide-react'
 import Link from "next/link";
+import { hasCookie } from 'cookies-next';
+
 
 const menuItems = [
   {
@@ -32,6 +34,16 @@ const menuItems = [
 ]
 
 export function NavBar() {
+
+  useEffect(() => {
+    const token = hasCookie('token');
+    if(token){
+      setState('Log Out')
+    }
+    else{
+      setState('Log In')
+    }
+  },[hasCookie])
  
  
   const [isMenuOpen, setIsMenuOpen] = React.useState(false);

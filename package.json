@@ -17,6 +17,7 @@
     "bcrypt": "^5.1.1",
     "cloudinary": "^2.0.3",
     "clsx": "^2.1.0",
+    "cookies-next": "^4.1.1",
     "framer-motion": "^11.0.5",
     "jsonwebtoken": "^9.0.2",
     "lucide-react": "^0.331.0",

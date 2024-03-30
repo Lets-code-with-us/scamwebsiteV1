@@ -7,7 +7,7 @@ export function SparklesPreview() {
     <div className="h-[20rem] sm:h-[30rem] md:h-[40rem] relative w-full bg-black flex flex-col items-center justify-center overflow-hidden rounded-md">
       <div className="w-full h-full absolute inset-0">
         <video
-          className="object-cover w-full h-full video-player"
+          className="object-cover w-full h-full video-player  blur-sm"
           src={src}
           autoPlay
           muted
@@ -15,7 +15,7 @@ export function SparklesPreview() {
         ></video>
       </div>
       <h1 className="md:text-7xl text-3xl lg:text-6xl font-bold text-center text-white relative z-20">
-        Scam Site
+        Scam Alert
       </h1>
     </div>
   );
