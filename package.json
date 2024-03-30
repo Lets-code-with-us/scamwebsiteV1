@@ -21,7 +21,6 @@
     "jsonwebtoken": "^9.0.2",
     "lucide-react": "^0.331.0",
     "mongoose": "^8.1.1",
-    "multer": "^1.4.5-lts.1",
     "next": "14.1.0",
     "next-auth": "^4.24.6",
     "next-cloudinary": "^6.3.0",
