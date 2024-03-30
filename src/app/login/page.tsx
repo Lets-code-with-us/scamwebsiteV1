@@ -24,15 +24,19 @@ function page() {
   }, [email, password]);
 
   async function userLogin() {
-    const userData = await axios.post("/api/user/login", { email, password });
-    const response = userData;
-    if (!response) {
-      toast.error("Server Error");
-    } else {
-      toast.success("Login Successfull");
+    try {
+      const userData = await axios.post("/api/user/login", { email, password });
+      toast.success("Login Successful");
       setTimeout(() => {
         Router.push("/profile");
       }, 1000);
+    } catch (error:any) {
+      if (error.response && error.response.status === 404) {
+        toast.error("Wrong email or password");
+      } else {
+        console.error("An error occurred while logging in:", error);
+        toast.error("An error occurred. Please try again later.");
+      }
     }
   }
 
@@ -70,6 +74,7 @@ function page() {
                     </label>
                     <div className="mt-2">
                       <input
+                        required
                         className="flex h-10 w-full rounded-md border border-gray-300 bg-transparent px-3 py-2 text-sm placeholder:text-gray-400 focus:outline-none focus:ring-1 focus:ring-gray-400 focus:ring-offset-1 disabled:cursor-not-allowed disabled:opacity-50"
                         type="email"
                         placeholder="Email"
@@ -97,6 +102,7 @@ function page() {
                     </div>
                     <div className="mt-2">
                       <input
+                        required
                         className="flex h-10 w-full rounded-md border border-gray-300 bg-transparent px-3 py-2 text-sm placeholder:text-gray-400 focus:outline-none focus:ring-1 focus:ring-gray-400 focus:ring-offset-1 disabled:cursor-not-allowed disabled:opacity-50"
                         type="password"
                         placeholder="Password"
