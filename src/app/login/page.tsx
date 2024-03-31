@@ -31,7 +31,7 @@ function page() {
         Router.push("/profile");
       }, 1000);
     } catch (error:any) {
-      if (error.response && error.response.status === 404) {
+      if (error.response && error.response.status === 404 || error.response && error.response.status === 400) {
         toast.error("Wrong email or password");
       } else {
         console.error("An error occurred while logging in:", error);

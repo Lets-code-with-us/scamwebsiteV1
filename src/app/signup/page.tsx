@@ -4,8 +4,7 @@ import React from "react";
 import { ArrowRight } from "lucide-react";
 import { useState, useEffect } from "react";
 import axios from "axios";
-import { Toaster } from "react-hot-toast";
-import toast from "react-hot-toast/headless";
+import { Toaster,toast } from "react-hot-toast";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
 
@@ -15,41 +14,44 @@ function page() {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [disabled, setDisabled] = useState(false);
-  const [validemail,setVaildEmail] = useState('')
 
   useEffect(() => {
-    if (email.length > 0 && password.length > 0 && username.length > 0 && email.includes("@gmail")) {
+    if (
+      email.length > 0 &&
+      password.length > 0 &&
+      username.length > 0 
+    ) {
+      if(!email.includes("@gmail")){
+      setDisabled(true);
+      toast.error("Use Gmail for create a new account")
+      
+
+      }
       setDisabled(false);
-      setVaildEmail('')
     } else {
       setDisabled(true);
-     
     }
   }, [email, password, username]);
 
-  useEffect(()=>{
-    if(![email.includes('@gmail')]){
-      ValideEmail()
-    }
-  },[email])
-
-  function ValideEmail(){
-    setVaildEmail('Use Valid Email name')
-  }
-
   async function signup() {
-    const userRequest = await axios.post("/api/user/signin", {
-      username,
-      email,
-      password,
-    });
-    if (userRequest) {
+    try {
+      const userRequest = await axios.post("/api/user/signin", {
+        username,
+        email,
+        password,
+      });
+
       toast.success("Successfully toasted!");
       setTimeout(() => {
         Router.push("/login");
       }, 1000);
-    } else {
-      toast.error("Some went Wrong");
+    } catch (error:any) {
+      if (error.response && error.response.status === 404 ||error.response && error.response.status === 400 ) {
+        toast.error("Email already Exists");
+      } else {
+        console.error("An error occurred while logging in:", error);
+        toast.error("An error occurred. Please try again later.");
+      }
     }
   }
 
@@ -111,7 +113,6 @@ function page() {
                       onChange={(e) => setEmail(e.target.value)}
                     ></input>
                   </div>
-                    <span className={`text-red-500`}>{validemail}</span>
                 </div>
                 <div>
                   <div className="flex items-center justify-between">
