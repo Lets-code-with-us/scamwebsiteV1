@@ -7,7 +7,6 @@ import toast, { Toaster } from "react-hot-toast";
 import { useRouter } from "next/navigation";
 import { CldUploadButton } from 'next-cloudinary';
 import Image from "next/image";
-import { upload } from "@/utils/multer";
 function page() {
   const [title, setTitle] = useState("");
   const [imageUrl, setImage] = useState("");
