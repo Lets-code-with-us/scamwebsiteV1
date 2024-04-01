@@ -1,64 +1,57 @@
-'use client'
-
-import React,{useEffect} from 'react'
-import { Menu, X } from 'lucide-react'
+"use client";
+import React, { useEffect } from "react";
+import { Menu, X } from "lucide-react";
 import Link from "next/link";
-import { hasCookie } from 'cookies-next';
-
+import { hasCookie } from "cookies-next";
 
 const menuItems = [
   {
-    name: 'Home',
-    href: '/',
+    name: "Home",
+    href: "/",
   },
   {
-    name: 'Feed',
-    href: '/trend',
+    name: "Feed",
+    href: "/trend",
   },
   {
-    name: 'About',
-    href: '/about',
+    name: "About",
+    href: "/about",
   },
   {
-    name: 'Contact',
-    href: '/contact',
+    name: "Contact",
+    href: "/contact",
   },
   {
-    name: 'Profile',
-    href: '/profile',
+    name: "Profile",
+    href: "/profile",
   },
   {
-    name:'Scams',
-    href:'/scams'
-  }
-]
+    name: "Scams",
+    href: "/scams",
+  },
+];
 
 export function NavBar() {
-
   useEffect(() => {
-    const token = hasCookie('token');
-    if(token){
-      setState('Log Out')
+    const token = hasCookie("token");
+    if (token) {
+      setState("Log Out");
+    } else {
+      setState("Log In");
     }
-    else{
-      setState('Log In')
-    }
-  },[hasCookie])
- 
- 
-  const [isMenuOpen, setIsMenuOpen] = React.useState(false);
-  const [state, setState] = React.useState('Log In');
-  
+  }, [hasCookie]);
 
-  
+  const [isMenuOpen, setIsMenuOpen] = React.useState(false);
+  const [state, setState] = React.useState("Log In");
+
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
-  }
+  };
 
   return (
     <div className="relative w-full bg-white pb-3 pt-6">
-      <div className="mx-auto  flex max-w-7xl items-center justify-between px-4 py-2 sm:px-6 lg:px-8">
-        <div className="inline-flex items-center justify-center text-lg space-x-2">
+      <div className="mx-auto flex max-w-7xl items-center justify-between px-4 py-2 sm:px-6 lg:px-8">
+        <div className="flex items-center justify-center space-x-2">
           <span>
             <svg
               width="30"
@@ -75,13 +68,13 @@ export function NavBar() {
           </span>
           <span className="font-bold">Scam Site</span>
         </div>
-        <div className="hidden grow items-start lg:flex">
+        <div className="hidden grow items-start lg:flex justify-center">
           <ul className="ml-12 inline-flex text-2xl space-x-8">
             {menuItems.map((item) => (
               <li key={item.name}>
                 <Link
                   href={item.href}
-                  className="text-lg font-semibold  text-gray-800 hover:text-gray-900"
+                  className="text-lg font-semibold text-gray-800 hover:text-gray-900"
                 >
                   {item.name}
                 </Link>
@@ -95,7 +88,7 @@ export function NavBar() {
               type="button"
               className="rounded-md bg-black px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-black/80 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-black"
             >
-               {state}
+              {state}
             </button>
           </Link>
         </div>
@@ -151,19 +144,18 @@ export function NavBar() {
                   </nav>
                 </div>
                 <Link href="/signup">
-
-                <button
-                  type="button"
-                  className="mt-4 w-full rounded-md bg-black px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-black/80 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-black"
+                  <button
+                    type="button"
+                    className="mt-4 w-full rounded-md bg-black px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-black/80 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-black"
                   >
-                  {state}
-                </button>
-                  </Link>
+                    {state}
+                  </button>
+                </Link>
               </div>
             </div>
           </div>
         )}
       </div>
     </div>
-  )
+  );
 }
