@@ -4,6 +4,7 @@ import axios from "axios";
 import {useState, useEffect } from "react";
 import Image from "next/image";
 import Report from "@/components/component/Report";
+import parse from 'html-react-parser';
 
 function Page({ params }: { params: { slug: string } }) {
   // console.log("params:", params.slug[0].toString());
@@ -15,6 +16,7 @@ function Page({ params }: { params: { slug: string } }) {
       setId(id)
       const data = await axios.get(`http://localhost:3000/api/user/getBlogs?id=${id}`);
       const body = await data.data;
+      console.log(body.data)
       setData(body.data)
   
      
@@ -24,7 +26,7 @@ function Page({ params }: { params: { slug: string } }) {
     }
     }
     useEffect(()=>{
-       getData();
+      getData();
 
     },[])
     return (
@@ -40,10 +42,7 @@ function Page({ params }: { params: { slug: string } }) {
           <p className="text-3xl font-bold text-gray-900 md:text-5xl md:leading-10">
           {data?.title}
           </p>
-          <p className="max-w-4xl text-base text-gray-600 md:text-xl">
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Tempore veritatis voluptates
-            neque itaque repudiandae sint, explicabo assumenda quam ratione placeat?
-          </p>
+
         </div>
         <div className="w-full space-y-4">
           <Image
@@ -53,6 +52,9 @@ function Page({ params }: { params: { slug: string } }) {
             src={data.imageUrl}
             alt="image"
             />
+        </div>
+        <div>
+          {parse(data.content)}
         </div>
         </div>
         <div className="flex flex-1 items-center justify-center">

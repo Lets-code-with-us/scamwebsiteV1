@@ -3,10 +3,13 @@ import React from "react";
 import { WarningBanner } from "@/components/component/warningBanner";
 import { useState, useEffect } from "react";
 import axios from "axios";
-import toast, { Toaster } from "react-hot-toast";
+import { Toaster, toast } from "react-hot-toast";
 import { useRouter } from "next/navigation";
-import { CldUploadButton } from 'next-cloudinary';
+import { CldUploadButton } from "next-cloudinary";
 import Image from "next/image";
+import { useQuill } from "react-quilljs";
+import "quill/dist/quill.snow.css";
+
 function page() {
   const [title, setTitle] = useState("");
   const [imageUrl, setImage] = useState("");
@@ -16,6 +19,38 @@ function page() {
   const [disabled, setDisabled] = useState(false);
   const Router = useRouter();
 
+  const theme = "snow";
+
+  const modules = {
+    toolbar: [
+      ["bold", "italic", "underline", "strike"],
+      [{ align: [] }],
+
+      [{ list: "ordered" }, { list: "bullet" }],
+      [{ indent: "-1" }, { indent: "+1" }],
+
+      [{ size: ["small", false, "large", "huge"] }],
+      [{ header: [1, 2, 3, 4, 5, 6, false] }],
+      ["link"],
+      [{ color: [] }, { background: [] }],
+
+      ["clean"],
+    ],
+    clipboard: {
+      matchVisual: false,
+    },
+  };
+
+  const placeholder = "Compose an epic...";
+
+  const formats = ["bold", "italic", "underline", "strike"];
+
+  const { quill, quillRef } = useQuill({
+    theme,
+    modules,
+    formats,
+    placeholder,
+  });
   useEffect(() => {
     if (title.length > 0 && content.length > 0 && category.length > 0) {
       setDisabled(false);
@@ -24,26 +59,24 @@ function page() {
     }
   }, [title, content, category]);
 
-  // async function fileLoad(e: any) {
-  //   const reader = new FileReader();
-  //   reader.onload = () => {
-  //     if (reader.readyState === 2) {
-  //       setImageLink(reader.result as string); // Add type assertion here
-  //     }
+  // update Content
+  React.useEffect(() => {
+    if (quill) {
+      quill.on("text-change", (delta: any, oldDelta: any, source: any) => {
+        setContent(quill.root.innerHTML);
+      });
+    }
+  }, [quill]);
 
-  //     setImage(e.target.files[0]);
-  //     reader.readAsDataURL(e.target.files[0]);
-  //   };
-  // }
-
-  async function uploadImage(result:any){
-    setImage(result.info.secure_url)
-    setImageLink(result.info.secure_url)
-      // return result.info.secure_url
+  // upload image
+  async function uploadImage(result: any) {
+    setImage(result.info.secure_url);
+    setImageLink(result.info.secure_url);
   }
+
+  // post blog
   async function postblog() {
     try {
-      // const imageurl = await uploadFile(files);
       const data = await axios.post("/api/user/blog", {
         title,
         imageUrl,
@@ -51,16 +84,21 @@ function page() {
         content,
       });
       const response = await data;
-      if (!response) {
-        toast.error("Server Error");
-      } else {
+      if (response) {
         toast.success("Blog SuccessFully added");
         setTimeout(() => {
           Router.push("/trend");
         }, 500);
       }
     } catch (error: any) {
-      toast.error("Something Went Wrong");
+      if (
+        (error.response && error.response.status === 404) ||
+        (error.response && error.response.status === 400)
+      ) {
+        toast.error("Something Went Wrong");
+      } else {
+        toast.error("Something went wrong");
+      }
     }
   }
   return (
@@ -94,15 +132,12 @@ function page() {
               Image{" "}
             </label>
             <div className="mt-2 flex flex-col items-center ">
-              {/* <input
-                onChange={fileLoad}
-                className="flex h-10 w-full rounded-md border border-gray-300 bg-transparent px-3 py-2 text-sm placeholder:text-gray-400 focus:outline-none focus:ring-1 focus:ring-gray-400 focus:ring-offset-1 disabled:cursor-not-allowed disabled:opacity-50"
-                type="file"
-                placeholder="Upload your image"
-              ></input> */}
-              <CldUploadButton className="bg-green-400 rounded-full px-6 py-2" onUpload={uploadImage} uploadPreset="pf0ysyc8" />
+              <CldUploadButton
+                className="bg-green-400 rounded-full px-6 py-2"
+                onUpload={uploadImage}
+                uploadPreset="pf0ysyc8"
+              />
 
-              
               <div className="flex flex-1 items-center justify-center pt-5">
                 <Image
                   width={600}
@@ -125,19 +160,15 @@ function page() {
               {" "}
               Content{" "}
             </label>
-            <div className="mt-2">
-              <textarea
-                onChange={(e) => setContent(e.target.value)}
-                name="content"
-                id="content"
-                cols={30}
-                rows={10}
-                className="flex h-40 w-full rounded-md border border-gray-300 bg-transparent px-3 py-2 text-sm placeholder:text-gray-400 overflow-y-hidden focus:outline-none focus:ring-1 focus:ring-gray-400 focus:ring-offset-1 disabled:cursor-not-allowed disabled:opacity-50"
-              ></textarea>
+            <div className="mt-2 mb-2">
+              {/* editor */}
+              <div className="w-100 h-40 md:w-[80rem] md:h-[20rem]">
+                <div ref={quillRef} />
+              </div>
             </div>
           </div>
         </div>
-        <div className="space-y-5">
+        <div className="space-y-5 mt-[10rem] md:mt-[5rem]">
           <div>
             <label htmlFor="" className="text-base font-medium text-gray-900">
               {" "}
