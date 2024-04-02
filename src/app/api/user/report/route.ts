@@ -9,8 +9,8 @@ dbConnect()
 export async function POST(request:NextRequest) {
     try {
         const response  =  request.json();
-        const {blogId,content} = await response;
-        if(![blogId && content]){
+        const {blog,content} = await response;
+        if(![blog && content]){
             return NextResponse.json({
                 "message":"Server Error"
             },{
@@ -30,7 +30,7 @@ export async function POST(request:NextRequest) {
     
         const userReport = await new Report({
             user:userId.id,
-            blogId:blogId,
+            blogId:blog,
             comment:content
         });
         if(!userReport){

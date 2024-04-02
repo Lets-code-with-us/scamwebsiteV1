@@ -7,11 +7,21 @@ import { Toaster,toast } from 'react-hot-toast';
 function Report({blogId}:{blogId:any}) {
   const [data,setData] = useState('')
   const [disabled,setDisabled] = useState(false)
+  const [blog,setBlogId] = useState('')
 
   async function postReport() {
  try {
-     const response =  await axios.post("/api/user/report",{blogId,data})
-     toast.success("Thanks for your response")
+  if(blogId){
+    setBlogId(blogId)
+
+  }else{
+    throw new Error("Error")
+  }
+     const response =  await axios.post("/api/user/report",{blog,data})
+     if(response){
+       toast.success("Thanks for your response")
+
+     }
  } catch (error:any) {
   if(error.response && error.response.status === 404 || error.response && error.response.status === 400){
 
