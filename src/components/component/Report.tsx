@@ -9,15 +9,21 @@ function Report({blogId}:{blogId:any}) {
   const [disabled,setDisabled] = useState(false)
 
   async function postReport() {
-    const response =  await axios.post("/api/user/report",{blogId,data})
-    if(!response){
-      toast.error("Something went wrong")
+ try {
+     const response =  await axios.post("/api/user/report",{blogId,data})
+     toast.success("Thanks for your response")
+ } catch (error:any) {
+  if(error.response && error.response.status === 404 || error.response && error.response.status === 400){
 
-    }
-    else{
-      toast.success("Thanks for Posting")
-    }
-    
+    toast.error("Now able to report")
+  }
+  else{
+    toast.error("Something went wrong")
+   }
+  
+ }
+ 
+
   }
   useEffect(()=>{
     if(data.length>0){
