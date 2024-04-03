@@ -32,7 +32,9 @@
     "react-dom": "^18",
     "react-hot-toast": "^2.4.1",
     "react-quilljs": "^1.3.3",
-    "tailwind-merge": "^2.2.1"
+    "react-share": "^5.1.0",
+    "tailwind-merge": "^2.2.1",
+    "vaul": "^0.9.0"
   },
   "devDependencies": {
     "@types/bcrypt": "^5.0.2",
