@@ -14,7 +14,7 @@ try {
     }
 
 
-    return NextResponse.json({"messagge":"success","data":getLike},{status:200})
+    return NextResponse.json({"messagge":"success","data":getLike.length},{status:200})
 
 
 } catch (error:any) {
