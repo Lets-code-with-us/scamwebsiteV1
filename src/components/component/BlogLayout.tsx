@@ -5,19 +5,22 @@ import Image from "next/image";
 import Link from "next/link";
 import axios from "axios";
 import {
+  FacebookIcon,
   FacebookShareButton,
+  InstapaperShareButton,
   LinkedinShareButton,
   RedditShareButton,
   TwitterShareButton,
+  WhatsappIcon,
   WhatsappShareButton,
 } from "react-share";
 import { TwitterIcon } from "react-share";
 import { Drawer } from "vaul";
+import { InspectIcon, LinkedinIcon } from "lucide-react";
 export function BlogPage() {
   // Define state for posts
   const [posts, setPosts] = useState([]);
-  const [share, setShare] = useState("hidden");
-  const [buttonState, setButtonState] = useState(true);
+
 
   async function getBlogs() {
     try {
@@ -99,10 +102,12 @@ export function BlogPage() {
                 </p> */}
                   </div>
                  
-                    <div className="">
+                    <div className="flex flex-1 gap-3 items-center">
+                      <div className="hover:pointer">&#x1F44D;</div>
+                      <div> 1K</div>
                     <Drawer.Root>
       <Drawer.Trigger asChild>
-        <button>Open Drawer</button>
+        <button>&#x1F4E9;</button>
       </Drawer.Trigger>
       <Drawer.Portal>
         <Drawer.Overlay className="fixed inset-0 bg-black/40" />
@@ -111,82 +116,26 @@ export function BlogPage() {
             <div className="mx-auto w-12 h-1.5 flex-shrink-0 rounded-full bg-zinc-300 mb-8" />
             <div className="max-w-md mx-auto">
               <Drawer.Title className="font-medium mb-4">
-                Unstyled drawer for React.
+                Share In media
               </Drawer.Title>
-              <p className="text-zinc-600 mb-2">
-                This component can be used as a replacement for a Dialog on
-                mobile and tablet devices.
-              </p>
-              <p className="text-zinc-600 mb-8">
-                It uses{" "}
-                <a
-                  href="https://www.radix-ui.com/docs/primitives/components/dialog"
-                  className="underline"
-                  target="_blank"
-                >
-                  Radix&rsquo;s Dialog primitive
-                </a>{" "}
-                under the hood and is inspired by{" "}
-                <a
-                  href="https://twitter.com/devongovett/status/1674470185783402496"
-                  className="underline"
-                  target="_blank"
-                >
-                  this tweet.
-                </a>
-              </p>
+            <div className="flex flex-row items-center gap-3 justify-center">
+              <TwitterShareButton url={`/Blogs/${post._id}`}>
+                <TwitterIcon round/>
+              </TwitterShareButton>
+              <WhatsappShareButton url={`/Blogs/${post._id}`} >
+                <WhatsappIcon round/>
+              </WhatsappShareButton>
+              <FacebookShareButton url={`/Blogs/${post._id}`}>
+                <FacebookIcon round/>
+              </FacebookShareButton>
+             <LinkedinShareButton url={`/Blogs/${post._id}`}>
+              <LinkedinIcon />
+             </LinkedinShareButton>
+            </div>
+             
             </div>
           </div>
-          <div className="p-4 bg-zinc-100 border-t border-zinc-200 mt-auto">
-            <div className="flex gap-6 justify-end max-w-md mx-auto">
-              <a
-                className="text-xs text-zinc-600 flex items-center gap-0.25"
-                href="https://github.com/emilkowalski/vaul"
-                target="_blank"
-              >
-                GitHub
-                <svg
-                  fill="none"
-                  height="16"
-                  stroke="currentColor"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="2"
-                  viewBox="0 0 24 24"
-                  width="16"
-                  aria-hidden="true"
-                  className="w-3 h-3 ml-1"
-                >
-                  <path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"></path>
-                  <path d="M15 3h6v6"></path>
-                  <path d="M10 14L21 3"></path>
-                </svg>
-              </a>
-              <a
-                className="text-xs text-zinc-600 flex items-center gap-0.25"
-                href="https://twitter.com/emilkowalski_"
-                target="_blank"
-              >
-                Twitter
-                <svg
-                  fill="none"
-                  height="16"
-                  stroke="currentColor"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="2"
-                  viewBox="0 0 24 24"
-                  width="16"
-                  aria-hidden="true"
-                  className="w-3 h-3 ml-1"
-                >
-                  <path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"></path>
-                  <path d="M15 3h6v6"></path>
-                  <path d="M10 14L21 3"></path>
-                </svg>
-              </a>
-            </div>
-          </div>
+        
         </Drawer.Content>
       </Drawer.Portal>
     </Drawer.Root>
