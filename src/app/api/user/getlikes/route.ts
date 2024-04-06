@@ -18,6 +18,6 @@ try {
 
 
 } catch (error:any) {
-    throw new Error(error)
+    return NextResponse.json({"message":"server error"},{status:404})
 }
 }
