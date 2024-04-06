@@ -19,6 +19,7 @@ import { Drawer } from "vaul";
 export function BlogPage() {
   // Define state for posts
   const [posts, setPosts] = useState([]);
+  const [like,setLike] = useState([])
 
   async function getBlogs() {
     try {
@@ -50,9 +51,29 @@ async function handleLikes(id:any) {
   
   
 }
+
+
+async function getLikes(id:any){
+  try {
+    const res = await axios.post("api/user/getlikes",{id})
+    const datas = await res.data;
+    console.log(datas.data)
+
+    if(datas){
+      setLike(datas.data)
+
+    }
+  } catch (error:any) {
+    console.log(error)
+    
+  }
+
+
+}
   // Use useEffect to run getBlogs only once when the component mounts
   useEffect(() => {
     getBlogs();
+    
   }, []);
 
   return (
@@ -78,6 +99,7 @@ async function handleLikes(id:any) {
                       src={post.imageUrl}
                       className="aspect-video w-full rounded-md"
                       alt="blog image"
+                      onLoad={()=>getLikes(post._id)}
                     />
                   </div>
                 </Link>
@@ -88,14 +110,21 @@ async function handleLikes(id:any) {
                   <p className="mt-4 flex-1 text-base font-semibold text-gray-900">
                     {post.title}
                   </p>
-                  {/* <p className="mt-4 w-full text-sm leading-normal text-gray-600">
-                  {post.content.slice(0.10)}
-                </p> */}
                 </div>
 
                 <div className="flex flex-1 gap-3 items-center">
                   <button onClick={()=>handleLikes(post._id)} className="hover:pointer">&#x1F44D;</button>
-                  <div></div>
+                  {/* <div>{like.map((el,index)=>{
+                    return(
+                      <>
+                      <div key={el}>
+                      <h2>{index}</h2>
+
+                      </div>
+                      </>
+                    )
+                  })}</div> */}
+                  <div>{like.length}</div>
                   <Drawer.Root>
                     <Drawer.Trigger asChild>
                       <button>&#x1F4E9;</button>

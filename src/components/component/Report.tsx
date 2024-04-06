@@ -5,7 +5,7 @@ import axios from 'axios';
 import { Toaster,toast } from 'react-hot-toast';
 
 function Report({blogId}:{blogId:any}) {
-  const [data,setData] = useState('')
+  const [content,setData] = useState('')
   const [disabled,setDisabled] = useState(false)
   const [blog,setBlogId] = useState('')
 
@@ -17,7 +17,7 @@ function Report({blogId}:{blogId:any}) {
   }else{
     throw new Error("Error")
   }
-     const response =  await axios.post("/api/user/report",{blog,data})
+     const response =  await axios.post("/api/user/report",{blog,content})
      if(response){
        toast.success("Thanks for your response")
 
@@ -36,14 +36,14 @@ function Report({blogId}:{blogId:any}) {
 
   }
   useEffect(()=>{
-    if(data.length>0){
+    if(content.length>0){
       setDisabled(false)
     }
     else{
       setDisabled(true)
     }
     
-  },[data])
+  },[content])
  
 
   return (

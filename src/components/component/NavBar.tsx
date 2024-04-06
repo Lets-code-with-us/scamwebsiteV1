@@ -25,10 +25,6 @@ const menuItems = [
     name: "Profile",
     href: "/profile",
   },
-  {
-    name: "Scams",
-    href: "/scams",
-  },
 ];
 
 export function NavBar() {
