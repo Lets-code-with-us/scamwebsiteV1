@@ -7,7 +7,7 @@ dbConnect();
 export async function POST(request: NextRequest) {
   try {
     const response = await request.json();
-    const { blog, user } = await response;
+    const { blog} = await response;
     const token = request.cookies.get("token")?.value || "";
     if (!token) {
       return NextResponse.json({ message: "Login First" }, { status: 404 });
@@ -36,6 +36,6 @@ export async function POST(request: NextRequest) {
       { status: 404 }
     );
   } catch (error:any) {
-    throw new Error(error)
+    return NextResponse.json({"message":"server error"},{status:404})
   }
 }
