@@ -10,22 +10,23 @@ export async function POST(request:NextRequest){
         try {
             const response = await request.json();
             const {blogId,comment} = await response;
-            const token = getCookie("token")?.valueOf() || ""; // Call the valueOf function on token
+            const token = await request.cookies.get("token")?.value || ""
+            console.log(token)
             if(!token){
                 return NextResponse.json({"message":"Please LogIn"},{status:404})
             }
-    
-            const decrypt:JwtPayload = JWT.verify(token, process.env.SECERT_KEY!) as JwtPayload;
-            const userId = decrypt.id;
-            const commentModel = await new Comment.save({
+            const userData:JwtPayload = await JWT.verify(token,process.env.SECERT_KEY!) as JwtPayload 
+            const userId = await userData.id
+
+            const commentModel = await new Comment({
                 userId,
                 blogId,
                 comment
-            })
-    
+            });
+
             const saveModel = await commentModel.save();
-            if(!saveModel){
-                return NextResponse.json({"message":"Sever error"},{status:404})
+            if (!saveModel) {
+                return NextResponse.json({"message":"Sever error"}, {status:404});
             }
             return NextResponse.json({"message":"Comment added"},{status:200})
         } catch (error:any) {

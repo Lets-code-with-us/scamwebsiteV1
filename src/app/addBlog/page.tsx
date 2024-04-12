@@ -10,7 +10,7 @@ import Image from "next/image";
 import { useQuill } from "react-quilljs";
 import "quill/dist/quill.snow.css";
 
-function page() {
+function Page() {
   const [title, setTitle] = useState("");
   const [imageUrl, setImage] = useState("");
   const [content, setContent] = useState("");
@@ -199,4 +199,4 @@ function page() {
   );
 }
 
-export default page;
+export default Page;

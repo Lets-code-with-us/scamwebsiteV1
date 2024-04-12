@@ -3,12 +3,13 @@
 import React from "react";
 import { ArrowRight } from "lucide-react";
 import { useState, useEffect } from "react";
+import Image from "next/image";
 import axios from "axios";
 import { Toaster,toast } from "react-hot-toast";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
 
-function page() {
+function Page() {
   const Router = useRouter();
   const [email, setEmail] = useState("");
   const [username, setUsername] = useState("");
@@ -149,7 +150,9 @@ function page() {
           </div>
         </div>
         <div className="h-full w-full">
-          <img
+          <Image 
+          height={1200}
+          width={1200}
             className="mx-auto h-full w-full rounded-md object-cover"
             src="https://images.unsplash.com/photo-1559526324-4b87b5e36e44?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1742&q=80"
             alt=""
@@ -160,4 +163,4 @@ function page() {
   );
 }
 
-export default page;
+export default Page;

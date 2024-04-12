@@ -5,6 +5,7 @@ import Link from "next/link";
 import axios from "axios";
 import toast, { Toaster } from "react-hot-toast";
 import { useRouter } from "next/navigation";
+import Image from "next/image";
 const posts = [
   {
     category: 'Design',
@@ -105,7 +106,7 @@ const posts = [
   },
 ]
 
-function page() {
+function Page() {
   const [user, setUser] = React.useState("");
   const [bio, setBio] = React.useState([]);
   React.useEffect(() => {
@@ -168,7 +169,9 @@ function page() {
           {bio.map((el: { bio: string }, i) => {
             return (
               <div key={i}>
-                <img
+                <Image 
+                height={1200}
+                width={1200}
                   className="relative z-10 inline-block h-10 w-10 rounded-full ring-2 ring-white"
                   src="https://leerob.io/_next/image?url=%2F_next%2Fstatic%2Fmedia%2Favatar.b1d1472f.jpg&w=256&q=75"
                   alt="Lee_Robinson"
@@ -214,7 +217,7 @@ function page() {
         <div className="grid gap-6 gap-y-10 py-6 md:grid-cols-2 lg:grid-cols-3">
           {posts.map((post) => (
             <div key={post.title} className="border">
-              <img src={post.poster} className="aspect-video w-full rounded-md" alt="" />
+              <Image height={1200} width={1200} src={post.poster} className="aspect-video w-full rounded-md" alt="" />
               <div className="min-h-min p-3">
                 <p className="mt-4 w-full text-xs font-semibold leading-tight text-gray-700">
                   #{post.category}
@@ -224,7 +227,7 @@ function page() {
                   {post.description}
                 </p>
                 <div className="mt-4 flex space-x-3 ">
-                  <img className="h-full w-10 rounded-lg" src={post.avatar} alt={post.author} />
+                  <Image height={1200} width={1200} className="h-full w-10 rounded-lg" src={post.avatar} alt={post.author} />
                   <div>
                     <p className="text-sm font-semibold leading-tight text-gray-900">
                       {post.author}
@@ -242,4 +245,4 @@ function page() {
   );
 }
 
-export default page;
+export default Page;

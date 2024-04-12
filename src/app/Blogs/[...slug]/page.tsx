@@ -10,6 +10,7 @@ function Page({ params }: { params: { slug: string } }) {
   const [data, setData] = useState<any>({});
   const [id, setId] = useState('');
   const [content, setContent] = useState<string>('');
+  const [comment,setComment] = useState('')
 
   async function getData() {
     try {
@@ -28,6 +29,23 @@ function Page({ params }: { params: { slug: string } }) {
     } catch (error) {
       console.log("error: ", error);
     }
+  }
+  async function postComment() {
+    try {
+      const response = await axios.post("/api/user/postComment",{
+        blogId:id,
+        comment
+      }) 
+      if(!response){
+        console.log("comment error")
+      }
+      
+    } catch (error) {
+      console.log(error)
+      
+    }
+
+    
   }
 
   useEffect(() => {
@@ -57,6 +75,11 @@ function Page({ params }: { params: { slug: string } }) {
             <div>
               {parse(content)}
             </div>
+          </div>
+          <div>
+            <input type="text" onChange={(e)=>setComment(e.target.value)}/>
+            <button onClick={postComment}>Comment</button>
+
           </div>
           <div className="flex flex-1 items-center justify-center">
             <Report blogId={id} />

@@ -127,7 +127,9 @@ function page() {
         <div className="grid grid-cols-1 gap-4 gap-y-6 border-b border-gray-300 py-12 pb-20 md:grid-cols-2 lg:grid-cols-4">
           {users.map((user) => (
             <div className="rounded-md border" key={user.name}>
-              <img
+              <Image
+              height={1200}
+              width={1200}
                 src={user.image}
                 alt={user.name}
                 className="h-[300px] w-full rounded-lg object-cover "
@@ -156,7 +158,9 @@ function page() {
             </button>
           </div>
           <div className="md:mt-o mt-10 w-full">
-            <img
+            <Image
+            height={1200}
+            width={1200}
               src="https://images.unsplash.com/photo-1605165566807-508fb529cf3e?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2340&q=80"
               alt="Getting Started"
               className="rounded-lg"

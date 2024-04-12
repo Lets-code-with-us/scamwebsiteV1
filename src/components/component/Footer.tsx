@@ -15,7 +15,7 @@ export function Footer() {
     else{
       setDisabled(true)
     }
-  })
+  },[email])
 
 
   async function emailSubscriber() {

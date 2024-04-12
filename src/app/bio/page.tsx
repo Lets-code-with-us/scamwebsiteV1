@@ -5,7 +5,7 @@ import { ArrowRight } from "lucide-react";
 import axios from "axios";
 import { useRouter } from "next/navigation";
 import { Toaster, toast } from "react-hot-toast";
-function page() {
+function Page() {
   const [bio, setBio] = useState("");
   const [instagramLink, setLink] = useState("");
   const [LinkedlnLink, setSocial] = useState("");
@@ -153,4 +153,4 @@ function page() {
   );
 }
 
-export default page;
+export default Page;

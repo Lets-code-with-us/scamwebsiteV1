@@ -95,7 +95,9 @@ async function getLikes(id:any){
               <div key={index}>
                 <Link key={post._id} href={`/Blogs/${post._id}`}>
                   <div key={post.title} className="border">
-                    <img
+                    <Image 
+                    height={1200}
+                    width={1200}
                       src={post.imageUrl}
                       className="aspect-video w-full rounded-md"
                       alt="blog image"
