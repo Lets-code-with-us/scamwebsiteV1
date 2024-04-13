@@ -28,9 +28,8 @@ function Page() {
     try {
       const userData = await axios.post("/api/user/login", { email, password });
       toast.success("Login Successful");
-      setTimeout(() => {
-        Router.push("/profile");
-      }, 1000);
+      Router.push("/profile");
+
     } catch (error:any) {
       if (error.response && error.response.status === 404 || error.response && error.response.status === 400) {
         toast.error("Wrong email or password");

@@ -121,9 +121,7 @@ function Page() {
       toast.error("Error");
     } else {
       toast.success("Log Out");
-      setTimeout(() => {
-        Router.push("/login");
-      }, 1000);
+      Router.push("/login");
     }
   }
 

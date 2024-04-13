@@ -43,9 +43,7 @@ function Page() {
       });
 
       toast.success("Successfully toasted!");
-      setTimeout(() => {
         Router.push("/login");
-      }, 1000);
     } catch (error:any) {
       if (error.response && error.response.status === 404 ||error.response && error.response.status === 400 ) {
         toast.error("Email already Exists");

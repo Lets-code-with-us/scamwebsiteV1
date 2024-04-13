@@ -1,20 +1,25 @@
-import { NextRequest,NextResponse } from "next/server";
+import { NextRequest, NextResponse } from "next/server";
 import { dbConnect } from "@/db/dbConnect";
 import { Blogs } from "@/models/blogModel";
-dbConnect()
-export async function GET(request:NextRequest & { params: any }){
 
+// Connect to the database
+dbConnect();
+
+export async function GET(request: NextRequest & { params: any }) {
     try {
-        const params = await request.nextUrl.searchParams;
-        const getBlog = await Blogs.findById(params.get('id'));
+        // Access query parameters directly without await
+        const params = request.params;
+        const getBlog = await Blogs.findById(params.id);
+
         if (!getBlog) {
-            return NextResponse.json({ "message": "Server error" }, { status: 500 });
+            // Return a 404 response if the blog is not found
+            return NextResponse.json({ message: "Blog not found" }, { status: 404 });
         }
 
-        return NextResponse.json({ "data": getBlog }, { status: 200 });
+        // Return the blog data if found
+        return NextResponse.json({ data: getBlog }, { status: 200 });
     } catch (error: any) {
-        console.log("error is: ", error);
+        // Throw the error to be caught by the error handling middleware
+        throw new Error("Error fetching blog: " + error.message);
     }
-
-
 }

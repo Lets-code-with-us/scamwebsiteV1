@@ -27,11 +27,6 @@ function Page() {
   }, [instagramLink, bio, LinkedlnLink, githubLink]);
 
   async function submitBio() {
-    console.log(bio)
-    // console.log(LinkedlnLink)
-    // console.log(githubLink)
-    // console.log(instagramLink)
-
     const res = await axios.post("/api/user/Bio", {
       bio,
       instagramLink,
@@ -43,9 +38,7 @@ function Page() {
       toast.error("Not able to add Bios");
     } else {
       toast.success("Success");
-      setTimeout(() => {
         router.push("/");
-      }, 1000);
     }
   }
   return (

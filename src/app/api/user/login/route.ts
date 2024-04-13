@@ -4,7 +4,6 @@ import { User } from "@/models/userModel";
 import bcrypt from "bcrypt";
 import JWT from "jsonwebtoken";
 import { setCookie } from "cookies-next";
-import { cookies } from "next/headers";
 
 // connect the database
 dbConnect();
@@ -60,7 +59,7 @@ export async function POST(request: NextRequest) {
     //   httpOnly: true,
     // });
 
-    setCookie("token",token,{cookies});
+    setCookie("token",token);
 
     return response;
   } catch (error: any) {

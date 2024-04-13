@@ -86,9 +86,8 @@ function Page() {
       const response = await data;
       if (response) {
         toast.success("Blog SuccessFully added");
-        setTimeout(() => {
-          Router.push("/trend");
-        }, 500);
+        Router.push("/trend");
+        
       }
     } catch (error: any) {
       if (
