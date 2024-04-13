@@ -5,12 +5,14 @@ import { useState, useEffect } from "react";
 import Image from "next/image";
 import Report from "@/components/component/Report";
 import parse from 'html-react-parser';
+import { CircleUserRound } from 'lucide-react';
 
 function Page({ params }: { params: { slug: string } }) {
   const [data, setData] = useState<any>({});
   const [id, setId] = useState('');
   const [content, setContent] = useState<string>('');
   const [comment,setComment] = useState('')
+  const [userComment ,setUserComment] = useState([])
 
   async function getData() {
     try {
@@ -26,6 +28,7 @@ function Page({ params }: { params: { slug: string } }) {
       } else if (typeof body.data.content === 'string') {
         setContent(body.data.content);
       }
+
     } catch (error) {
       console.log("error: ", error);
     }
@@ -48,8 +51,30 @@ function Page({ params }: { params: { slug: string } }) {
     
   }
 
+  async function getAllComments() {
+    try {
+      const id = params.slug[0]
+      const res = await axios.post("/api/user/getComments",{id})
+      const {data} = await res.data;
+      console.log(data)
+      setUserComment(data)
+
+      
+    } catch (error:any) {
+      if(error.response && error.response.status){
+
+        setUserComment([])
+      }
+      else{
+        setUserComment([])
+      }
+      
+    }
+  }
+
   useEffect(() => {
     getData();
+    getAllComments()
   }, []);
 
   return (
@@ -75,6 +100,25 @@ function Page({ params }: { params: { slug: string } }) {
             <div>
               {parse(content)}
             </div>
+          </div>
+          <div className="flex flex-col items-center justify-center">
+            {userComment.map((el:{
+              comment:string
+            },index)=>{
+              return(
+                <>
+                <div key={index}>
+                  <div className="flex flex-1 items-center justify-center gap-4">
+
+                <div><CircleUserRound/></div>
+                <div>{el?.comment}</div>
+                  </div>
+
+                </div>
+                </>
+              )
+
+            })}
           </div>
           <div>
             <input type="text" onChange={(e)=>setComment(e.target.value)}/>
