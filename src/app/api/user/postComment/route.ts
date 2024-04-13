@@ -8,18 +8,20 @@ import JWT,{ JwtPayload } from "jsonwebtoken";
 dbConnect()
 export async function POST(request:NextRequest){
         try {
-            const response = await request.json();
-            const {blogId,comment} = await response;
+            
             const token = await request.cookies.get("token")?.value || ""
             console.log(token)
             if(!token){
                 return NextResponse.json({"message":"Please LogIn"},{status:404})
             }
+            const response = await request.json();
+            const {blogId,comment} = await response;
             const userData:JwtPayload = await JWT.verify(token,process.env.SECERT_KEY!) as JwtPayload 
             const userId = await userData.id
+            console.log(userId,blogId,comment)
 
             const commentModel = await new Comment({
-                userId,
+                User:userId,
                 blogId,
                 comment
             });

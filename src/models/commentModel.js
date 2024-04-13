@@ -2,13 +2,13 @@ import mongoose from "mongoose";
 
 
 const commentModel = new mongoose.Schema({
-    userId:{
-        type:mongoose.Types.objectId,
+    User:{
+        type:mongoose.Types.ObjectId,
         ref:"User",
         required:true
     },
     blogId:{
-        type:mongoose.Types.objectId,
+        type:mongoose.Types.ObjectId,
         ref:"Blog",
         required:true
     },
@@ -16,7 +16,7 @@ const commentModel = new mongoose.Schema({
         type:String,
         required:true
     }
-},{timestamps:true})
+})
 
 
 
