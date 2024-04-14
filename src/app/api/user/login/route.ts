@@ -4,6 +4,7 @@ import { User } from "@/models/userModel";
 import bcrypt from "bcrypt";
 import JWT from "jsonwebtoken";
 import { setCookie } from "cookies-next";
+import { cookies } from "next/headers";
 
 // connect the database
 dbConnect();
@@ -18,7 +19,7 @@ export async function POST(request: NextRequest) {
 
     if (!userExist) {
       return NextResponse.json({
-        message: "User not exist",
+        "message": "User not exist",
       },{
         status:404
       });
@@ -46,20 +47,16 @@ export async function POST(request: NextRequest) {
     // send response
     const response = NextResponse.json(
       {
-        message: "Login",
+        "message": "Login",
       },
       {
         status: 200,
       }
     );
 
-    // set the cookies
+  ;
 
-    // response.cookies.set("token", token, {
-    //   httpOnly: true,
-    // });
-
-    setCookie("token",token);
+    setCookie("token",token,{cookies});
 
     return response;
   } catch (error: any) {
