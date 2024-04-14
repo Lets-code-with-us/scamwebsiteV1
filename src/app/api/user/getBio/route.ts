@@ -13,10 +13,10 @@ export async function GET(request: NextRequest) {
       });
     }
 
-    const decrypt: JwtPayload = (await JWT.verify(
+    const decrypt: JwtPayload = await JWT.verify(
       getCookie,
       process.env.SECERT_KEY!
-    )) as JwtPayload;
+    ) as JwtPayload;
 
     if (!decrypt) {
       return NextResponse.json({ message: "Server Error" }, { status: 404 });
@@ -28,7 +28,7 @@ export async function GET(request: NextRequest) {
     if (!findBio) {
       return NextResponse.json(
         {
-          "message": "Add bio ",
+          message: "Add bio ",
         },
         {
           status: 404,
@@ -38,14 +38,14 @@ export async function GET(request: NextRequest) {
 
     return NextResponse.json(
       {
-        "message": "success",
-        "data": findBio,
+        message: "success",
+        data: findBio,
       },
       {
         status: 200,
       }
     );
   } catch (error: any) {
-    return NextResponse.json({"message":error},{status:404})
+    return NextResponse.json({message:error},{status:404})
   }
 }

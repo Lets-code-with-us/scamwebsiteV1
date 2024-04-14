@@ -60,6 +60,6 @@ export async function POST(request: NextRequest) {
 
     return response;
   } catch (error: any) {
-    console.log("error: ", error);
+    return NextResponse.json({message:error},{status:404})
   }
 }

@@ -13,14 +13,16 @@ function Page({ params }: { params: { slug: string } }) {
   const [content, setContent] = useState<string>('');
   const [comment,setComment] = useState('')
   const [userComment ,setUserComment] = useState([])
+  useEffect(()=>{
+    getData()
+  },[])
 
   async function getData() {
     try {
       const id: string = params.slug[0].toString();
-      setId(id);
-      const response = await axios.get(`http://localhost:3000/api/user/getBlogs?id=${id}`);
+      setId(id)
+      const response = await axios.post('/api/user/getBlogs',{id});
       const body = response.data;
-      console.log(body.data);
       setData(body.data);
       
       if (typeof body.data.content === 'object' && body.data.content !== null) {

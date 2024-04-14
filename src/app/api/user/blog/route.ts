@@ -5,7 +5,7 @@ import { dbConnect } from "@/db/dbConnect";
 dbConnect();
 export async function POST(request: NextRequest) {
   try {
-    const token = (await request.cookies.get("token")?.value) || "";
+    const token = await request.cookies.get("token")?.value || "";
 
     if (!token) {
       return NextResponse.json({ message: "Login please" }, { status: 400 });
@@ -30,7 +30,7 @@ export async function POST(request: NextRequest) {
   
     
 
-    const createBlog = await Blogs.create({
+    const createBlog = await new Blogs({
       user: decrypt.id,
       title,
       imageUrl,
@@ -48,6 +48,6 @@ export async function POST(request: NextRequest) {
     return NextResponse.json({ message: "Blog created" }, { status: 200 });
   } catch (error: any) {
     console.log("error: ", error);
-    return NextResponse.json({"message":error},{status:500})
+    return NextResponse.json({message:error},{status:500})
   }
 }

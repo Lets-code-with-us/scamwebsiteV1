@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 
+
 export async function GET(_request: NextRequest) {
   try {
     const response = NextResponse.json({
@@ -10,9 +11,8 @@ export async function GET(_request: NextRequest) {
       httpOnly: true,
       expires: new Date(0),
     });
-
     return response;
   } catch (error: any) {
-    console.log("error: ", error);
+    return NextResponse.json({message:error},{status:404})
   }
 }
