@@ -55,6 +55,7 @@ For the database use a MongoDB altas or docker image
 - DEVUI
 - Tailwind css
 - Vercel
+- Cloudinary
 
 
 ## Contributing
