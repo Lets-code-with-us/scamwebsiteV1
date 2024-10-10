@@ -5,6 +5,7 @@ import bcrypt from "bcrypt";
 import JWT from "jsonwebtoken";
 import { setCookie } from "cookies-next";
 import { cookies } from "next/headers";
+import { ZodValidation } from "../signin/route";
 
 // connect the database
 dbConnect();
@@ -14,6 +15,12 @@ export async function POST(request: NextRequest) {
   try {
     const res = await request.json();
     const { email, password } = await res;
+    if (!ZodValidation.safeParse({ email, password }).success) {
+      return NextResponse.json(
+        { message: "Incorrects inputs" },
+        { status: 401 }
+      );
+    }
 
     const userExist = await User.findOne({ email });
 

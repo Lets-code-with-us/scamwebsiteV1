@@ -2,7 +2,7 @@ import { dbConnect } from "@/db/dbConnect";
 import Newletter from "@/models/newLetterModel";
 import { NextRequest, NextResponse } from "next/server";
 import { sendmail } from "@/utils/sendMail";
-
+import { ZodValidation } from "../signin/route";
 // connect db
 dbConnect();
 
@@ -12,6 +12,14 @@ export async function POST(request: NextRequest) {
   try {
     const response = await request.json();
     const { email } = await response;
+    if (!ZodValidation.safeParse({ email }).success) {
+      return NextResponse.json(
+        {
+          message: "Incorrects inputs",
+        },
+        { status: 401 }
+      );
+    }
     const exsitedUser = await Newletter.findOne({ email });
     if (exsitedUser) {
       return NextResponse.json({ message: "User exist" }, { status: 400 });
