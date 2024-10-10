@@ -134,7 +134,7 @@ function Page() {
               <CldUploadButton
                 className="bg-green-400 rounded-full px-6 py-2"
                 onUpload={uploadImage}
-                uploadPreset="pf0ysyc8"
+                uploadPreset="ncny6y3n"
               />
 
               <div className="flex flex-1 items-center justify-center pt-5">
