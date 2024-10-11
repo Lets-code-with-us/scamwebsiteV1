@@ -105,5 +105,5 @@
 	<img height="40" src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/linkedin/linkedin-original.svg" />
 </a>
 <a href="https://www.instagram.com/lets__code">
-	<img height="40" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/instagram/instagram-original.svg" />
+	<img height="40" src="https://simpleicons.org/icons/instagram.svg" />
 </a>
