@@ -2,7 +2,7 @@ import { NextRequest, NextResponse } from "next/server";
 import JWT, { JwtPayload } from "jsonwebtoken";
 import { dbConnect } from "@/db/dbConnect";
 import { User } from "@/models/userModel";
-import { Retina } from "@tsparticles/engine";
+
 
 dbConnect();
 
