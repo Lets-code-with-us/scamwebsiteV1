@@ -2,9 +2,18 @@ import { NextRequest, NextResponse } from "next/server";
 import { User } from "@/models/userModel";
 import { dbConnect } from "@/db/dbConnect";
 import bcrypt from "bcrypt";
+import { z } from "zod";
 
 // connect the database
 dbConnect();
+
+// Defining zod schema
+export const ZodValidation=z.object({
+  email:z.string().email().optional(),
+  username:z.string().optional(),
+  password:z.string().optional(),
+  message:z.string().optional()
+})
 
 // post the data
 export async function POST(request: NextRequest) {
@@ -12,6 +21,12 @@ export async function POST(request: NextRequest) {
   try {
     const reponse = await request.json();
     const { email, username, password } = await reponse;
+
+    // inputs validation using zod
+    if (!ZodValidation.safeParse({ email, username, password }).success){
+      return NextResponse.json({message:"Incorrects inputs"},{status:401})
+    }
+      
 
     // check user exist
     const userExist = await User.findOne({ email });
