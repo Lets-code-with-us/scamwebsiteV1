@@ -1,9 +1,8 @@
 "use client";
 
-import React from "react";
+import React, { useState, useEffect } from "react";
 import Image from "next/image";
 import { ArrowRight } from "lucide-react";
-import { useState, useEffect } from "react";
 import { Toaster } from "react-hot-toast";
 import toast from "react-hot-toast";
 import { useRouter } from "next/navigation";
@@ -15,6 +14,7 @@ function Page() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [disabled, setDisabled] = useState(false);
+  const [isModalOpen, setModalOpen] = useState(false); // State for modal visibility
 
   useEffect(() => {
     if (email.length > 0 && password.length > 0) {
@@ -29,9 +29,8 @@ function Page() {
       const userData = await axios.post("/api/user/login", { email, password });
       toast.success("Login Successful");
       Router.push("/profile");
-
-    } catch (error:any) {
-      if (error.response && error.response.status === 404 || error.response && error.response.status === 400) {
+    } catch (error: any) {
+      if (error.response && (error.response.status === 404 || error.response.status === 400)) {
         toast.error("Wrong email or password");
       } else {
         console.error("An error occurred while logging in:", error);
@@ -39,6 +38,13 @@ function Page() {
       }
     }
   }
+
+  const handleAccountCreationClick = () => {
+    setModalOpen(true);
+    setTimeout(() => {
+      Router.push("/signup"); // Redirect after the animation
+    }, 2000); // Adjust the time based on the animation duration
+  };
 
   return (
     <>
@@ -55,8 +61,9 @@ function Page() {
               <p className="mt-2 text-sm text-gray-600">
                 Don&apos;t have an account?{" "}
                 <Link
-                  href="/signup"
+                  href="#"
                   title=""
+                  onClick={handleAccountCreationClick}
                   className="font-semibold text-black transition-all duration-200 hover:underline"
                 >
                   Create a free account
@@ -122,13 +129,12 @@ function Page() {
                   </div>
                 </div>
               </form>
-              
             </div>
           </div>
           <div className="h-full w-full">
             <Image
-            height={1200}
-            width={1200}
+              height={1200}
+              width={1200}
               className="mx-auto h-full w-full rounded-md object-cover"
               src="https://images.unsplash.com/photo-1630673245362-f69d2b93880e?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1740&q=80"
               alt=""
@@ -136,6 +142,18 @@ function Page() {
           </div>
         </div>
       </section>
+
+      {/* Modal for Futuristic Animation */}
+      {isModalOpen && (
+        <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-70 z-50">
+          <div className="animate-pulse text-white text-3xl">
+            Redirecting to Sign Up...
+            <div className="mt-4">
+              <div className="w-24 h-2 bg-white rounded-full animate-bounce"></div>
+            </div>
+          </div>
+        </div>
+      )}
     </>
   );
 }

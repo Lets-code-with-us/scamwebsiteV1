@@ -1,5 +1,5 @@
 "use client";
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { Menu, X } from "lucide-react";
 import Link from "next/link";
 import { hasCookie } from "cookies-next";
@@ -28,6 +28,10 @@ const menuItems = [
 ];
 
 export function NavBar() {
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [state, setState] = useState("Log In");
+  const [scrollPosition, setScrollPosition] = useState(0);
+
   useEffect(() => {
     const token = hasCookie("token");
     if (token) {
@@ -35,17 +39,32 @@ export function NavBar() {
     } else {
       setState("Log In");
     }
-  }, [hasCookie]);
+  }, []);
 
-  const [isMenuOpen, setIsMenuOpen] = React.useState(false);
-  const [state, setState] = React.useState("Log In");
+  useEffect(() => {
+    const handleScroll = () => {
+      const position = window.pageYOffset;
+      setScrollPosition(position);
+    };
+    window.addEventListener("scroll", handleScroll);
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
   };
 
   return (
-    <div className="relative w-full bg-white pb-3 pt-6">
+    <div
+      className={`fixed w-full z-40 transition-all duration-300 ${
+        scrollPosition > 40
+          ? "bg-white/40 backdrop-blur-md shadow-md"
+          : "bg-white"
+      } pb-3 pt-6`}
+    >
       <div className="mx-auto flex max-w-7xl items-center justify-between px-4 py-2 sm:px-6 lg:px-8">
         <div className="flex items-center justify-center space-x-2">
           <span>
@@ -111,38 +130,33 @@ export function NavBar() {
                         />
                       </svg>
                     </span>
-                    <span className="font-bold">DevUI</span>
+                    <span className="font-bold">Scam Site</span>
                   </div>
-                  <div className="-mr-2">
-                    <button
-                      type="button"
-                      onClick={toggleMenu}
-                      className="inline-flex items-center justify-center rounded-md p-2 text-gray-400 hover:bg-gray-100 hover:text-gray-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-black"
-                    >
-                      <span className="sr-only">Close menu</span>
-                      <X className="h-6 w-6" aria-hidden="true" />
-                    </button>
-                  </div>
+                  <X
+                    onClick={toggleMenu}
+                    className="h-6 w-6 cursor-pointer text-black"
+                  />
                 </div>
-                <div className="mt-6">
-                  <nav className="grid gap-y-4">
-                    {menuItems.map((item) => (
-                      <a
-                        key={item.name}
+              </div>
+              <div className="px-2 pt-2 pb-3">
+                <ul className="text-xl space-y-1">
+                  {menuItems.map((item) => (
+                    <li key={item.name}>
+                      <Link
                         href={item.href}
-                        className="-m-3 flex items-center rounded-md p-3 text-sm font-semibold hover:bg-gray-50"
+                        className="block px-3 py-2 font-semibold text-gray-900 hover:bg-gray-50"
                       >
-                        <span className="ml-3 text-base font-medium text-gray-900">
-                          {item.name}
-                        </span>
-                      </a>
-                    ))}
-                  </nav>
-                </div>
-                <Link href="/signup">
+                        {item.name}
+                      </Link>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+              <div className="px-5 py-2">
+                <Link href="/login">
                   <button
                     type="button"
-                    className="mt-4 w-full rounded-md bg-black px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-black/80 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-black"
+                    className="block w-full rounded-md bg-black px-3 py-2 text-center text-sm font-semibold text-white shadow-sm hover:bg-black/80 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-black"
                   >
                     {state}
                   </button>

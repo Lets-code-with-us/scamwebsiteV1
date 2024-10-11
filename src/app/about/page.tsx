@@ -1,7 +1,7 @@
 import React from 'react';
 import Image from 'next/image';
+import { MapPin } from 'lucide-react';
 
-import { MapPin } from 'lucide-react'
 const locations = [
   {
     title: 'Bengaluru office',
@@ -18,7 +18,7 @@ const locations = [
     timings: 'Mon-Sat 9am to 5pm.',
     address: '42, Residency Rd, Shanthala Nagar, Ashok Nagar, Bengaluru, Karnataka 560025 IN',
   },
-]
+];
 
 const users = [
   {
@@ -69,12 +69,12 @@ const users = [
       'https://images.unsplash.com/photo-1456327102063-fb5054efe647?ixlib=rb-0.3.5&q=80&fm=jpg&crop=faces&fit=crop&h=600&w=600',
     position: 'Back-end developer',
   },
-]
+];
 
-function page() {
+function Page() {
   return (
     <>
-     <div className="mx-auto max-w-7xl px-4">
+      <div className="mx-auto max-w-7xl px-4">
         {/* Hero Map */}
         <div className="flex flex-col space-y-8 pb-10 pt-12 md:pt-24">
           <div className="max-w-max rounded-full border bg-gray-50 p-1 px-3">
@@ -91,25 +91,25 @@ function page() {
         <div className="w-full space-y-4">
           <Image
             className="h-[200px] w-full rounded-xl object-cover md:h-full"
-            width={400}
-            height={400}
+            width={1380}
+            height={200}
             src="https://img.freepik.com/free-photo/diverse-businesspeople-having-meeting_53876-103954.jpg?t=st=1710393861~exp=1710397461~hmac=bc989c5b22c6ac966baab3cd8be885e4b70024ec498f7ae3f86c701ba6930f79&w=1380"
-            alt=""
+            alt="Business Meeting"
           />
         </div>
-        {/* locations */}
+        {/* Locations */}
         <div className="my-8 flex flex-col gap-y-6 md:flex-row lg:justify-around">
           {locations.map((location) => (
             <div key={location.title} className="flex flex-col space-y-3 md:w-2/4 lg:w-1/5">
               <MapPin className="h-5 w-5" />
-              <p className="w-full text-xl font-semibold  text-gray-900">{location.title}</p>
+              <p className="w-full text-xl font-semibold text-gray-900">{location.title}</p>
               <p className="w-full text-base text-gray-700">{location.timings}</p>
               <p className="text-sm font-medium">{location.address}</p>
             </div>
           ))}
         </div>
         <hr className="mt-20" />
-        {/* greetings */}
+        {/* Greetings */}
         <div className="mt-16 flex items-center">
           <div className="space-y-6 md:w-3/4">
             <div className="max-w-max rounded-full border bg-gray-50 p-1 px-3">
@@ -120,7 +120,6 @@ function page() {
               Our philosophy is simple — hire a team of diverse, passionate people and foster a
               culture that empowers you to do your best work.
             </p>
-            <div></div>
           </div>
         </div>
         {/* TEAM */}
@@ -128,28 +127,20 @@ function page() {
           {users.map((user) => (
             <div className="rounded-md border" key={user.name}>
               <Image
-              height={1200}
-              width={1200}
+                height={600}
+                width={600}
                 src={user.image}
                 alt={user.name}
-                className="h-[300px] w-full rounded-lg object-cover "
+                className="h-[300px] w-full rounded-lg object-cover"
               />
-              <p className="mt-6 w-full px-2 text-xl  font-semibold text-gray-900">{user.name}</p>
-              <p className="w-full px-2 pb-6 text-sm font-semibold text-gray-500">
-                {user.position}
-              </p>
+              <p className="mt-6 w-full px-2 text-xl font-semibold text-gray-900">{user.name}</p>
+              <p className="w-full px-2 text-base font-medium text-gray-600">{user.position}</p>
             </div>
           ))}
         </div>
-        {/* Hiring Banner */}
-        <div className="flex flex-col items-center gap-x-4 gap-y-4 py-16 md:flex-row">
-          <div className="space-y-6">
-            <p className="text-sm font-semibold md:text-base">Join our team &rarr;</p>
-            <p className="text-3xl font-bold md:text-4xl">We&apos;re just getting started</p>
-            <p className="text-base text-gray-600 md:text-lg">
-              Our philosophy is simple — hire a team of diverse, passionate people and foster a
-              culture that empowers you to do your best work.
-            </p>
+        <div className="flex justify-center">
+          <div className="mt-8 flex flex-col items-center">
+            <p className="text-xs font-medium text-gray-700">Ready to join our team?</p>
             <button
               type="button"
               className="rounded-md bg-black px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-black/80 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-black"
@@ -159,8 +150,8 @@ function page() {
           </div>
           <div className="md:mt-o mt-10 w-full">
             <Image
-            height={1200}
-            width={1200}
+              height={600}
+              width={600}
               src="https://images.unsplash.com/photo-1605165566807-508fb529cf3e?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2340&q=80"
               alt="Getting Started"
               className="rounded-lg"
@@ -168,10 +159,8 @@ function page() {
           </div>
         </div>
       </div>
-    
-    
     </>
-  )
+  );
 }
 
-export default page
+export default Page;
