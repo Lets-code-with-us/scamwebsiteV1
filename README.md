@@ -53,3 +53,7 @@ Contributions are always welcome!
 See CONTRIBUTING.md for ways to get started.
 
 Please adhere to this project’s Code of Conduct.
+
+
+## Join  the slack channel 
+https://join.slack.com/t/scamsite/shared_invite/zt-2sczqqw0z-iLiImzEmuqrrYRTMUNzapA
