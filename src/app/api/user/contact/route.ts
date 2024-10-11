@@ -1,43 +1,47 @@
-import { NextRequest,NextResponse } from "next/server";
+import { NextRequest, NextResponse } from "next/server";
 import { dbConnect } from "@/db/dbConnect";
-import {Contact} from "@/models/contactModel";
-import { ZodValidation } from "../signin/route";
+import { Contact } from "@/models/contactModel";
+import { z } from "zod";
 
 // connect db
 dbConnect();
 
+// Define a specific Zod schema for the contact form
+const ContactSchema = z.object({
+  email: z.string().email(),
+  name: z.string().min(1, "Name is required"),
+  message: z.string().min(1, "Message is required"),
+});
 
-export async function POST(request:NextRequest){
+export async function POST(request: NextRequest) {
+  try {
+    const res = await request.json();
+    const { email, name, message } = res;
 
-    const res =  await request.json();
-    const {email,name,message} = await res;
-    
-    // input validation using zod
-    if (!ZodValidation.safeParse({ email, name, message }).success){
-        return NextResponse.json(
-          {
-            message: "Incorrects inputs",
-          },
-          { status: 401 }
-        );
+    // input validation using Zod
+    const validationResult = ContactSchema.safeParse({ email, name, message });
+    if (!validationResult.success) {
+      return NextResponse.json(
+        {
+          message: "Invalid inputs",
+        },
+        { status: 400 }
+      );
     }
-      if (!(email.length > 0 && name.length > 0 && message.length > 0)) {
-        return NextResponse.json(
-          {
-            message: "every field are required",
-          },
-          { status: 400 }
-        );
-      }
 
-    const contact = await  new Contact({
-        name,
-        email,
-        message
-    })
-    if(!contact){
-        return NextResponse.json({"message":"server error"},{status:500})
-    }
-await contact.save()
-    return NextResponse.json({"message":"success"},{status:200})
+    // Create a new contact document
+    const contact = new Contact({
+      name,
+      email,
+      message,
+    });
+
+    // Save the contact message to the database
+    await contact.save();
+
+    return NextResponse.json({ message: "Success" }, { status: 200 });
+  } catch (error: any) {
+    console.error("Server error: ", error);
+    return NextResponse.json({ message: "Internal Server Error" }, { status: 500 });
+  }
 }

@@ -7,13 +7,13 @@ import { z } from "zod";
 // connect the database
 dbConnect();
 
-// Defining zod schema
-export const ZodValidation=z.object({
-  email:z.string().email().optional(),
-  username:z.string().optional(),
-  password:z.string().optional(),
-  message:z.string().optional()
-})
+// Defining zod schema (no export here)
+const ZodValidation = z.object({
+  email: z.string().email().optional(),
+  username: z.string().optional(),
+  password: z.string().optional(),
+  message: z.string().optional(),
+});
 
 // post the data
 export async function POST(request: NextRequest) {
@@ -23,23 +23,22 @@ export async function POST(request: NextRequest) {
     const { email, username, password } = await reponse;
 
     // inputs validation using zod
-    if (!ZodValidation.safeParse({ email, username, password }).success){
-      return NextResponse.json({message:"Incorrects inputs"},{status:401})
+    if (!ZodValidation.safeParse({ email, username, password }).success) {
+      return NextResponse.json({ message: "Incorrect inputs" }, { status: 401 });
     }
-      
 
-    // check user exist
+    // check if user exists
     const userExist = await User.findOne({ email });
-
     if (userExist) {
-      return NextResponse.json({ message: "User Exist" }, { status: 400 });
+      return NextResponse.json({ message: "User Exists" }, { status: 400 });
     }
 
     // encrypt the data
     const salt = await bcrypt.genSalt(10);
     const hashedPassword = await bcrypt.hash(password, salt);
 
-    const user = await new User({
+    // create and save the user
+    const user = new User({
       email,
       username,
       password: hashedPassword,
@@ -47,9 +46,10 @@ export async function POST(request: NextRequest) {
 
     const savedUser = await user.save();
     if (savedUser) {
-      return NextResponse.json({ message: "success" }, { status: 200 });
+      return NextResponse.json({ message: "Success" }, { status: 200 });
     }
   } catch (error: any) {
     console.log("error: ", error);
+    return NextResponse.json({ message: "Internal Server Error" }, { status: 500 });
   }
 }

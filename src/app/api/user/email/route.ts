@@ -2,39 +2,55 @@ import { dbConnect } from "@/db/dbConnect";
 import Newletter from "@/models/newLetterModel";
 import { NextRequest, NextResponse } from "next/server";
 import { sendmail } from "@/utils/sendMail";
-import { ZodValidation } from "../signin/route";
+import { z } from "zod";
+
 // connect db
 dbConnect();
 
-// function to post data
+// Create a Zod schema specifically for validating email input
+const NewsletterSchema = z.object({
+  email: z.string().email(),
+});
 
+// function to post data
 export async function POST(request: NextRequest) {
   try {
-    const response = await request.json();
-    const { email } = await response;
-    
-    // input validation using zod
-    if (!ZodValidation.safeParse({ email }).success) {
+    const { email } = await request.json();
+
+    // input validation using Zod
+    const validationResult = NewsletterSchema.safeParse({ email });
+    if (!validationResult.success) {
       return NextResponse.json(
-        {
-          message: "Incorrects inputs",
-        },
-        { status: 401 }
+        { message: "Invalid email address" },
+        { status: 400 }
       );
     }
-    const exsitedUser = await Newletter.findOne({ email });
-    if (exsitedUser) {
-      return NextResponse.json({ message: "User exist" }, { status: 400 });
-    }
-    const user = new Newletter({
-      email,
-    });
 
-    await sendmail(response);
+    // Check if the user is already subscribed
+    const existingUser = await Newletter.findOne({ email });
+    if (existingUser) {
+      return NextResponse.json(
+        { message: "User already subscribed" },
+        { status: 200 } // Return 200 to avoid confusing users with an error status
+      );
+    }
+
+    // Save the new subscriber
+    const user = new Newletter({ email });
     await user.save();
 
-    return NextResponse.json({ message: "success" }, { status: 200 });
+    // Send confirmation email
+    const emailSent = await sendmail({ email });
+    if (!emailSent) {
+      return NextResponse.json(
+        { message: "Failed to send confirmation email" },
+        { status: 500 }
+      );
+    }
+
+    return NextResponse.json({ message: "Subscription successful" }, { status: 200 });
   } catch (error: any) {
-    return NextResponse.json({ message: "server error" }, { status: 400 });
+    console.error("Server error: ", error);
+    return NextResponse.json({ message: "Internal server error" }, { status: 500 });
   }
 }
