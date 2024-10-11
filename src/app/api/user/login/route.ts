@@ -15,6 +15,8 @@ export async function POST(request: NextRequest) {
   try {
     const res = await request.json();
     const { email, password } = await res;
+
+    // inputs validation using zod
     if (!ZodValidation.safeParse({ email, password }).success) {
       return NextResponse.json(
         { message: "Incorrects inputs" },
