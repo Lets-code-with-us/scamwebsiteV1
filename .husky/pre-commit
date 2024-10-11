@@ -1,1 +1,1 @@
-npm run lint && npm run build
+turbo build check-types && turbo check-types build
