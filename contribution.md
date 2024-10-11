@@ -20,9 +20,9 @@ The repository currently lacks a `contribution.md` file, which is essential for 
    Review the `contribution.md` to ensure all necessary guidelines are clear and comprehensive. Test that the instructions are easy to follow for new contributors.
 
 ## NAME  
-Garv Tyagi
+
 
 ## GITHUB PROFILE URL  
-[https://github.com/gt951436](https://github.com/gt951436)
+
 
 
