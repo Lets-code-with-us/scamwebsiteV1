@@ -104,6 +104,4 @@
 <a href="https://www.linkedin.com/in/shubham-paul-5a3a8a21b/">
 	<img height="40" src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/linkedin/linkedin-original.svg" />
 </a>
-<a href="https://www.instagram.com/lets__code">
-	<img height="40" src="https://www.freepik.com/icon/instagram_2111463#fromView=keyword&page=1&position=0&uuid=93b3147c-f399-4cec-bb2f-89e3b5880fe7" />
-</a>
+
