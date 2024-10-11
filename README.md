@@ -105,5 +105,5 @@
 	<img height="40" src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/linkedin/linkedin-original.svg" />
 </a>
 <a href="https://www.instagram.com/lets__code">
-	<img height="40" src="https://images.app.goo.gl/o1yWCNMZeqm6ME6B6" />
+	<img height="40" src="https://www.flaticon.com/free-icon/instagram_4138124?related_id=4138124&origin=search" />
 </a>
