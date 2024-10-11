@@ -9,17 +9,16 @@ dbConnect();
 
 // Defining zod schema (no export here)
 const ZodValidation = z.object({
-  email: z.string().email().optional(),
-  username: z.string().optional(),
-  password: z.string().optional(),
+  email: z.string().email(),
+  username: z.string(),
+  password: z.string(),
 });
 
 // Post the data
 export async function POST(request: NextRequest) {
   // Get the user details
   try {
-    const response = await request.json();
-    const { email, username, password } = response;
+    const { email, username, password } = await request.json();
 
     // Inputs validation using zod
     if (!ZodValidation.safeParse({ email, username, password }).success) {
@@ -28,6 +27,7 @@ export async function POST(request: NextRequest) {
 
     // Check if user exists
     const userExist = await User.findOne({ email });
+
     if (userExist) {
       return NextResponse.json({ message: "User Exists" }, { status: 400 });
     }
@@ -42,12 +42,11 @@ export async function POST(request: NextRequest) {
       password: hashedPassword,
     });
 
-    const savedUser = await user.save();
-    if (savedUser) {
-      return NextResponse.json({ message: "Success" }, { status: 200 });
-    }
-
-    return NextResponse.json({ message: "Failed to create user" }, { status: 500 });
+    await user.save();
+      
+    
+    return NextResponse.json({ message: "Success" }, { status: 200 });
+    
   } catch (error: any) {
     console.error("Error:", error); // Log the error for debugging
     return NextResponse.json({ message: "Internal Server Error" }, { status: 500 });

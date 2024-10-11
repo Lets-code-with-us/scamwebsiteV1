@@ -2,7 +2,7 @@ import { NextRequest, NextResponse } from "next/server";
 import { dbConnect } from "@/db/dbConnect";
 import { User } from "@/models/userModel";
 import bcrypt from "bcryptjs"; // Changed to bcryptjs
-import JWT from "jsonwebtoken";
+import Jwt from "jsonwebtoken";
 import { z } from "zod";
 
 // Connect the database
@@ -11,14 +11,13 @@ dbConnect();
 // Defining zod schema for validation
 const ZodValidation = z.object({
   email: z.string().email(),
-  password: z.string().min(6),
+  password: z.string(),
 });
 
 // Login the user
 export async function POST(request: NextRequest) {
   try {
-    const res = await request.json();
-    const { email, password } = res;
+    const { email, password } = await request.json();
 
     // Inputs validation using zod
     if (!ZodValidation.safeParse({ email, password }).success) {
@@ -36,14 +35,10 @@ export async function POST(request: NextRequest) {
       return NextResponse.json({ message: "Wrong Password" }, { status: 401 });
     }
 
-    // Create the JSON token
-    const userData = {
-      id: userExist._id,
-      email: userExist.email,
-    };
+
 
     // Token created
-    const token = await JWT.sign(userData, process.env.SECRET_KEY!, { expiresIn: "1h" });
+    const token = await Jwt.sign(JSON.stringify(userExist._id), process.env.SECRET_KEY!);
 
     // Create the response
     const response = NextResponse.json({ message: "Login successful" }, { status: 200 });
@@ -51,7 +46,7 @@ export async function POST(request: NextRequest) {
     // Set the cookie with the token
     response.cookies.set("token", token, {
       httpOnly: true,
-      secure: process.env.NODE_ENV === "production", // Ensure secure cookies in production
+      secure: true, // Ensure secure cookies in production
       sameSite: "strict",
       maxAge: 60 * 60, // 1 hour
     });
