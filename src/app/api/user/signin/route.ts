@@ -6,6 +6,8 @@ import { z } from "zod";
 
 // connect the database
 dbConnect();
+
+// Defining zod schema
 export const ZodValidation=z.object({
   email:z.string().email().optional(),
   username:z.string().optional(),
@@ -19,6 +21,8 @@ export async function POST(request: NextRequest) {
   try {
     const reponse = await request.json();
     const { email, username, password } = await reponse;
+
+    // inputs validation using zod
     if (!ZodValidation.safeParse({ email, username, password }).success){
       return NextResponse.json({message:"Incorrects inputs"},{status:401})
     }
