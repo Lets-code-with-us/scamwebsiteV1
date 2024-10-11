@@ -7,12 +7,11 @@ import { z } from "zod";
 // connect the database
 dbConnect();
 
-// Defining zod schema (no export here)
+// Defining zod schema 
 const ZodValidation = z.object({
-  email: z.string().email().optional(),
-  username: z.string().optional(),
-  password: z.string().optional(),
-  message: z.string().optional(),
+  email: z.string().email().max(20),
+  username: z.string().min(8).max(20),
+  password: z.string().min(5).max(20),
 });
 
 // post the data
@@ -33,9 +32,8 @@ export async function POST(request: NextRequest) {
       return NextResponse.json({ message: "User Exists" }, { status: 400 });
     }
 
-    // encrypt the data
-    const salt = await bcrypt.genSalt(10);
-    const hashedPassword = await bcrypt.hash(password, salt);
+    // encrypt the user password
+    const hashedPassword = await bcrypt.hash(password, 10);
 
     // create and save the user
     const user = new User({
