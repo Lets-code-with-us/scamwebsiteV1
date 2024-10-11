@@ -1,41 +1,41 @@
 import { NextRequest, NextResponse } from "next/server";
 import { User } from "@/models/userModel";
 import { dbConnect } from "@/db/dbConnect";
-import bcrypt from "bcrypt";
+import bcrypt from "bcryptjs"; // Changed to bcryptjs
 import { z } from "zod";
 
-// connect the database
+// Connect the database
 dbConnect();
 
-// Defining zod schema 
+// Defining zod schema (no export here)
 const ZodValidation = z.object({
-  email: z.string().email().max(20),
-  username: z.string().min(8).max(20),
-  password: z.string().min(5).max(20),
+  email: z.string().email().optional(),
+  username: z.string().optional(),
+  password: z.string().optional(),
 });
 
-// post the data
+// Post the data
 export async function POST(request: NextRequest) {
-  // get the user details
+  // Get the user details
   try {
-    const reponse = await request.json();
-    const { email, username, password } = await reponse;
+    const response = await request.json();
+    const { email, username, password } = response;
 
-    // inputs validation using zod
+    // Inputs validation using zod
     if (!ZodValidation.safeParse({ email, username, password }).success) {
       return NextResponse.json({ message: "Incorrect inputs" }, { status: 401 });
     }
 
-    // check if user exists
+    // Check if user exists
     const userExist = await User.findOne({ email });
     if (userExist) {
       return NextResponse.json({ message: "User Exists" }, { status: 400 });
     }
 
-    // encrypt the user password
-    const hashedPassword = await bcrypt.hash(password, 10);
+    // Encrypt the password
+    const hashedPassword = await bcrypt.hash(password, 10); // 10 is the salt rounds
 
-    // create and save the user
+    // Create and save the user
     const user = new User({
       email,
       username,
@@ -46,8 +46,10 @@ export async function POST(request: NextRequest) {
     if (savedUser) {
       return NextResponse.json({ message: "Success" }, { status: 200 });
     }
+
+    return NextResponse.json({ message: "Failed to create user" }, { status: 500 });
   } catch (error: any) {
-    console.log("error: ", error);
+    console.error("Error:", error); // Log the error for debugging
     return NextResponse.json({ message: "Internal Server Error" }, { status: 500 });
   }
 }
