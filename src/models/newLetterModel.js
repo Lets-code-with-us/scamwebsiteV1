@@ -13,6 +13,6 @@ const NewletterScheme = new mongoose.Schema({
 
 
 
-const Newletter = mongoose.models.newletters || mongoose.model("Newletter",NewletterScheme)
+const Newletter = mongoose.models.Newletter || mongoose.model("Newletter",NewletterScheme)
 
 export default Newletter;
