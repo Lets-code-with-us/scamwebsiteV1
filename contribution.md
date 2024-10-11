@@ -19,10 +19,7 @@ The repository currently lacks a `contribution.md` file, which is essential for 
 3. **Finalize and test:**  
    Review the `contribution.md` to ensure all necessary guidelines are clear and comprehensive. Test that the instructions are easy to follow for new contributors.
 
-## NAME  
 
-
-## GITHUB PROFILE URL  
 
 
 

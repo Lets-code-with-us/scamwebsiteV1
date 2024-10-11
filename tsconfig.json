@@ -12,6 +12,7 @@
     "allowJs": true,
     "skipLibCheck": true,
     "strict": true,
+    "strictNullChecks": true, // Changed line
     "noEmit": true,
     "esModuleInterop": true,
     "module": "esnext",
