@@ -23,4 +23,4 @@ const blogSchema = new mongoose.Schema({
 
 });
 
-export const Blogs = mongoose.models.blogs || mongoose.model("Blogs", blogSchema);  // Corrected from "Blog" to "Blogs"
+export const Blogs = mongoose.models.Blogs || mongoose.model("Blogs", blogSchema);  // Corrected from "Blog" to "Blogs"

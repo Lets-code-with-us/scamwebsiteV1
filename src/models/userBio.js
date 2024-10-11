@@ -31,4 +31,4 @@ const bioSchema = new mongoose.Schema({
 
 
 
-export const Bio = mongoose.models.bios || mongoose.model("Bio",bioSchema)
+export const Bio = mongoose.models.Bio || mongoose.model("Bio",bioSchema)

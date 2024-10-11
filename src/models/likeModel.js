@@ -8,11 +8,11 @@ const likeSchema = new mongoose.Schema({
     },
     BlogLike:{
         type:mongoose.Types.ObjectId,
-        ref:"Blog"
+        ref:"Blogs"
     }
 
 })
 
 
 
-export const Like = mongoose.models.likes || mongoose.model("Like",likeSchema);
+export const Like = mongoose.models.Like || mongoose.model("Like",likeSchema);
