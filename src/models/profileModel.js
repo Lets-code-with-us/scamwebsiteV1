@@ -1,20 +1,18 @@
-import mongoose from "mongoose";
-
+import mongoose from 'mongoose';
 
 const profileModel = new mongoose.Schema({
-    username:{
-        type:String,
-        required:true
-    },
-    profileimg:{
-        type:String,
-    },
-    bio:{
-        type:mongoose.Types.ObjectId,
-        ref:'Bio'
-    }
-})
+  username: {
+    type: String,
+    required: true,
+  },
+  profileimg: {
+    type: String,
+  },
+  bio: {
+    type: mongoose.Types.ObjectId,
+    ref: 'Bio',
+  },
+});
 
-
-
-export const Profile = mongoose.models.Profile || mongoose.model('Profile',profileModel)
+export const Profile =
+  mongoose.models.Profile || mongoose.model('Profile', profileModel);

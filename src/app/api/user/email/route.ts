@@ -1,8 +1,8 @@
-import { dbConnect } from "@/db/dbConnect";
-import Newletter from "@/models/newLetterModel";
-import { NextRequest, NextResponse } from "next/server";
-import { sendmail } from "@/utils/sendMail";
-import { z } from "zod";
+import { dbConnect } from '@/db/dbConnect';
+import Newletter from '@/models/newLetterModel';
+import { NextRequest, NextResponse } from 'next/server';
+import { sendmail } from '@/utils/sendMail';
+import { z } from 'zod';
 
 // connect db
 dbConnect();
@@ -21,7 +21,7 @@ export async function POST(request: NextRequest) {
     const validationResult = NewsletterSchema.safeParse({ email });
     if (!validationResult.success) {
       return NextResponse.json(
-        { message: "Invalid email address" },
+        { message: 'Invalid email address' },
         { status: 400 }
       );
     }
@@ -30,7 +30,7 @@ export async function POST(request: NextRequest) {
     const existingUser = await Newletter.findOne({ email });
     if (existingUser) {
       return NextResponse.json(
-        { message: "User already subscribed" },
+        { message: 'User already subscribed' },
         { status: 200 } // Return 200 to avoid confusing users with an error status
       );
     }
@@ -43,14 +43,20 @@ export async function POST(request: NextRequest) {
     const emailSent = await sendmail({ email });
     if (!emailSent) {
       return NextResponse.json(
-        { message: "Failed to send confirmation email" },
+        { message: 'Failed to send confirmation email' },
         { status: 500 }
       );
     }
 
-    return NextResponse.json({ message: "Subscription successful" }, { status: 200 });
+    return NextResponse.json(
+      { message: 'Subscription successful' },
+      { status: 200 }
+    );
   } catch (error: any) {
-    console.error("Server error: ", error);
-    return NextResponse.json({ message: "Internal server error" }, { status: 500 });
+    console.error('Server error: ', error);
+    return NextResponse.json(
+      { message: 'Internal server error' },
+      { status: 500 }
+    );
   }
 }

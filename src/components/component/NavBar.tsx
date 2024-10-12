@@ -1,39 +1,39 @@
-"use client";
-import React, { useEffect } from "react";
-import { Menu, X } from "lucide-react";
-import Link from "next/link";
-import { useAuthStore } from "@/context/useAuthStore";
+'use client';
+import React, { useEffect } from 'react';
+import { Menu, X } from 'lucide-react';
+import Link from 'next/link';
+import { useAuthStore } from '@/context/useAuthStore';
 
 const menuItems = [
   {
-    name: "Home",
-    href: "/",
+    name: 'Home',
+    href: '/',
   },
   {
-    name: "Feed",
-    href: "/trend",
+    name: 'Feed',
+    href: '/trend',
   },
   {
-    name: "About",
-    href: "/about",
+    name: 'About',
+    href: '/about',
   },
   {
-    name: "Contact",
-    href: "/contact",
+    name: 'Contact',
+    href: '/contact',
   },
   {
-    name: "Profile",
-    href: "/profile",
+    name: 'Profile',
+    href: '/profile',
   },
 ];
 
 export function NavBar() {
-  const isAuthenticated = useAuthStore((state:any) => state.auth);
+  const isAuthenticated = useAuthStore((state: any) => state.isAuthenticated);
   const [isMenuOpen, setIsMenuOpen] = React.useState(false);
-  const [state, setState] = React.useState("Log In");
+  const [state, setState] = React.useState('Log In');
 
   useEffect(() => {
-    setState(isAuthenticated ? "Log Out" : "Log In");
+    setState(isAuthenticated ? 'Log Out' : 'Log In');
   }, [isAuthenticated]);
 
   const toggleMenu = () => {

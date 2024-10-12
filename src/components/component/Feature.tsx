@@ -1,11 +1,11 @@
-"use client";
-import React, { useState } from "react";
+'use client';
+import React, { useState } from 'react';
 
 const features = [
   {
     id: 1,
-    title: "Whatsapp Lottery Scam",
-    color: "blue",
+    title: 'Whatsapp Lottery Scam',
+    color: 'blue',
     icon: (
       <svg
         xmlns="http://www.w3.org/2000/svg"
@@ -40,12 +40,12 @@ const features = [
       </svg>
     ),
     description:
-      "The WhatsApp lottery scam is a type of fraudulent scheme where scammers impersonate WhatsApp or other legitimate companies to deceive individuals into believing they have won a lottery or prize. .",
+      'The WhatsApp lottery scam is a type of fraudulent scheme where scammers impersonate WhatsApp or other legitimate companies to deceive individuals into believing they have won a lottery or prize. .',
   },
   {
     id: 2,
-    title: "Debit Credit Card Fraud",
-    color: "orange",
+    title: 'Debit Credit Card Fraud',
+    color: 'orange',
     icon: (
       <svg
         xmlns="http://www.w3.org/2000/svg"
@@ -57,12 +57,12 @@ const features = [
       </svg>
     ),
     description:
-      "A debit card scam refers to fraudulent activities where scammers use various tactics to obtain sensitive information related to debit cards, such as card numbers, expiration dates, CVV codes, and PINs.",
+      'A debit card scam refers to fraudulent activities where scammers use various tactics to obtain sensitive information related to debit cards, such as card numbers, expiration dates, CVV codes, and PINs.',
   },
   {
     id: 3,
-    title: "Phishing",
-    color: "green",
+    title: 'Phishing',
+    color: 'green',
     icon: (
       <svg
         width="24"
@@ -75,12 +75,12 @@ const features = [
       </svg>
     ),
     description:
-      "A phishing scam is a type of cyber attack where scammers use deceptive tactics to trick individuals into providing sensitive information such as usernames, passwords, credit card numbers, or other personal details. .",
+      'A phishing scam is a type of cyber attack where scammers use deceptive tactics to trick individuals into providing sensitive information such as usernames, passwords, credit card numbers, or other personal details. .',
   },
   {
     id: 4,
-    title: "Customer Care Number Fraud",
-    color: "red",
+    title: 'Customer Care Number Fraud',
+    color: 'red',
     icon: (
       <svg
         width="24"
@@ -93,12 +93,12 @@ const features = [
       </svg>
     ),
     description:
-      "Customer care number fraud is a type of scam where fraudsters impersonate customer support representatives from legitimate companies or organizations. .",
+      'Customer care number fraud is a type of scam where fraudsters impersonate customer support representatives from legitimate companies or organizations. .',
   },
   {
     id: 5,
-    title: "Randsomeware Attack",
-    color: "red",
+    title: 'Randsomeware Attack',
+    color: 'red',
     icon: (
       <svg
         xmlns="http://www.w3.org/2000/svg"
@@ -110,12 +110,12 @@ const features = [
       </svg>
     ),
     description:
-      "A ransomware attack is a type of cyberattack where malicious software (ransomware) is used to encrypt files or systems, rendering them inaccessible to the owner..",
+      'A ransomware attack is a type of cyberattack where malicious software (ransomware) is used to encrypt files or systems, rendering them inaccessible to the owner..',
   },
   {
     id: 6,
-    title: "CatFishing Attack",
-    color: "red",
+    title: 'CatFishing Attack',
+    color: 'red',
     icon: (
       <svg
         width="24"
@@ -128,12 +128,12 @@ const features = [
       </svg>
     ),
     description:
-      "A catfishing attack is a type of deceptive online activity where someone creates a fake identity or persona on social media, dating platforms, or other online forums to trick others into forming relationships, sharing personal information, or engaging in fraudulent activities..",
+      'A catfishing attack is a type of deceptive online activity where someone creates a fake identity or persona on social media, dating platforms, or other online forums to trick others into forming relationships, sharing personal information, or engaging in fraudulent activities..',
   },
   {
     id: 7,
-    title: "Social Media",
-    color: "red",
+    title: 'Social Media',
+    color: 'red',
     icon: (
       <svg
         width="24"
@@ -146,12 +146,12 @@ const features = [
       </svg>
     ),
     description:
-      "A social media scam refers to fraudulent activities conducted on social networking platforms with the aim of deceiving users for financial gain or other malicious purposes..",
+      'A social media scam refers to fraudulent activities conducted on social networking platforms with the aim of deceiving users for financial gain or other malicious purposes..',
   },
   {
     id: 8,
-    title: "Work From Home Scam",
-    color: "red",
+    title: 'Work From Home Scam',
+    color: 'red',
     icon: (
       <svg
         width="24"
@@ -164,13 +164,13 @@ const features = [
       </svg>
     ),
     description:
-      "Work-from-home scams are fraudulent schemes that promise individuals the opportunity to earn money from the comfort of their own homes, but in reality, they aim to deceive and defraud victims..",
+      'Work-from-home scams are fraudulent schemes that promise individuals the opportunity to earn money from the comfort of their own homes, but in reality, they aim to deceive and defraud victims..',
   },
 
   {
     id: 9,
-    title: "Digital FootPrints",
-    color: "red",
+    title: 'Digital FootPrints',
+    color: 'red',
     icon: (
       <svg
         xmlns="http://www.w3.org/2000/svg"
@@ -186,8 +186,8 @@ const features = [
   },
   {
     id: 10,
-    title: "Malware",
-    color: "red",
+    title: 'Malware',
+    color: 'red',
     icon: (
       <svg
         className="h-9 w-9 text-red-600"
@@ -205,12 +205,12 @@ const features = [
       </svg>
     ),
     description:
-      "A  malware scam typically involves deceptive tactics used by cybercriminals to trick users into downloading or installing malicious software (malware) onto their devices.",
+      'A  malware scam typically involves deceptive tactics used by cybercriminals to trick users into downloading or installing malicious software (malware) onto their devices.',
   },
   {
     id: 11,
-    title: "Social Engineering",
-    color: "red",
+    title: 'Social Engineering',
+    color: 'red',
     icon: (
       <svg
         width="24"
@@ -223,12 +223,12 @@ const features = [
       </svg>
     ),
     description:
-      "Social engineering scams involve manipulating people into performing certain actions or revealing sensitive information through psychological manipulation and deception.",
+      'Social engineering scams involve manipulating people into performing certain actions or revealing sensitive information through psychological manipulation and deception.',
   },
   {
     id: 12,
-    title: "Cyber Bulling and Trolling",
-    color: "red",
+    title: 'Cyber Bulling and Trolling',
+    color: 'red',
     icon: (
       <svg
         width="24"
@@ -241,12 +241,12 @@ const features = [
       </svg>
     ),
     description:
-      "Cyberbullying is a serious issue that involves using digital communication tools, such as social media, messaging apps, email, or online forums, to harass, intimidate, or harm others..",
+      'Cyberbullying is a serious issue that involves using digital communication tools, such as social media, messaging apps, email, or online forums, to harass, intimidate, or harm others..',
   },
   {
     id: 13,
-    title: "Fake Website Scam",
-    color: "red",
+    title: 'Fake Website Scam',
+    color: 'red',
     icon: (
       <svg
         clip-rule="evenodd"
@@ -263,12 +263,12 @@ const features = [
       </svg>
     ),
     description:
-      "A fake website scam involves creating fraudulent websites that mimic legitimate ones to deceive visitors and steal their personal information, financial details, or engage in other malicious activities..",
+      'A fake website scam involves creating fraudulent websites that mimic legitimate ones to deceive visitors and steal their personal information, financial details, or engage in other malicious activities..',
   },
   {
     id: 14,
-    title: "Matrimonial Fraud Scam",
-    color: "red",
+    title: 'Matrimonial Fraud Scam',
+    color: 'red',
     icon: (
       <svg
         className="h-9 w-9 text-red-600"
@@ -286,12 +286,12 @@ const features = [
       </svg>
     ),
     description:
-      "Gather all relevant information, including chat messages, emails, profiles, and any financial transactions related to the scam.Keep detailed records of dates, times, and amounts involved in any money transfers or payments made to the scammer..",
+      'Gather all relevant information, including chat messages, emails, profiles, and any financial transactions related to the scam.Keep detailed records of dates, times, and amounts involved in any money transfers or payments made to the scammer..',
   },
   {
     id: 15,
-    title: "Fake Emails Scam",
-    color: "red",
+    title: 'Fake Emails Scam',
+    color: 'red',
     icon: (
       <svg
         width="24"
@@ -304,12 +304,12 @@ const features = [
       </svg>
     ),
     description:
-      "A fake email scam, also known as phishing, involves sending fraudulent emails to trick individuals into revealing sensitive information such as login credentials, financial details, or personal information..",
+      'A fake email scam, also known as phishing, involves sending fraudulent emails to trick individuals into revealing sensitive information such as login credentials, financial details, or personal information..',
   },
   {
     id: 16,
-    title: "Online Games Fraud",
-    color: "red",
+    title: 'Online Games Fraud',
+    color: 'red',
     icon: (
       <svg
         width="24"
@@ -322,12 +322,12 @@ const features = [
       </svg>
     ),
     description:
-      "Scammers create fake websites or links that claim to offer free downloads of popular games. In reality, these downloads may contain malware or lead to phishing attempts..",
+      'Scammers create fake websites or links that claim to offer free downloads of popular games. In reality, these downloads may contain malware or lead to phishing attempts..',
   },
   {
     id: 17,
-    title: "Password Theft Scam",
-    color: "red",
+    title: 'Password Theft Scam',
+    color: 'red',
     icon: (
       <svg
         width="24"
@@ -340,12 +340,12 @@ const features = [
       </svg>
     ),
     description:
-      "Password theft scams, also known as password phishing or credential harvesting, are a type of cybercrime where attackers trick individuals into revealing their login credentials..",
+      'Password theft scams, also known as password phishing or credential harvesting, are a type of cybercrime where attackers trick individuals into revealing their login credentials..',
   },
   {
     id: 18,
-    title: "Online Investment Fraud Scam",
-    color: "red",
+    title: 'Online Investment Fraud Scam',
+    color: 'red',
     icon: (
       <svg
         width="24"
@@ -358,12 +358,12 @@ const features = [
       </svg>
     ),
     description:
-      "Online investment fraud is a type of scam where individuals or organizations deceive investors into putting money into fraudulent investment schemes or fake opportunities. .",
+      'Online investment fraud is a type of scam where individuals or organizations deceive investors into putting money into fraudulent investment schemes or fake opportunities. .',
   },
   {
     id: 20,
-    title: "Remote access Fraud Scam",
-    color: "red",
+    title: 'Remote access Fraud Scam',
+    color: 'red',
     icon: (
       <svg
         xmlns="http://www.w3.org/2000/svg"
@@ -375,12 +375,12 @@ const features = [
       </svg>
     ),
     description:
-      "Remote access fraud is a type of scam where criminals trick individuals into granting them access to their computers or devices, often under the guise of providing technical support or assistance. .",
+      'Remote access fraud is a type of scam where criminals trick individuals into granting them access to their computers or devices, often under the guise of providing technical support or assistance. .',
   },
   {
     id: 21,
-    title: "Part time Job  Fraud Scam",
-    color: "red",
+    title: 'Part time Job  Fraud Scam',
+    color: 'red',
     icon: (
       <svg
         width="24"
@@ -393,12 +393,12 @@ const features = [
       </svg>
     ),
     description:
-      "Part-time job scams are unfortunately common, especially online where scammers can easily reach a wide audience..",
+      'Part-time job scams are unfortunately common, especially online where scammers can easily reach a wide audience..',
   },
   {
     id: 22,
-    title: "Call Merging Fraud Scam",
-    color: "red",
+    title: 'Call Merging Fraud Scam',
+    color: 'red',
     icon: (
       <svg
         className="h-9 w-9 text-red-600"
@@ -416,7 +416,7 @@ const features = [
       </svg>
     ),
     description:
-      "A call merging scam, also known as a one-ring scam  or wangiri scam, is a type of telephone fraud where scammers use automated systems to make short, one-ring calls to random phone numbers..",
+      'A call merging scam, also known as a one-ring scam  or wangiri scam, is a type of telephone fraud where scammers use automated systems to make short, one-ring calls to random phone numbers..',
   },
 ];
 

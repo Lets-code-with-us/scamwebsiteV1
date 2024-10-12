@@ -1,19 +1,19 @@
-"use client";
+'use client';
 
-import React, { useState } from "react";
-import Image from "next/image";
+import React, { useState } from 'react';
+import Image from 'next/image';
 
 export default function Cta() {
-  const [email, setEmail] = useState("");
-  const [message, setMessage] = useState("");
+  const [email, setEmail] = useState('');
+  const [message, setMessage] = useState('');
 
   const handleSubscribe = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault(); // Prevent form reload
-    console.log("Form submitted with email:", email); // Debugging: Check if the form submits
+    console.log('Form submitted with email:', email); // Debugging: Check if the form submits
     if (email) {
-      setMessage("Thank you for subscribing to our newsletter!");
+      setMessage('Thank you for subscribing to our newsletter!');
     } else {
-      setMessage("Please provide a valid email address.");
+      setMessage('Please provide a valid email address.');
     }
   };
 
@@ -39,7 +39,7 @@ export default function Cta() {
           </div>
 
           <h2 className="mt-8 text-4xl font-bold leading-tight text-gray-800 sm:text-5xl lg:mt-12 lg:text-6xl">
-            Become part of{" "}
+            Become part of{' '}
             <span className="border-b-8 border-yellow-400">
               our Tech Community.
             </span>

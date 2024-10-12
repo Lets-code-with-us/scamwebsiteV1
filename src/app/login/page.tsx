@@ -1,21 +1,21 @@
-"use client";
+'use client';
 
-import React from "react";
-import Image from "next/image";
-import { ArrowRight } from "lucide-react";
-import { useState, useEffect } from "react";
-import { Toaster } from "react-hot-toast";
-import toast from "react-hot-toast";
-import Link from "next/link";
-import { useRouter } from "next/navigation";
-import { useAuthStore } from "@/context/useAuthStore";
+import React from 'react';
+import Image from 'next/image';
+import { ArrowRight } from 'lucide-react';
+import { useState, useEffect } from 'react';
+import { Toaster } from 'react-hot-toast';
+import toast from 'react-hot-toast';
+import Link from 'next/link';
+import { useRouter } from 'next/navigation';
+import { useAuthStore } from '@/context/useAuthStore';
 
 function Page() {
   const Router = useRouter();
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
   const [disabled, setDisabled] = useState(false);
-  const login = useAuthStore((state:any)=>state.login);
+  const login = useAuthStore((state: any) => state.login);
 
   useEffect(() => {
     if (email.length > 0 && password.length > 0) {
@@ -28,11 +28,11 @@ function Page() {
   async function userLogin() {
     const isLoggedIn = await login(email, password);
     if (isLoggedIn) {
-      Router.push("/profile");
-      Router.refresh()
-      toast.success("Login Successful");
+      Router.push('/profile');
+      Router.refresh();
+      toast.success('Login Successful');
     } else {
-      toast.error("Wrong email or password");
+      toast.error('Wrong email or password');
     }
   }
 
@@ -49,7 +49,7 @@ function Page() {
                 Log in
               </h2>
               <p className="mt-2 text-sm text-gray-600">
-                Don&apos;t have an account?{" "}
+                Don&apos;t have an account?{' '}
                 <Link
                   href="/signup"
                   title=""
@@ -65,8 +65,8 @@ function Page() {
                       htmlFor=""
                       className="text-base font-medium text-gray-900"
                     >
-                      {" "}
-                      Email address{" "}
+                      {' '}
+                      Email address{' '}
                     </label>
                     <div className="mt-2">
                       <input
@@ -84,16 +84,16 @@ function Page() {
                         htmlFor=""
                         className="text-base font-medium text-gray-900"
                       >
-                        {" "}
-                        Password{" "}
+                        {' '}
+                        Password{' '}
                       </label>
                       <Link
                         href="/forgetPassword"
                         title=""
                         className="text-sm font-semibold text-black hover:underline"
                       >
-                        {" "}
-                        Forgot password?{" "}
+                        {' '}
+                        Forgot password?{' '}
                       </Link>
                     </div>
                     <div className="mt-2">
