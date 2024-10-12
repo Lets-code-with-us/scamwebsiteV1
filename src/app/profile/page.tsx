@@ -125,8 +125,9 @@ function Page() {
     }
   }
 
-  async function getUser() {
-    const response = await axios.get("/api/user/profile");
+  const getUser = React.useCallback(async()=>{
+    try{
+      const response = await axios.get("/api/user/profile");
     const { data } = await response;
 
     if (!data) {
@@ -134,17 +135,28 @@ function Page() {
     } else {
       setUser(data.data);
     }
-  }
-
-  async function getBio() {
-    const userBioResponse = await axios.get("/api/user/getBio");
-    const { data } = await userBioResponse;
-    if (!data) {
-      toast.error("Something Went Wrong");
-    } else {
-      setBio(data.data);
     }
-  }
+    catch(err){
+      setUser("")
+    }
+
+  },[user])
+ 
+  const getBio = React.useCallback(async()=>{
+   try {
+     const userBioResponse = await axios.get("/api/user/getBio");
+       const { data } = await userBioResponse;
+       if (!data) {
+         toast.error("Something Went Wrong");
+       } else {
+         setBio(data.data);
+       }
+   } catch (error) {
+    setBio([])
+   }
+  },[bio])
+  
+ 
   return (
     <div className="flex flex-col items-center px-10 pb-10">
       <div>

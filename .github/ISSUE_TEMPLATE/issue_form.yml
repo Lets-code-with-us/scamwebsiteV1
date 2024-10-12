@@ -29,34 +29,6 @@ body:
     validations:
       required: true
 
-  - type: textarea
-    id: your_approach
-    attributes:
-      label: "YOUR APPROACH"
-      description: "Describe how you plan to address this issue or implement the feature."
-      placeholder: "e.g., I will optimize the backend algorithm by..."
-    validations:
-      required: true
-
-  - type: input
-    id: your_name
-    attributes:
-      label: "YOUR NAME"
-      description: "Your full name."
-      placeholder: "e.g., John Doe"
-    validations:
-      required: true
-
-  - type: input
-    id: your_github_profile
-    attributes:
-      label: "YOUR GITHUB PROFILE URL"
-      description: "Provide a link to your GitHub profile."
-      placeholder: "https://github.com/YourUsername"
-    validations:
-      required: true
-      pattern: '^https?://github\.com/.+'
-      errorMessage: "Please enter a valid GitHub profile URL."
 
   - type: markdown
     attributes:
