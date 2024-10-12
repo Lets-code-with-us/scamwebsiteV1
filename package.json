@@ -8,6 +8,8 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
+    "build:turbo":"turbo build check-types",
+    "build:check":"turbo check-types build",
     "prepare": "husky",
     "test": "jest",
     "test:watch": "jest --watch"
@@ -42,7 +44,8 @@
     "tailwind-merge": "^2.2.1",
     "ts-node": "^10.9.2",
     "vaul": "^0.9.0",
-    "zod": "^3.23.8"
+    "zod": "^3.23.8",
+    "zustand": "^5.0.0-rc.2"
   },
   "devDependencies": {
     "@testing-library/jest-dom": "^6.5.0",

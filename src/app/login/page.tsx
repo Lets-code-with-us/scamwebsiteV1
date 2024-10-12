@@ -6,15 +6,16 @@ import { ArrowRight } from "lucide-react";
 import { useState, useEffect } from "react";
 import { Toaster } from "react-hot-toast";
 import toast from "react-hot-toast";
-import { useRouter } from "next/navigation";
-import axios from "axios";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
+import { useAuthStore } from "@/context/useAuthStore";
 
 function Page() {
   const Router = useRouter();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [disabled, setDisabled] = useState(false);
+  const login = useAuthStore((state:any)=>state.login);
 
   useEffect(() => {
     if (email.length > 0 && password.length > 0) {
@@ -25,21 +26,13 @@ function Page() {
   }, [email, password]);
 
   async function userLogin() {
-    try {
-      const userData = await axios.post("/api/user/login", { email, password });
-      console.log(userData.status)
-      if(userData.status == 200){
-        toast.success("Login Successful");
-        Router.push("/profile");
-      }
-
-    } catch (error:any) {
-      if (error.response && error.response.status === 404 || error.response && error.response.status === 400) {
-        toast.error("Wrong email or password");
-      } else {
-        console.error("An error occurred while logging in:", error);
-        toast.error("An error occurred. Please try again later.");
-      }
+    const isLoggedIn = await login(email, password);
+    if (isLoggedIn) {
+      Router.push("/profile");
+      Router.refresh()
+      toast.success("Login Successful");
+    } else {
+      toast.error("Wrong email or password");
     }
   }
 
@@ -65,7 +58,7 @@ function Page() {
                   Create a free account
                 </Link>
               </p>
-              <form action="#" method="POST" className="mt-8">
+              <div className="mt-8">
                 <div className="space-y-5">
                   <div>
                     <label
@@ -124,14 +117,13 @@ function Page() {
                     </button>
                   </div>
                 </div>
-              </form>
-              
+              </div>
             </div>
           </div>
           <div className="h-full w-full">
             <Image
-            height={1200}
-            width={1200}
+              height={1200}
+              width={1200}
               className="mx-auto h-full w-full rounded-md object-cover"
               src="https://images.unsplash.com/photo-1630673245362-f69d2b93880e?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1740&q=80"
               alt=""
