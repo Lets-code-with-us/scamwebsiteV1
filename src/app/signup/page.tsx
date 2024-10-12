@@ -5,7 +5,7 @@ import { ArrowRight } from "lucide-react";
 import { useState, useEffect } from "react";
 import Image from "next/image";
 import axios from "axios";
-import { Toaster,toast } from "react-hot-toast";
+import { Toaster, toast } from "react-hot-toast";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
 
@@ -20,15 +20,14 @@ function Page() {
     if (
       email.length > 0 &&
       password.length > 0 &&
-      username.length > 0 
+      username.length > 0
     ) {
-      if(!email.includes("@gmail")){
-      setDisabled(true);
-      toast.error("Use Gmail for create a new account")
-      
-
+      if (!email.includes("@gmail")) {
+        setDisabled(true);
+        toast.error("Use Gmail to create a new account");
+      } else {
+        setDisabled(false);                          // Moved inside the else block to ensure it's only called when email is valid.
       }
-      setDisabled(false);
     } else {
       setDisabled(true);
     }
@@ -43,9 +42,12 @@ function Page() {
       });
 
       toast.success("Successfully toasted!");
-        Router.push("/login");
-    } catch (error:any) {
-      if (error.response && error.response.status === 404 ||error.response && error.response.status === 400 ) {
+      Router.push("/login");
+    } catch (error: any) {
+      if (
+        (error.response && error.response.status === 404) ||
+        (error.response && error.response.status === 400)
+      ) {
         toast.error("Email already Exists");
       } else {
         console.error("An error occurred while logging in:", error);
@@ -148,9 +150,9 @@ function Page() {
           </div>
         </div>
         <div className="h-full w-full">
-          <Image 
-          height={1200}
-          width={1200}
+          <Image
+            height={1200}
+            width={1200}
             className="mx-auto h-full w-full rounded-md object-cover"
             src="https://images.unsplash.com/photo-1559526324-4b87b5e36e44?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1742&q=80"
             alt=""
