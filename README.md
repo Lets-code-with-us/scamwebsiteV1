@@ -44,6 +44,25 @@
   docker pull mongodb
   ```
 
+## Available Scripts 📜:
+
+- `npm run dev`: Runs the app in development mode with Turbo.
+- `npm run build`: Builds the app for production.
+- `npm start`: Starts the production server.
+- `npm run lint`: Runs the linter to check for code style issues.
+- `npm run format`: Formats the code using Prettier.
+- `npm run check`: Checks if the code is formatted correctly.
+- `npm run build:turbo`: Runs type checking and builds the app using Turbo.
+- `npm run build:check`: Runs type checking and builds the app.
+- `npm run prepare`: Sets up Husky for Git hooks.
+- `npm test`: Runs the test suite.
+- `npm run test:watch`: Runs the test suite in watch mode.
+
+Run any of these scripts in your terminal
+```bash
+npm run <script-name>
+```
+
 ## Tech Stack :computer:
 
 [![Tech Stack](https://skillicons.dev/icons?i=next,mongo,nodejs,tailwind,vercel,git,github,devto,docker&theme=dark)](https://skillicons.dev)
