@@ -1,5 +1,5 @@
-import React from 'react'
-import { AlertCircle, X } from 'lucide-react'
+import React from 'react';
+import { AlertCircle, X } from 'lucide-react';
 
 export function WarningBanner() {
   return (
@@ -11,7 +11,8 @@ export function WarningBanner() {
           </div>
           <div>
             <p className="text-sm font-medium text-yellow-600">
-              This is some informational text that you can use to show some warning content
+              This is some informational text that you can use to show some
+              warning content
             </p>
           </div>
           <div>
@@ -20,5 +21,5 @@ export function WarningBanner() {
         </div>
       </div>
     </>
-  )
+  );
 }

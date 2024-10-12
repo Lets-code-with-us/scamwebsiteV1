@@ -1,8 +1,8 @@
-import { NextRequest, NextResponse } from "next/server";
-import { User } from "@/models/userModel";
-import { dbConnect } from "@/db/dbConnect";
-import bcrypt from "bcryptjs"; // Changed to bcryptjs
-import { z } from "zod";
+import { NextRequest, NextResponse } from 'next/server';
+import { User } from '@/models/userModel';
+import { dbConnect } from '@/db/dbConnect';
+import bcrypt from 'bcryptjs'; // Changed to bcryptjs
+import { z } from 'zod';
 
 // Connect the database
 dbConnect();
@@ -22,14 +22,17 @@ export async function POST(request: NextRequest) {
 
     // Inputs validation using zod
     if (!ZodValidation.safeParse({ email, username, password }).success) {
-      return NextResponse.json({ message: "Incorrect inputs" }, { status: 401 });
+      return NextResponse.json(
+        { message: 'Incorrect inputs' },
+        { status: 401 }
+      );
     }
 
     // Check if user exists
     const userExist = await User.findOne({ email });
 
     if (userExist) {
-      return NextResponse.json({ message: "User Exists" }, { status: 400 });
+      return NextResponse.json({ message: 'User Exists' }, { status: 400 });
     }
 
     // Encrypt the password
@@ -43,12 +46,13 @@ export async function POST(request: NextRequest) {
     });
 
     await user.save();
-      
-    
-    return NextResponse.json({ message: "Success" }, { status: 200 });
-    
+
+    return NextResponse.json({ message: 'Success' }, { status: 200 });
   } catch (error: any) {
-    console.error("Error:", error); // Log the error for debugging
-    return NextResponse.json({ message: "Internal Server Error" }, { status: 500 });
+    console.error('Error:', error); // Log the error for debugging
+    return NextResponse.json(
+      { message: 'Internal Server Error' },
+      { status: 500 }
+    );
   }
 }

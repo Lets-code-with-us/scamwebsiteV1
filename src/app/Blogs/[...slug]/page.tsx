@@ -1,9 +1,9 @@
-"use client"
+'use client';
 
-import axios from "axios";
-import { useState, useEffect } from "react";
-import Image from "next/image";
-import Report from "@/components/component/Report";
+import axios from 'axios';
+import { useState, useEffect } from 'react';
+import Image from 'next/image';
+import Report from '@/components/component/Report';
 import parse from 'html-react-parser';
 import { CircleUserRound } from 'lucide-react';
 
@@ -11,72 +11,62 @@ function Page({ params }: { params: { slug: string } }) {
   const [data, setData] = useState<any>({});
   const [id, setId] = useState('');
   const [content, setContent] = useState<string>('');
-  const [comment,setComment] = useState('')
-  const [userComment ,setUserComment] = useState([])
-  useEffect(()=>{
-    getData()
-  },[])
+  const [comment, setComment] = useState('');
+  const [userComment, setUserComment] = useState([]);
+  useEffect(() => {
+    getData();
+  }, []);
 
   async function getData() {
     try {
       const id: string = params.slug[0].toString();
-      setId(id)
-      const response = await axios.post('/api/user/getBlogs',{id});
+      setId(id);
+      const response = await axios.post('/api/user/getBlogs', { id });
       const body = response.data;
       setData(body.data);
-      
+
       if (typeof body.data.content === 'object' && body.data.content !== null) {
-        setContent(JSON.stringify(body.data.content)); 
+        setContent(JSON.stringify(body.data.content));
       } else if (typeof body.data.content === 'string') {
         setContent(body.data.content);
       }
-
     } catch (error) {
-      console.log("error: ", error);
+      console.log('error: ', error);
     }
   }
   async function postComment() {
     try {
-      const response = await axios.post("/api/user/postComment",{
-        blogId:id,
-        comment
-      }) 
-      if(!response){
-        console.log("comment error")
+      const response = await axios.post('/api/user/postComment', {
+        blogId: id,
+        comment,
+      });
+      if (!response) {
+        console.log('comment error');
       }
-      
     } catch (error) {
-      console.log(error)
-      
+      console.log(error);
     }
-
-    
   }
 
   async function getAllComments() {
     try {
-      const id = params.slug[0]
-      const res = await axios.post("/api/user/getComments",{id})
-      const {data} = await res.data;
-      console.log(data)
-      setUserComment(data)
-
-      
-    } catch (error:any) {
-      if(error.response && error.response.status){
-
-        setUserComment([])
+      const id = params.slug[0];
+      const res = await axios.post('/api/user/getComments', { id });
+      const { data } = await res.data;
+      console.log(data);
+      setUserComment(data);
+    } catch (error: any) {
+      if (error.response && error.response.status) {
+        setUserComment([]);
+      } else {
+        setUserComment([]);
       }
-      else{
-        setUserComment([])
-      }
-      
     }
   }
 
   useEffect(() => {
     getData();
-    getAllComments()
+    getAllComments();
   }, []);
 
   return (
@@ -99,33 +89,34 @@ function Page({ params }: { params: { slug: string } }) {
                 alt="image"
               />
             </div>
-            <div>
-              {parse(content)}
-            </div>
+            <div>{parse(content)}</div>
           </div>
           <div className="flex flex-col items-center justify-center">
-            {userComment.map((el:{
-              comment:string
-            },index)=>{
-              return(
-                <>
-                <div key={index}>
-                  <div className="flex flex-1 items-center justify-center gap-4">
-
-                <div><CircleUserRound/></div>
-                <div>{el?.comment}</div>
-                  </div>
-
-                </div>
-                </>
-              )
-
-            })}
+            {userComment.map(
+              (
+                el: {
+                  comment: string;
+                },
+                index
+              ) => {
+                return (
+                  <>
+                    <div key={index}>
+                      <div className="flex flex-1 items-center justify-center gap-4">
+                        <div>
+                          <CircleUserRound />
+                        </div>
+                        <div>{el?.comment}</div>
+                      </div>
+                    </div>
+                  </>
+                );
+              }
+            )}
           </div>
           <div>
-            <input type="text" onChange={(e)=>setComment(e.target.value)}/>
+            <input type="text" onChange={(e) => setComment(e.target.value)} />
             <button onClick={postComment}>Comment</button>
-
           </div>
           <div className="flex flex-1 items-center justify-center">
             <Report blogId={id} />

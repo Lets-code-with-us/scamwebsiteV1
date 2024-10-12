@@ -104,4 +104,3 @@
 <a href="https://www.linkedin.com/in/shubham-paul-5a3a8a21b/">
 	<img height="40" src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/linkedin/linkedin-original.svg" />
 </a>
-

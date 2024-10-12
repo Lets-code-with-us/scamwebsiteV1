@@ -1,7 +1,7 @@
-import { NextResponse, NextRequest } from "next/server";
-import JWT, { JwtPayload } from "jsonwebtoken";
-import { Report } from "@/models/reportModel";
-import { dbConnect } from "@/db/dbConnect";
+import { NextResponse, NextRequest } from 'next/server';
+import JWT, { JwtPayload } from 'jsonwebtoken';
+import { Report } from '@/models/reportModel';
+import { dbConnect } from '@/db/dbConnect';
 
 dbConnect();
 export async function POST(request: NextRequest) {
@@ -11,18 +11,18 @@ export async function POST(request: NextRequest) {
     if (![blog && content]) {
       return NextResponse.json(
         {
-          message: "Server Error",
+          message: 'Server Error',
         },
         {
           status: 404,
         }
       );
     }
-    const getCookies = (await request.cookies.get("token")?.value) || "";
+    const getCookies = (await request.cookies.get('token')?.value) || '';
     if (!getCookies) {
       return NextResponse.json(
         {
-          message: "Get Login",
+          message: 'Get Login',
         },
         {
           status: 404,
@@ -42,17 +42,17 @@ export async function POST(request: NextRequest) {
     });
     if (!userReport) {
       return NextResponse.json(
-        { message: "Report not able to create" },
+        { message: 'Report not able to create' },
         { status: 404 }
       );
     }
 
     const createdReport = await userReport.save();
     if (!createdReport) {
-      return NextResponse.json({ message: "Server Error" }, { status: 404 });
+      return NextResponse.json({ message: 'Server Error' }, { status: 404 });
     }
 
-    return NextResponse.json({ message: "Report Created" }, { status: 200 });
+    return NextResponse.json({ message: 'Report Created' }, { status: 200 });
   } catch (error: any) {
     console.log(error);
   }
