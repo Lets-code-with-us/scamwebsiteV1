@@ -8,6 +8,7 @@ import toast,{Toaster} from 'react-hot-toast'
 export function Footer() {
   const [email,setEmail] = React.useState('')
   const [disabled,setDisabled] = React.useState(false)
+  const currentYear = new Date().getFullYear()
   React.useEffect(()=>{
     if(email.length>0){
       setDisabled(false)
@@ -28,7 +29,7 @@ export function Footer() {
       toast.success("Thanks for Subscribing")
       setEmail('')
     }
-    
+
   }
   return (
     <footer className="w-full">
@@ -88,7 +89,7 @@ export function Footer() {
           <span className="ml-4 text-lg font-bold">DevUI</span>
         </div>
         <div className="mt-4 md:mt-0">
-          <p className="text-sm font-medium text-gray-500">© 2023 DevUI. All rights reserved.</p>
+          <p className="text-sm font-medium text-gray-500">© {currentYear} DevUI. All rights reserved.</p>
         </div>
       </div>
     </footer>
