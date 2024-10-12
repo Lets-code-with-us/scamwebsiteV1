@@ -27,8 +27,11 @@ function Page() {
   async function userLogin() {
     try {
       const userData = await axios.post("/api/user/login", { email, password });
-      toast.success("Login Successful");
-      Router.push("/profile");
+      console.log(userData.status)
+      if(userData.status == 200){
+        toast.success("Login Successful");
+        Router.push("/profile");
+      }
 
     } catch (error:any) {
       if (error.response && error.response.status === 404 || error.response && error.response.status === 400) {
