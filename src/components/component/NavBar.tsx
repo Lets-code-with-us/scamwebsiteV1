@@ -65,9 +65,9 @@ export function NavBar() {
           <span className="font-bold">Scam Site</span>
         </div>
         <div className="hidden grow items-start lg:flex justify-center">
-          <ul className="ml-12 inline-flex text-2xl space-x-8">
+          <ul className="ml-12 inline-flex text-2xl">
             {menuItems.map((item) => (
-              <li key={item.name}>
+              <li key={item.name} className="px-4 hover:bg-gray-200 rounded">
                 <Link
                   href={item.href}
                   className="text-lg font-semibold text-gray-800 hover:text-gray-900"
