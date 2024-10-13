@@ -1,7 +1,7 @@
 name: Contributor Issue Form
 description: Use this form to submit issues related to **Scam Website**
-title: "[ENTER ISSUE TITLE]"
-labels: ["needs triage"]
+title: '[ENTER ISSUE TITLE]'
+labels: ['needs triage']
 assignees: []
 
 body:
@@ -13,22 +13,20 @@ body:
   - type: input
     id: issue_name
     attributes:
-      label: "ISSUE NAME"
-      description: "A short and descriptive title for your issue."
-      placeholder: "e.g., Improve UI features"
+      label: 'ISSUE NAME'
+      description: 'A short and descriptive title for your issue.'
+      placeholder: 'e.g., Improve UI features'
     validations:
       required: true
-
 
   - type: textarea
     id: issue_description
     attributes:
-      label: "ISSUE DESCRIPTION"
-      description: "Provide a detailed description of the issue."
-      placeholder: "Describe the problem, steps to reproduce, and any other relevant information."
+      label: 'ISSUE DESCRIPTION'
+      description: 'Provide a detailed description of the issue.'
+      placeholder: 'Describe the problem, steps to reproduce, and any other relevant information.'
     validations:
       required: true
-
 
   - type: markdown
     attributes:

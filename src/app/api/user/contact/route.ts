@@ -1,7 +1,7 @@
-import { NextRequest, NextResponse } from "next/server";
-import { dbConnect } from "@/db/dbConnect";
-import { Contact } from "@/models/contactModel";
-import { z } from "zod";
+import { NextRequest, NextResponse } from 'next/server';
+import { dbConnect } from '@/db/dbConnect';
+import { Contact } from '@/models/contactModel';
+import { z } from 'zod';
 
 // connect db
 dbConnect();
@@ -9,8 +9,8 @@ dbConnect();
 // Define a specific Zod schema for the contact form
 const ContactSchema = z.object({
   email: z.string().email(),
-  name: z.string().min(1, "Name is required"),
-  message: z.string().min(1, "Message is required"),
+  name: z.string().min(1, 'Name is required'),
+  message: z.string().min(1, 'Message is required'),
 });
 
 export async function POST(request: NextRequest) {
@@ -23,7 +23,7 @@ export async function POST(request: NextRequest) {
     if (!validationResult.success) {
       return NextResponse.json(
         {
-          message: "Invalid inputs",
+          message: 'Invalid inputs',
         },
         { status: 400 }
       );
@@ -39,9 +39,12 @@ export async function POST(request: NextRequest) {
     // Save the contact message to the database
     await contact.save();
 
-    return NextResponse.json({ message: "Success" }, { status: 200 });
+    return NextResponse.json({ message: 'Success' }, { status: 200 });
   } catch (error: any) {
-    console.error("Server error: ", error);
-    return NextResponse.json({ message: "Internal Server Error" }, { status: 500 });
+    console.error('Server error: ', error);
+    return NextResponse.json(
+      { message: 'Internal Server Error' },
+      { status: 500 }
+    );
   }
 }

@@ -1,14 +1,14 @@
-import type { Metadata } from "next";
-import { Inter } from "next/font/google";
-import "./globals.css";
-import { NavBar } from "@/components/component/NavBar";
-import { Footer } from "@/components/component/Footer";
+import type { Metadata } from 'next';
+import { Inter } from 'next/font/google';
+import './globals.css';
+import { NavBar } from '@/components/component/NavBar';
+import { Footer } from '@/components/component/Footer';
 
-const inter = Inter({ subsets: ["latin"] });
+const inter = Inter({ subsets: ['latin'] });
 
 export const metadata: Metadata = {
-  title: "Scam website",
-  description: "Scam Alert",
+  title: 'Scam website',
+  description: 'Scam Alert',
 };
 
 export default function RootLayout({

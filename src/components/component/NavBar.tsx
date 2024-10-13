@@ -1,49 +1,44 @@
-"use client";
-import React, { useEffect } from "react";
-import { Menu, X } from "lucide-react";
-import Link from "next/link";
-import { hasCookie } from "cookies-next";
+'use client';
+import React, { useEffect } from 'react';
+import { Menu, X } from 'lucide-react';
+import Link from 'next/link';
+import { useAuthStore } from '@/context/useAuthStore';
 
 const menuItems = [
   {
-    name: "Home",
-    href: "/",
+    name: 'Home',
+    href: '/',
   },
   {
-    name: "Feed",
-    href: "/trend",
+    name: 'Feed',
+    href: '/trend',
   },
   {
-    name: "About",
-    href: "/about",
+    name: 'About',
+    href: '/about',
   },
   {
-    name: "Contact",
-    href: "/contact",
+    name: 'Contact',
+    href: '/contact',
   },
   {
-    name: "Profile",
-    href: "/profile",
+    name: 'Profile',
+    href: '/profile',
   },
 ];
 
 export function NavBar() {
-  useEffect(() => {
-    const token = hasCookie("token");
-    if (token) {
-      setState("Log Out");
-    } else {
-      setState("Log In");
-    }
-  }, [hasCookie]);
-
+  const isAuthenticated = useAuthStore((state: any) => state.isAuthenticated);
   const [isMenuOpen, setIsMenuOpen] = React.useState(false);
-  const [state, setState] = React.useState("Log In");
+  const [state, setState] = React.useState('Log In');
+
+  useEffect(() => {
+    setState(isAuthenticated ? 'Log Out' : 'Log In');
+  }, [isAuthenticated]);
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
   };
-
   return (
     <div className="relative w-full bg-white pb-3 pt-6">
       <div className="mx-auto flex max-w-7xl items-center justify-between px-4 py-2 sm:px-6 lg:px-8">
