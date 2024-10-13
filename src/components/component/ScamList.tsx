@@ -1,10 +1,10 @@
-import React from "react";
+import React from 'react';
 
 const features = [
   {
     id: 1,
-    title: "What is this website all about?",
-    color: "blue",
+    title: 'What is this website all about?',
+    color: 'blue',
     icon: (
       <svg
         xmlns="http://www.w3.org/2000/svg"
@@ -20,8 +20,8 @@ const features = [
   },
   {
     id: 2,
-    title: "What can you do on this website?",
-    color: "blue",
+    title: 'What can you do on this website?',
+    color: 'blue',
     icon: (
       <svg
         xmlns="http://www.w3.org/2000/svg"
@@ -33,12 +33,12 @@ const features = [
       </svg>
     ),
     description:
-      "You can learn about common scams, warning signs, and strategies scammers use. This knowledge can help you identify potential scams when using a scam alert website.",
+      'You can learn about common scams, warning signs, and strategies scammers use. This knowledge can help you identify potential scams when using a scam alert website.',
   },
   {
     id: 3,
-    title: "Benefits of this Website",
-    color: "blue",
+    title: 'Benefits of this Website',
+    color: 'blue',
     icon: (
       <svg
         xmlns="http://www.w3.org/2000/svg"
@@ -50,7 +50,7 @@ const features = [
       </svg>
     ),
     description:
-      "This website raises awareness about different types of scams, fraud schemes, and deceptive practices. By educating the public about common scams, people become more cautious and better equipped to recognize and avoid potential threats.",
+      'This website raises awareness about different types of scams, fraud schemes, and deceptive practices. By educating the public about common scams, people become more cautious and better equipped to recognize and avoid potential threats.',
   },
 ];
 

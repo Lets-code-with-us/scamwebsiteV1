@@ -1,11 +1,11 @@
-"use client";
-import React, { useState } from "react";
+'use client';
+import React, { useState } from 'react';
 
 const features = [
   {
     id: 1,
-    title: "Whatsapp Lottery Scam",
-    color: "blue",
+    title: 'Whatsapp Lottery Scam',
+    color: 'blue',
     icon: (
       <svg
         xmlns="http://www.w3.org/2000/svg"
@@ -35,17 +35,17 @@ const features = [
           fill="#fff"
           fillRule="evenodd"
           d="M19.268,16.045c-0.355-0.79-0.729-0.806-1.068-0.82c-0.277-0.012-0.593-0.011-0.909-0.011c-0.316,0-0.83,0.119-1.265,0.594c-0.435,0.475-1.661,1.622-1.661,3.956c0,2.334,1.7,4.59,1.937,4.906c0.237,0.316,3.282,5.259,8.104,7.161c4.007,1.58,4.823,1.266,5.693,1.187c0.87-0.079,2.807-1.147,3.202-2.255c0.395-1.108,0.395-2.057,0.277-2.255c-0.119-0.198-0.435-0.316-0.909-0.554s-2.807-1.385-3.242-1.543c-0.435-0.158-0.751-0.237-1.068,0.238c-0.316,0.474-1.225,1.543-1.502,1.859c-0.277,0.317-0.554,0.357-1.028,0.119c-0.474-0.238-2.002-0.738-3.815-2.354c-1.41-1.257-2.362-2.81-2.639-3.285c-0.277-0.474-0.03-0.731,0.208-0.968c0.213-0.213,0.474-0.554,0.712-0.831c0.237-0.277,0.316-0.475,0.474-0.791c0.158-0.317,0.079-0.594-0.04-0.831C20.612,19.329,19.69,16.983,19.268,16.045z"
-          clip-rule="evenodd"
+          clipRule="evenodd"
         ></path>
       </svg>
     ),
     description:
-      "The WhatsApp lottery scam is a type of fraudulent scheme where scammers impersonate WhatsApp or other legitimate companies to deceive individuals into believing they have won a lottery or prize. .",
+      'The WhatsApp lottery scam is a type of fraudulent scheme where scammers impersonate WhatsApp or other legitimate companies to deceive individuals into believing they have won a lottery or prize. .',
   },
   {
     id: 2,
-    title: "Debit Credit Card Fraud",
-    color: "orange",
+    title: 'Debit Credit Card Fraud',
+    color: 'orange',
     icon: (
       <svg
         xmlns="http://www.w3.org/2000/svg"
@@ -57,48 +57,48 @@ const features = [
       </svg>
     ),
     description:
-      "A debit card scam refers to fraudulent activities where scammers use various tactics to obtain sensitive information related to debit cards, such as card numbers, expiration dates, CVV codes, and PINs.",
+      'A debit card scam refers to fraudulent activities where scammers use various tactics to obtain sensitive information related to debit cards, such as card numbers, expiration dates, CVV codes, and PINs.',
   },
   {
     id: 3,
-    title: "Phishing",
-    color: "green",
+    title: 'Phishing',
+    color: 'green',
     icon: (
       <svg
         width="24"
         height="24"
         xmlns="http://www.w3.org/2000/svg"
         fillRule="evenodd"
-        clip-rule="evenodd"
+        clipRule="evenodd"
       >
         <path d="M21 11c0-.552-.448-1-1-1s-1 .448-1 1c0 .551.448 1 1 1s1-.449 1-1m3 .486c-1.184 2.03-3.29 4.081-5.66 5.323-1.336-1.272-2.096-2.957-2.103-4.777-.008-1.92.822-3.704 2.297-5.024 2.262.986 4.258 2.606 5.466 4.478m-6.63 5.774c-.613.255-1.236.447-1.861.573-1.121 1.348-2.796 2.167-5.287 2.167-.387 0-.794-.02-1.222-.061.647-.882.939-1.775 1.02-2.653-2.717-1.004-4.676-2.874-6.02-4.287-1.038 1.175-2.432 2-4 2 1.07-1.891 1.111-4.711 0-6.998 1.353.021 3.001.89 4 1.999 1.381-1.2 3.282-2.661 6.008-3.441-.1-.828-.399-1.668-1.008-2.499.429-.04.837-.06 1.225-.06 2.467 0 4.135.801 5.256 2.128.68.107 1.357.272 2.019.495-1.453 1.469-2.271 3.37-2.263 5.413.008 1.969.773 3.799 2.133 5.224" />
       </svg>
     ),
     description:
-      "A phishing scam is a type of cyber attack where scammers use deceptive tactics to trick individuals into providing sensitive information such as usernames, passwords, credit card numbers, or other personal details. .",
+      'A phishing scam is a type of cyber attack where scammers use deceptive tactics to trick individuals into providing sensitive information such as usernames, passwords, credit card numbers, or other personal details. .',
   },
   {
     id: 4,
-    title: "Customer Care Number Fraud",
-    color: "red",
+    title: 'Customer Care Number Fraud',
+    color: 'red',
     icon: (
       <svg
         width="24"
         height="24"
         xmlns="http://www.w3.org/2000/svg"
         fillRule="evenodd"
-        clip-rule="evenodd"
+        clipRule="evenodd"
       >
         <path d="M20.332 23h-6.999l-2.226-6.543c-.136-.279-.42-.457-.732-.457h-.375v-1h3.729l2.056-3.738c.106-.171.285-.262.467-.262.426 0 .691.469.467.834l-1.741 3.166h4.044l-1.741-3.166c-.224-.365.041-.834.467-.834.182 0 .361.091.467.262l2.056 3.738h3.729v1h-.374c-.312 0-.597.178-.733.459l-2.561 6.541zm-8.396-1h-11.936c0-.277-.002-2.552-.004-2.803-.008-2.111.083-3.319 2.514-3.88 2.663-.614 5.801-1.165 4.537-3.495-3.744-6.906-1.067-10.822 2.954-10.822 3.942 0 6.686 3.771 2.952 10.822l-1.091 2.178h-1.862c-.552 0-1 .448-1 1v1c0 .552.448 1 1 1h.236l1.7 5zm3.546-4.426c0-.276-.224-.5-.5-.5s-.5.224-.5.5v3c0 .276.224.5.5.5s.5-.224.5-.5v-3zm2-.074c0-.276-.224-.5-.5-.5s-.5.224-.5.5v3c0 .276.224.5.5.5s.5-.224.5-.5v-3zm2.036 0c0-.276-.224-.5-.5-.5s-.5.224-.5.5v3c0 .276.224.5.5.5s.5-.224.5-.5v-3z" />
       </svg>
     ),
     description:
-      "Customer care number fraud is a type of scam where fraudsters impersonate customer support representatives from legitimate companies or organizations. .",
+      'Customer care number fraud is a type of scam where fraudsters impersonate customer support representatives from legitimate companies or organizations. .',
   },
   {
     id: 5,
-    title: "Randsomeware Attack",
-    color: "red",
+    title: 'Randsomeware Attack',
+    color: 'red',
     icon: (
       <svg
         xmlns="http://www.w3.org/2000/svg"
@@ -110,67 +110,67 @@ const features = [
       </svg>
     ),
     description:
-      "A ransomware attack is a type of cyberattack where malicious software (ransomware) is used to encrypt files or systems, rendering them inaccessible to the owner..",
+      'A ransomware attack is a type of cyberattack where malicious software (ransomware) is used to encrypt files or systems, rendering them inaccessible to the owner..',
   },
   {
     id: 6,
-    title: "CatFishing Attack",
-    color: "red",
+    title: 'CatFishing Attack',
+    color: 'red',
     icon: (
       <svg
         width="24"
         height="24"
         xmlns="http://www.w3.org/2000/svg"
         fillRule="evenodd"
-        clip-rule="evenodd"
+        clipRule="evenodd"
       >
         <path d="M9.842 10.163c-.228.505-.789.858-1.365.858-.34 0-.648-.127-.883-.36-.234.233-.543.36-.883.36-.577 0-1.138-.353-1.365-.858-.247-.548.583-.924.831-.374.07.155.297.321.524.321.464 0 .438-.651.438-1.065-.428-.184-.73-.601-.73-.971 0-.491.532-.71 1.185-.71.654 0 1.185.219 1.185.71 0 .37-.301.787-.729.971 0 .431-.026 1.067.433 1.067.225 0 .459-.17.528-.323.248-.55 1.079-.175.831.374zm.254-3.701c-.331 0-.601-.27-.601-.601 0-.332.27-.601.601-.601.331 0 .601.269.601.601 0 .331-.27.601-.601.601zm0-2.104c-.829 0-1.501.673-1.501 1.503 0 .829.672 1.503 1.501 1.503.829 0 1.501-.674 1.501-1.503 0-.83-.672-1.503-1.501-1.503zm-5.004 2.104c-.331 0-.601-.27-.601-.601 0-.332.27-.601.601-.601.332 0 .601.269.601.601 0 .331-.269.601-.601.601zm1.501-.601c0-.83-.672-1.503-1.501-1.503-.829 0-1.501.673-1.501 1.503 0 .829.672 1.503 1.501 1.503.829 0 1.501-.674 1.501-1.503zm11.12 17.136c-1.254.007-4.557.004-4.896.004-1.704-.006-1.65-1.981-.222-1.978l2.605.005-.585-.8c-1.085-1.48-.86-4.456.95-5.815.529-.397-.069-1.197-.601-.802-2.002 1.505-2.423 4.451-1.602 6.411l-.757-.001c-.743-.011-1.432.329-1.795.941-.361.608-.367 1.37-.016 1.987l.039.051-2.653-.002c1.344-1.7.996-4.971.911-5.62-.088-.667-1.078-.521-.992.131.214 1.627.145 3.897-.755 4.939-.254.295-.564.475-.938.549h-2.053c-1.316 0-1.181-1.875.002-1.875.529.008.236.008 1.341-.004.595-2.113.371-3.143-.431-5.262-.613-1.619-.835-2.344-.623-3.95l-.312-.162c-1.925-.998-2.329-2.844-2.329-4.217 0-1.899.753-3.881 2.298-6.045.932.857 1.28 1.291 2.087 2.296.161-.041 1.125-.374 2.642 0 .615-.812.997-1.345 2.068-2.301 3.144 4.454 2.184 7.272 2.065 7.803 3.715 1.449 5.052 2.779 7.033 4.581-.883-3.458-1.504-5.231 1.006-7.94.401-.433 1.079.177.663.626-1.672 1.804-1.627 3.277-1.328 4.6.674 2.984 1.46 4.504 1.46 6.747 0 4.936-3.843 5.1-4.282 5.103zm3.798-12.071c-.283-1.255-.2-2.311 1.086-3.697.408-.44.514-1.019.284-1.546-.403-.925-1.695-1.216-2.413-.444-1.882 2.029-2.257 3.774-1.953 5.827-1.254-.957-2.68-1.775-4.197-2.405.355-2.215-.339-5.027-3.064-8.656-1.215 1.063-1.726 1.484-2.635 2.657-.555-.084-1.301-.085-1.846.001-.932-1.148-1.363-1.533-2.619-2.663-1.843 2.443-3.154 4.762-3.154 7.527 0 2.204.909 3.944 2.569 4.939-.108 1.451.332 2.617.76 3.746.468 1.235.911 2.406.594 3.913l-.584-.005c-1.247 0-1.919 1.016-1.919 1.972 0 .259.139 1.888 1.922 1.905 0 0 12.701.006 13.377.002 1.96-.012 5.277-1.31 5.277-6.105 0-2.432-.803-3.96-1.485-6.968z" />
       </svg>
     ),
     description:
-      "A catfishing attack is a type of deceptive online activity where someone creates a fake identity or persona on social media, dating platforms, or other online forums to trick others into forming relationships, sharing personal information, or engaging in fraudulent activities..",
+      'A catfishing attack is a type of deceptive online activity where someone creates a fake identity or persona on social media, dating platforms, or other online forums to trick others into forming relationships, sharing personal information, or engaging in fraudulent activities..',
   },
   {
     id: 7,
-    title: "Social Media",
-    color: "red",
+    title: 'Social Media',
+    color: 'red',
     icon: (
       <svg
         width="24"
         height="24"
         xmlns="http://www.w3.org/2000/svg"
         fillRule="evenodd"
-        clip-rule="evenodd"
+        clipRule="evenodd"
       >
         <path d="M12 0c-6.626 0-12 5.372-12 12 0 6.627 5.374 12 12 12 6.627 0 12-5.373 12-12 0-6.628-5.373-12-12-12zm3.248 18.348l-.371-1.295.896.833.847.784 1.505 1.33v-12.558c0-.798-.644-1.442-1.435-1.442h-9.38c-.791 0-1.435.644-1.435 1.442v9.464c0 .798.644 1.442 1.435 1.442h7.938zm-1.26-3.206l-.462-.567c.917-.259 1.267-.833 1.267-.833-.287.189-.56.322-.805.413-.35.147-.686.245-1.015.301-.672.126-1.288.091-1.813-.007-.399-.077-.742-.189-1.029-.301-.161-.063-.336-.14-.511-.238l-.028-.016-.007-.003-.028-.016-.028-.021-.196-.119s.336.56 1.225.826l-.469.581c-1.547-.049-2.135-1.064-2.135-1.064 0-2.254 1.008-4.081 1.008-4.081 1.008-.756 1.967-.735 1.967-.735l.07.084c-1.26.364-1.841.917-1.841.917l.413-.203c.749-.329 1.344-.42 1.589-.441l.119-.014c.427-.056.91-.07 1.414-.014.665.077 1.379.273 2.107.672 0 0-.553-.525-1.743-.889l.098-.112s.959-.021 1.967.735c0 0 1.008 1.827 1.008 4.081 0 0-.573.977-2.142 1.064zm-.7-3.269c-.399 0-.714.35-.714.777 0 .427.322.777.714.777.399 0 .714-.35.714-.777 0-.427-.315-.777-.714-.777zm-2.555 0c-.399 0-.714.35-.714.777 0 .427.322.777.714.777.399 0 .714-.35.714-.777.007-.427-.315-.777-.714-.777z" />
       </svg>
     ),
     description:
-      "A social media scam refers to fraudulent activities conducted on social networking platforms with the aim of deceiving users for financial gain or other malicious purposes..",
+      'A social media scam refers to fraudulent activities conducted on social networking platforms with the aim of deceiving users for financial gain or other malicious purposes..',
   },
   {
-    id: 7,
-    title: "Work From Home Scam",
-    color: "red",
+    id: 8,
+    title: 'Work From Home Scam',
+    color: 'red',
     icon: (
       <svg
         width="24"
         height="24"
         xmlns="http://www.w3.org/2000/svg"
         fillRule="evenodd"
-        clip-rule="evenodd"
+        clipRule="evenodd"
       >
         <path d="M22 11.414v12.586h-20v-12.586l-1.293 1.293-.707-.707 12-12 12 12-.707.707-1.293-1.293zm-6 11.586h5v-12.586l-9-9-9 9v12.586h5v-9h8v9zm-1-7.889h-6v7.778h6v-7.778z" />
       </svg>
     ),
     description:
-      "Work-from-home scams are fraudulent schemes that promise individuals the opportunity to earn money from the comfort of their own homes, but in reality, they aim to deceive and defraud victims..",
+      'Work-from-home scams are fraudulent schemes that promise individuals the opportunity to earn money from the comfort of their own homes, but in reality, they aim to deceive and defraud victims..',
   },
 
   {
     id: 9,
-    title: "Digital FootPrints",
-    color: "red",
+    title: 'Digital FootPrints',
+    color: 'red',
     icon: (
       <svg
         xmlns="http://www.w3.org/2000/svg"
@@ -186,8 +186,8 @@ const features = [
   },
   {
     id: 10,
-    title: "Malware",
-    color: "red",
+    title: 'Malware',
+    color: 'red',
     icon: (
       <svg
         className="h-9 w-9 text-red-600"
@@ -205,12 +205,12 @@ const features = [
       </svg>
     ),
     description:
-      "A  malware scam typically involves deceptive tactics used by cybercriminals to trick users into downloading or installing malicious software (malware) onto their devices.",
+      'A  malware scam typically involves deceptive tactics used by cybercriminals to trick users into downloading or installing malicious software (malware) onto their devices.',
   },
   {
     id: 11,
-    title: "Social Engineering",
-    color: "red",
+    title: 'Social Engineering',
+    color: 'red',
     icon: (
       <svg
         width="24"
@@ -223,12 +223,12 @@ const features = [
       </svg>
     ),
     description:
-      "Social engineering scams involve manipulating people into performing certain actions or revealing sensitive information through psychological manipulation and deception.",
+      'Social engineering scams involve manipulating people into performing certain actions or revealing sensitive information through psychological manipulation and deception.',
   },
   {
     id: 12,
-    title: "Cyber Bulling and Trolling",
-    color: "red",
+    title: 'Cyber Bulling and Trolling',
+    color: 'red',
     icon: (
       <svg
         width="24"
@@ -241,12 +241,12 @@ const features = [
       </svg>
     ),
     description:
-      "Cyberbullying is a serious issue that involves using digital communication tools, such as social media, messaging apps, email, or online forums, to harass, intimidate, or harm others..",
+      'Cyberbullying is a serious issue that involves using digital communication tools, such as social media, messaging apps, email, or online forums, to harass, intimidate, or harm others..',
   },
   {
     id: 13,
-    title: "Fake Website Scam",
-    color: "red",
+    title: 'Fake Website Scam',
+    color: 'red',
     icon: (
       <svg
         clip-rule="evenodd"
@@ -263,12 +263,12 @@ const features = [
       </svg>
     ),
     description:
-      "A fake website scam involves creating fraudulent websites that mimic legitimate ones to deceive visitors and steal their personal information, financial details, or engage in other malicious activities..",
+      'A fake website scam involves creating fraudulent websites that mimic legitimate ones to deceive visitors and steal their personal information, financial details, or engage in other malicious activities..',
   },
   {
     id: 14,
-    title: "Matrimonial Fraud Scam",
-    color: "red",
+    title: 'Matrimonial Fraud Scam',
+    color: 'red',
     icon: (
       <svg
         className="h-9 w-9 text-red-600"
@@ -286,12 +286,12 @@ const features = [
       </svg>
     ),
     description:
-      "Gather all relevant information, including chat messages, emails, profiles, and any financial transactions related to the scam.Keep detailed records of dates, times, and amounts involved in any money transfers or payments made to the scammer..",
+      'Gather all relevant information, including chat messages, emails, profiles, and any financial transactions related to the scam.Keep detailed records of dates, times, and amounts involved in any money transfers or payments made to the scammer..',
   },
   {
     id: 15,
-    title: "Fake Emails Scam",
-    color: "red",
+    title: 'Fake Emails Scam',
+    color: 'red',
     icon: (
       <svg
         width="24"
@@ -304,12 +304,12 @@ const features = [
       </svg>
     ),
     description:
-      "A fake email scam, also known as phishing, involves sending fraudulent emails to trick individuals into revealing sensitive information such as login credentials, financial details, or personal information..",
+      'A fake email scam, also known as phishing, involves sending fraudulent emails to trick individuals into revealing sensitive information such as login credentials, financial details, or personal information..',
   },
   {
     id: 16,
-    title: "Online Games Fraud",
-    color: "red",
+    title: 'Online Games Fraud',
+    color: 'red',
     icon: (
       <svg
         width="24"
@@ -322,12 +322,12 @@ const features = [
       </svg>
     ),
     description:
-      "Scammers create fake websites or links that claim to offer free downloads of popular games. In reality, these downloads may contain malware or lead to phishing attempts..",
+      'Scammers create fake websites or links that claim to offer free downloads of popular games. In reality, these downloads may contain malware or lead to phishing attempts..',
   },
   {
     id: 17,
-    title: "Password Theft Scam",
-    color: "red",
+    title: 'Password Theft Scam',
+    color: 'red',
     icon: (
       <svg
         width="24"
@@ -340,12 +340,12 @@ const features = [
       </svg>
     ),
     description:
-      "Password theft scams, also known as password phishing or credential harvesting, are a type of cybercrime where attackers trick individuals into revealing their login credentials..",
+      'Password theft scams, also known as password phishing or credential harvesting, are a type of cybercrime where attackers trick individuals into revealing their login credentials..',
   },
   {
     id: 18,
-    title: "Online Investment Fraud Scam",
-    color: "red",
+    title: 'Online Investment Fraud Scam',
+    color: 'red',
     icon: (
       <svg
         width="24"
@@ -358,12 +358,12 @@ const features = [
       </svg>
     ),
     description:
-      "Online investment fraud is a type of scam where individuals or organizations deceive investors into putting money into fraudulent investment schemes or fake opportunities. .",
+      'Online investment fraud is a type of scam where individuals or organizations deceive investors into putting money into fraudulent investment schemes or fake opportunities. .',
   },
   {
     id: 20,
-    title: "Remote access Fraud Scam",
-    color: "red",
+    title: 'Remote access Fraud Scam',
+    color: 'red',
     icon: (
       <svg
         xmlns="http://www.w3.org/2000/svg"
@@ -375,12 +375,12 @@ const features = [
       </svg>
     ),
     description:
-      "Remote access fraud is a type of scam where criminals trick individuals into granting them access to their computers or devices, often under the guise of providing technical support or assistance. .",
+      'Remote access fraud is a type of scam where criminals trick individuals into granting them access to their computers or devices, often under the guise of providing technical support or assistance. .',
   },
   {
     id: 21,
-    title: "Part time Job  Fraud Scam",
-    color: "red",
+    title: 'Part time Job  Fraud Scam',
+    color: 'red',
     icon: (
       <svg
         width="24"
@@ -393,12 +393,12 @@ const features = [
       </svg>
     ),
     description:
-      "Part-time job scams are unfortunately common, especially online where scammers can easily reach a wide audience..",
+      'Part-time job scams are unfortunately common, especially online where scammers can easily reach a wide audience..',
   },
   {
     id: 22,
-    title: "Call Merging Fraud Scam",
-    color: "red",
+    title: 'Call Merging Fraud Scam',
+    color: 'red',
     icon: (
       <svg
         className="h-9 w-9 text-red-600"
@@ -416,7 +416,7 @@ const features = [
       </svg>
     ),
     description:
-      "A call merging scam, also known as a one-ring scam  or wangiri scam, is a type of telephone fraud where scammers use automated systems to make short, one-ring calls to random phone numbers..",
+      'A call merging scam, also known as a one-ring scam  or wangiri scam, is a type of telephone fraud where scammers use automated systems to make short, one-ring calls to random phone numbers..',
   },
 ];
 

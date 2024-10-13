@@ -1,49 +1,49 @@
-"use client";
-import React from "react";
-import { WarningBanner } from "@/components/component/warningBanner";
-import { useState, useEffect } from "react";
-import axios from "axios";
-import { Toaster, toast } from "react-hot-toast";
-import { useRouter } from "next/navigation";
-import { CldUploadButton } from "next-cloudinary";
-import Image from "next/image";
-import { useQuill } from "react-quilljs";
-import "quill/dist/quill.snow.css";
+'use client';
+import React from 'react';
+import { WarningBanner } from '@/components/component/warningBanner';
+import { useState, useEffect } from 'react';
+import axios from 'axios';
+import { Toaster, toast } from 'react-hot-toast';
+import { useRouter } from 'next/navigation';
+import { CldUploadButton } from 'next-cloudinary';
+import Image from 'next/image';
+import { useQuill } from 'react-quilljs';
+import 'quill/dist/quill.snow.css';
 
 function Page() {
-  const [title, setTitle] = useState("");
-  const [imageUrl, setImage] = useState("");
-  const [content, setContent] = useState("");
-  const [category, setcatgory] = useState("");
-  const [imagelink, setImageLink] = useState("");
+  const [title, setTitle] = useState('');
+  const [imageUrl, setImage] = useState('');
+  const [content, setContent] = useState('');
+  const [category, setcatgory] = useState('');
+  const [imagelink, setImageLink] = useState('');
   const [disabled, setDisabled] = useState(false);
   const Router = useRouter();
 
-  const theme = "snow";
+  const theme = 'snow';
 
   const modules = {
     toolbar: [
-      ["bold", "italic", "underline", "strike"],
+      ['bold', 'italic', 'underline', 'strike'],
       [{ align: [] }],
 
-      [{ list: "ordered" }, { list: "bullet" }],
-      [{ indent: "-1" }, { indent: "+1" }],
+      [{ list: 'ordered' }, { list: 'bullet' }],
+      [{ indent: '-1' }, { indent: '+1' }],
 
-      [{ size: ["small", false, "large", "huge"] }],
+      [{ size: ['small', false, 'large', 'huge'] }],
       [{ header: [1, 2, 3, 4, 5, 6, false] }],
-      ["link"],
+      ['link'],
       [{ color: [] }, { background: [] }],
 
-      ["clean"],
+      ['clean'],
     ],
     clipboard: {
       matchVisual: false,
     },
   };
 
-  const placeholder = "Compose an epic...";
+  const placeholder = 'Compose an epic...';
 
-  const formats = ["bold", "italic", "underline", "strike"];
+  const formats = ['bold', 'italic', 'underline', 'strike'];
 
   const { quill, quillRef } = useQuill({
     theme,
@@ -62,7 +62,7 @@ function Page() {
   // update Content
   React.useEffect(() => {
     if (quill) {
-      quill.on("text-change", (delta: any, oldDelta: any, source: any) => {
+      quill.on('text-change', (delta: any, oldDelta: any, source: any) => {
         setContent(quill.root.innerHTML);
       });
     }
@@ -77,7 +77,7 @@ function Page() {
   // post blog
   async function postblog() {
     try {
-      const data = await axios.post("/api/user/blog", {
+      const data = await axios.post('/api/user/blog', {
         title,
         imageUrl,
         category,
@@ -85,18 +85,17 @@ function Page() {
       });
       const response = await data;
       if (response) {
-        toast.success("Blog SuccessFully added");
-        Router.push("/trend");
-        
+        toast.success('Blog SuccessFully added');
+        Router.push('/trend');
       }
     } catch (error: any) {
       if (
         (error.response && error.response.status === 404) ||
         (error.response && error.response.status === 400)
       ) {
-        toast.error("Something Went Wrong");
+        toast.error('Something Went Wrong');
       } else {
-        toast.error("Something went wrong");
+        toast.error('Something went wrong');
       }
     }
   }
@@ -110,8 +109,8 @@ function Page() {
         <div className="space-y-5">
           <div>
             <label htmlFor="" className="text-base font-medium text-gray-900">
-              {" "}
-              Title{" "}
+              {' '}
+              Title{' '}
             </label>
             <div className="mt-2">
               <input
@@ -127,8 +126,8 @@ function Page() {
         <div className="space-y-5">
           <div>
             <label htmlFor="" className="text-base font-medium text-gray-900">
-              {" "}
-              Image{" "}
+              {' '}
+              Image{' '}
             </label>
             <div className="mt-2 flex flex-col items-center ">
               <CldUploadButton
@@ -144,9 +143,9 @@ function Page() {
                   src={
                     imagelink
                       ? imagelink
-                      : "https://images.pexels.com/photos/733856/pexels-photo-733856.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
+                      : 'https://images.pexels.com/photos/733856/pexels-photo-733856.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1'
                   }
-                  alt={"image preview"}
+                  alt={'image preview'}
                 />
               </div>
             </div>
@@ -156,8 +155,8 @@ function Page() {
         <div className="space-y-5">
           <div>
             <label htmlFor="" className="text-base font-medium text-gray-900">
-              {" "}
-              Content{" "}
+              {' '}
+              Content{' '}
             </label>
             <div className="mt-2 mb-2">
               {/* editor */}
@@ -170,8 +169,8 @@ function Page() {
         <div className="space-y-5 mt-[10rem] md:mt-[5rem]">
           <div>
             <label htmlFor="" className="text-base font-medium text-gray-900">
-              {" "}
-              Category{" "}
+              {' '}
+              Category{' '}
             </label>
             <div className="mt-2">
               <input

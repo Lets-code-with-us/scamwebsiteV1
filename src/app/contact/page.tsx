@@ -1,5 +1,5 @@
-import React from 'react'
-import Image from 'next/image'
+import React from 'react';
+import Image from 'next/image';
 const locations = [
   {
     title: 'Bengaluru office',
@@ -14,22 +14,23 @@ const locations = [
   {
     title: 'Karnataka office',
     timings: 'Mon-Sat 9am to 5pm.',
-    address: '42, Residency Rd, Shanthala Nagar, Ashok Nagar, Bengaluru, Karnataka 560025 IN',
+    address:
+      '42, Residency Rd, Shanthala Nagar, Ashok Nagar, Bengaluru, Karnataka 560025 IN',
   },
-]
-
-
+];
 
 function page() {
   return (
     <>
-    <div className="mx-auto max-w-7xl px-4">
+      <div className="mx-auto max-w-7xl px-4">
         <div className="mx-auto max-w-7xl py-12 md:py-24">
           <div className="grid items-center justify-items-center gap-x-4 gap-y-10 lg:grid-cols-2">
             {/* contact from */}
             <div className="flex items-center justify-center">
               <div className="px-2 md:px-12">
-                <p className="text-2xl font-bold text-gray-900 md:text-4xl">Get in touch</p>
+                <p className="text-2xl font-bold text-gray-900 md:text-4xl">
+                  Get in touch
+                </p>
                 <p className="mt-4 text-lg text-gray-600">
                   Our friendly team would love to hear from you.
                 </p>
@@ -116,8 +117,8 @@ function page() {
               </div>
             </div>
             <Image
-            width={400}
-            height={400}
+              width={400}
+              height={400}
               alt="Contact us"
               className="hidden max-h-full w-full rounded-lg object-cover lg:block"
               src="https://images.unsplash.com/photo-1543269664-56d93c1b41a6?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MzZ8fGhhcHB5JTIwcGVvcGxlfGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=800&q=60"
@@ -131,8 +132,12 @@ function page() {
           <div className="py-20">
             <div className="grid grid-cols-1 gap-x-20 gap-y-8 lg:grid-cols-2">
               <div className="space-y-4">
-                <p className="w-full text-4xl font-bold text-gray-900">Our Offices</p>
-                <p className="w-full text-lg text-gray-600">Find us at these locations.</p>
+                <p className="w-full text-4xl font-bold text-gray-900">
+                  Our Offices
+                </p>
+                <p className="w-full text-lg text-gray-600">
+                  Find us at these locations.
+                </p>
               </div>
               <div className="space-y-4 divide-y-2">
                 {locations.map((location) => (
@@ -140,9 +145,15 @@ function page() {
                     key={location.title}
                     className="flex flex-col space-y-2 pt-4 first:pt-0 lg:w-full"
                   >
-                    <p className="w-full text-xl font-semibold  text-gray-900">{location.title}</p>
-                    <p className="w-full text-base  text-gray-600">{location.timings}</p>
-                    <p className="text-sm font-semibold text-gray-600">{location.address}</p>
+                    <p className="w-full text-xl font-semibold  text-gray-900">
+                      {location.title}
+                    </p>
+                    <p className="w-full text-base  text-gray-600">
+                      {location.timings}
+                    </p>
+                    <p className="text-sm font-semibold text-gray-600">
+                      {location.address}
+                    </p>
                   </div>
                 ))}
               </div>
@@ -150,10 +161,8 @@ function page() {
           </div>
         </div>
       </div>
-      
-    
     </>
-  )
+  );
 }
 
-export default page
+export default page;

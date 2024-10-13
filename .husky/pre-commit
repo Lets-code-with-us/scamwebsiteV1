@@ -1,1 +1,1 @@
-turbo build check-types && turbo check-types build
+npm run test && npm run lint && npm run build && npm run format && npm run check

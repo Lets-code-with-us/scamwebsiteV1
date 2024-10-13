@@ -1,4 +1,4 @@
-import React from 'react'
+import React from 'react';
 
 export default function Faq() {
   return (
@@ -9,27 +9,35 @@ export default function Faq() {
             Frequently Asked Questions
           </h2>
           <p className="mt-4 max-w-xl text-base leading-relaxed text-gray-600 lg:mx-auto">
-            Lorem ipsum, dolor sit amet consectetur adipisicing elit. Facere, assumenda
+            Lorem ipsum, dolor sit amet consectetur adipisicing elit. Facere,
+            assumenda
           </p>
         </div>
         <div className="mx-auto mt-8 grid max-w-3xl grid-cols-1 gap-6 md:mt-16 md:grid-cols-2">
           {Array.from({ length: 4 }).map((_, i) => (
             <div key={i}>
-              <h2 className="text-xl font-semibold text-black">How do I get started?</h2>
+              <h2 className="text-xl font-semibold text-black">
+                How do I get started?
+              </h2>
               <p className="mt-6 text-sm leading-6 tracking-wide text-gray-500">
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellat aliquam adipisci
-                iusto aperiam? Sint asperiores sequi nobis inventore ratione deleniti?
+                Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                Repellat aliquam adipisci iusto aperiam? Sint asperiores sequi
+                nobis inventore ratione deleniti?
               </p>
             </div>
           ))}
         </div>
         <p className="mt-10 text-center text-gray-600">
           Can&apos;t find what you&apos;re looking for?{' '}
-          <a href="/contact" title="" className="black font-semibold hover:underline">
+          <a
+            href="/contact"
+            title=""
+            className="black font-semibold hover:underline"
+          >
             Contact us
           </a>
         </p>
       </div>
     </section>
-  )
+  );
 }
