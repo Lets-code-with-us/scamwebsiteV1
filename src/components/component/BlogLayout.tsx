@@ -102,9 +102,9 @@ export function BlogPage() {
                   >
                     👍
                   </button>
-                  <Suspense fallback={<div>Loading...</div>}>
+                  {/* <Suspense fallback={<div>Loading...</div>}>
                     <LikeCount postId={post._id} />
-                  </Suspense>
+                  </Suspense> */}
                   <Drawer.Root>
                     <Drawer.Trigger asChild>
                       <button>📩</button>

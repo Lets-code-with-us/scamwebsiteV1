@@ -59,6 +59,7 @@
 - `npm run test:watch`: Runs the test suite in watch mode.
 
 Run any of these scripts in your terminal
+
 ```bash
 npm run <script-name>
 ```

@@ -1,1 +1,1 @@
-npm run test && npm run lint && npm run build && npm run format && npm run check
+npm run test && npm run format && npm run check && npm run lint && npm run build 
