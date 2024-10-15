@@ -27,7 +27,7 @@ export function Footer() {
     }
   }
   return (
-    <footer className="w-full">
+    <footer className="w-full px-3">
       <div>
         <Toaster />
       </div>
