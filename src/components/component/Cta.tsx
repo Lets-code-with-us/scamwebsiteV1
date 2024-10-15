@@ -2,6 +2,7 @@
 
 import React, { useState } from 'react';
 import Image from 'next/image';
+import FAQ from './Faq';
 
 export default function Cta() {
   const [email, setEmail] = useState('');
@@ -18,6 +19,8 @@ export default function Cta() {
   };
 
   return (
+    <div>
+    <FAQ/>
     <section className="py-12 mb-20 bg-gray-100">
       <div className="mx-auto max-w-7xl">
         <div className="mx-auto max-w-2xl text-center">
@@ -68,5 +71,6 @@ export default function Cta() {
         </div>
       </div>
     </section>
+    </div>
   );
 }
