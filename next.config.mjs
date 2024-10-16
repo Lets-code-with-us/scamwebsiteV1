@@ -9,7 +9,7 @@ const nextConfig = {
       'dev-ui-image-assets.s3.ap-south-1.amazonaws.com',
       'plus.unsplash.com',
       'res.cloudinary.com',
-      'leerob.io',
+      'avatars.githubusercontent.com',
       'nextjs.org',
       'randomuser.me',
       'images.remotePatterns',
