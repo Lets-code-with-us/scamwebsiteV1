@@ -1,15 +1,15 @@
-"use client";
+'use client';
 
-import React, { useEffect, useState } from "react";
-import { ArrowRight } from "lucide-react";
-import axios from "axios";
-import { useRouter } from "next/navigation";
-import { Toaster, toast } from "react-hot-toast";
+import React, { useEffect, useState } from 'react';
+import { ArrowRight } from 'lucide-react';
+import axios from 'axios';
+import { useRouter } from 'next/navigation';
+import { Toaster, toast } from 'react-hot-toast';
 function Page() {
-  const [bio, setBio] = useState("");
-  const [instagramLink, setLink] = useState("");
-  const [LinkedlnLink, setSocial] = useState("");
-  const [githubLink, setNextLink] = useState("");
+  const [bio, setBio] = useState('');
+  const [instagramLink, setLink] = useState('');
+  const [LinkedlnLink, setSocial] = useState('');
+  const [githubLink, setNextLink] = useState('');
   const [disabled, setDisabled] = useState(false);
   const router = useRouter();
 
@@ -27,7 +27,7 @@ function Page() {
   }, [instagramLink, bio, LinkedlnLink, githubLink]);
 
   async function submitBio() {
-    const res = await axios.post("/api/user/Bio", {
+    const res = await axios.post('/api/user/Bio', {
       bio,
       instagramLink,
       LinkedlnLink,
@@ -35,10 +35,10 @@ function Page() {
     });
     const response = await res;
     if (!response) {
-      toast.error("Not able to add Bios");
+      toast.error('Not able to add Bios');
     } else {
-      toast.success("Success");
-        router.push("/");
+      toast.success('Success');
+      router.push('/');
     }
   }
   return (
@@ -58,8 +58,8 @@ function Page() {
                     htmlFor=""
                     className="text-base font-medium text-gray-900"
                   >
-                    {" "}
-                    About yourself{" "}
+                    {' '}
+                    About yourself{' '}
                   </label>
                   <div className="mt-2">
                     <input
@@ -76,8 +76,8 @@ function Page() {
                       htmlFor=""
                       className="text-base font-medium text-gray-900"
                     >
-                      {" "}
-                      Instagram Profile LInk{" "}
+                      {' '}
+                      Instagram Profile LInk{' '}
                     </label>
                   </div>
                   <div className="mt-2">
@@ -95,8 +95,8 @@ function Page() {
                       htmlFor=""
                       className="text-base font-medium text-gray-900"
                     >
-                      {" "}
-                      Linkedln Profile Link{" "}
+                      {' '}
+                      Linkedln Profile Link{' '}
                     </label>
                   </div>
                   <div className="mt-2">
@@ -114,8 +114,8 @@ function Page() {
                       htmlFor=""
                       className="text-base font-medium text-gray-900"
                     >
-                      {" "}
-                      Github Profile LInk{" "}
+                      {' '}
+                      Github Profile LInk{' '}
                     </label>
                   </div>
                   <div className="mt-2">

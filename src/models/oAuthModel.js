@@ -1,24 +1,21 @@
-import mongoose from "mongoose";
-
+import mongoose from 'mongoose';
 
 const OauthSchema = new mongoose.Schema({
-    username:{
-        type:String,
-        unique:true,
-        required:true
-    },
-    email:{
-        type:String,
-        required:true,
-        unique:true
-    },
-    avator:{
-        type:String,
-        required:true,
-        unique:true
-    },
-}) 
+  username: {
+    type: String,
+    unique: true,
+    required: true,
+  },
+  email: {
+    type: String,
+    required: true,
+    unique: true,
+  },
+  avator: {
+    type: String,
+    required: true,
+    unique: true,
+  },
+});
 
-
-
-export const Auth = mongoose.models.Auth || mongoose.model("Auth",OauthSchema);
+export const Auth = mongoose.models.Auth || mongoose.model('Auth', OauthSchema);

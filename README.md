@@ -44,6 +44,26 @@
   docker pull mongodb
   ```
 
+## Available Scripts 📜:
+
+- `npm run dev`: Runs the app in development mode with Turbo.
+- `npm run build`: Builds the app for production.
+- `npm start`: Starts the production server.
+- `npm run lint`: Runs the linter to check for code style issues.
+- `npm run format`: Formats the code using Prettier.
+- `npm run check`: Checks if the code is formatted correctly.
+- `npm run build:turbo`: Runs type checking and builds the app using Turbo.
+- `npm run build:check`: Runs type checking and builds the app.
+- `npm run prepare`: Sets up Husky for Git hooks.
+- `npm test`: Runs the test suite.
+- `npm run test:watch`: Runs the test suite in watch mode.
+
+Run any of these scripts in your terminal
+
+```bash
+npm run <script-name>
+```
+
 ## Tech Stack :computer:
 
 [![Tech Stack](https://skillicons.dev/icons?i=next,mongo,nodejs,tailwind,vercel,git,github,devto,docker&theme=dark)](https://skillicons.dev)
@@ -105,3 +125,15 @@
 	<img height="40" src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/linkedin/linkedin-original.svg" />
 </a>
 
+## 👀 Our Contributors
+
+- We extend our heartfelt gratitude for your invaluable contribution to our project! Your efforts play a pivotal role in elevating ScamWebsiteV1 to greater heights.
+- Make sure you show some love by giving ⭐ to our repository.
+
+<div align="center">
+  <a href="https://github.com/Lets-code-with-us/scamwebsiteV1">
+    <img src="https://contrib.rocks/image?repo=Lets-code-with-us/scamwebsiteV1&&max=1000" />
+  </a>
+</div>
+
+**Happy Coding 💻 and we look forward to your contributions during **Hacktoberfest 2024**! 🎃**

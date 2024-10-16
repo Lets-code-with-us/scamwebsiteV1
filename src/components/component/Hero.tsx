@@ -1,6 +1,7 @@
-import React from "react";
+import React from 'react';
 
-let src = "https://res.cloudinary.com/dfqrdloq7/video/upload/v1710955173/etocyoandurnti9wgozg.mp4";
+let src =
+  'https://res.cloudinary.com/dfqrdloq7/video/upload/v1710955173/etocyoandurnti9wgozg.mp4';
 
 export function SparklesPreview() {
   return (

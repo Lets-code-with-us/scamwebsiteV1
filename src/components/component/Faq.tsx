@@ -1,35 +1,61 @@
-import React from 'react'
+import { useState } from 'react';
+import faqData from '../../data/faqData.json';
 
-export default function Faq() {
+function FAQ() {
+  const [openQuestion, setOpenQuestion] = useState(null);
+
+  const toggleQuestion = (index: any) => {
+    setOpenQuestion(openQuestion === index ? null : index);
+  };
+
   return (
-    <section className="mx-auto max-w-7xl px-2 py-10 md:px-0">
-      <div>
-        <div className="mx-auto max-w-2xl lg:text-center">
-          <h2 className="text-3xl font-bold leading-tight text-black sm:text-4xl lg:text-5xl">
-            Frequently Asked Questions
-          </h2>
-          <p className="mt-4 max-w-xl text-base leading-relaxed text-gray-600 lg:mx-auto">
-            Lorem ipsum, dolor sit amet consectetur adipisicing elit. Facere, assumenda
-          </p>
-        </div>
-        <div className="mx-auto mt-8 grid max-w-3xl grid-cols-1 gap-6 md:mt-16 md:grid-cols-2">
-          {Array.from({ length: 4 }).map((_, i) => (
-            <div key={i}>
-              <h2 className="text-xl font-semibold text-black">How do I get started?</h2>
-              <p className="mt-6 text-sm leading-6 tracking-wide text-gray-500">
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellat aliquam adipisci
-                iusto aperiam? Sint asperiores sequi nobis inventore ratione deleniti?
-              </p>
+    <section id="faq" className="bg-black py-12">
+      <div className="mx-auto w-full max-w-7xl px-45">
+        <h2 className="text-5xl font-bold text-white mb-8 text-center">
+          Frequently Asked Questions
+        </h2>
+        <div className="space-y-3">
+          {faqData.map((faq, index) => (
+            <div
+              key={index}
+              className="backdrop-blur-sm rounded-lg overflow-hidden border border-gray-700 transition-all duration-300 hover:border-gray-600"
+            >
+              <button
+                className="flex justify-between items-center w-full text-left px-5 py-4"
+                onClick={() => toggleQuestion(index)}
+              >
+                <span className="font-bold text-white">{faq.question}</span>
+                <svg
+                  className={`w-5 h-5 text-orange-400 transform transition-transform duration-200 ${openQuestion === index ? 'rotate-180' : ''}`}
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M19 9l-7 7-7-7"
+                  />
+                </svg>
+              </button>
+              <div
+                className={`px-5 py-3 bg-orange-500 bg-opacity-70 transition-all duration-200 ease-in-out ${
+                  openQuestion === index
+                    ? 'max-h-40 opacity-100'
+                    : 'max-h-0 opacity-0'
+                }`}
+              >
+                <p className=" text-gray-300 text-base leading-relaxed font-semibold text-center">
+                  {faq.answer}
+                </p>
+              </div>
             </div>
           ))}
         </div>
-        <p className="mt-10 text-center text-gray-600">
-          Can&apos;t find what you&apos;re looking for?{' '}
-          <a href="/contact" title="" className="black font-semibold hover:underline">
-            Contact us
-          </a>
-        </p>
       </div>
     </section>
-  )
+  );
 }
+
+export default FAQ;

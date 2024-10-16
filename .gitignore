@@ -38,3 +38,8 @@ next-env.d.ts
 
 # turbo
 .turbo
+.idea
+
+# prettier
+out
+
