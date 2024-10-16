@@ -17,6 +17,9 @@
     "test:watch": "jest --watch"
   },
   "dependencies": {
+    "@capacitor/android": "^6.1.2",
+    "@capacitor/core": "^6.1.2",
+    "@capacitor/ios": "^6.1.2",
     "@swc/jest": "^0.2.36",
     "@tsparticles/engine": "^3.2.1",
     "@tsparticles/react": "^3.0.0",
@@ -50,6 +53,7 @@
     "zustand": "^5.0.0-rc.2"
   },
   "devDependencies": {
+    "@capacitor/cli": "^6.1.2",
     "@testing-library/jest-dom": "^6.5.0",
     "@testing-library/react": "^16.0.1",
     "@types/bcrypt": "^5.0.2",
