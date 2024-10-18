@@ -8,53 +8,39 @@ dbConnect();
 
 export async function POST(request: NextRequest) {
   try {
-    const response = request.json();
-    const { password, repassword } = await response;
-    const token = (await request.cookies.get('token')?.value) || '';
+    const { password, repassword } = await request.json();
+    const token = request.cookies.get("token")?.value || "";
 
     if (!token) {
-      return NextResponse.json({ message: 'Login' }, { status: 404 });
+      return NextResponse.json({ message: "Please login first" }, { status: 401 });
     }
 
-    const decrypt: JwtPayload = (await JWT.verify(
-      token,
-      process.env.SECRET_KEY!
-    )) as JwtPayload;
+    const decrypt = JWT.verify(token, process.env.SECRET_KEY!) as JwtPayload;
     const userFind = await User.findById(decrypt.id);
 
     if (!userFind) {
-      return NextResponse.json({ message: 'User Not Found' }, { status: 404 });
+      return NextResponse.json({ message: "User not found" }, { status: 404 });
     }
 
     if (password !== repassword) {
-      return NextResponse.json(
-        { message: 'Check the Password' },
-        { status: 404 }
-      );
+      return NextResponse.json({ message: "Passwords do not match" }, { status: 400 });
     }
 
-    // Hashing the password using bcryptjs
-    const hashPassword = await bcrypt.hash(password, 10); // 10 is the salt rounds
+    const isSamePassword = await bcrypt.compare(password, userFind.password);
+    if (isSamePassword) {
+      return NextResponse.json({ message: "New password cannot be the same as the old password" }, { status: 400 });
+    }
 
-    const updatedUser = await User.findByIdAndUpdate(
-      decrypt.id,
-      { password: hashPassword },
-      { new: true }
-    );
+    const hashedPassword = await bcrypt.hash(password, 10);
+    const updatedUser = await User.findByIdAndUpdate(decrypt.id, { password: hashedPassword }, { new: true });
 
     if (!updatedUser) {
-      return NextResponse.json({ message: 'Server error' }, { status: 404 });
+      return NextResponse.json({ message: "Server error, could not update password" }, { status: 500 });
     }
 
-    return NextResponse.json(
-      { message: 'success', data: 'Password Updated' },
-      { status: 200 }
-    );
+    return NextResponse.json({ message: "Password updated successfully" }, { status: 200 });
+
   } catch (error: any) {
-    console.error('Error:', error);
-    return NextResponse.json(
-      { message: 'An error occurred.' },
-      { status: 500 }
-    );
+    return NextResponse.json({ message: "An internal server error occurred" }, { status: 500 });
   }
 }
