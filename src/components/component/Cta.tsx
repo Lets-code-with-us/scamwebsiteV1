@@ -29,7 +29,7 @@ export default function Cta() {
                 height={1200}
                 width={1200}
                 className="relative z-10 inline-block h-16 w-16 rounded-full ring-4 ring-white"
-                src="https://leerob.io/_next/image?url=%2F_next%2Fstatic%2Fmedia%2Favatar.b1d1472f.jpg&w=256&q=75"
+                src="https://avatars.githubusercontent.com/u/9113740?v=4"
                 alt="Lee Robinson"
               />
               <Image

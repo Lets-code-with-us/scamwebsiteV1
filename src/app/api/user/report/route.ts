@@ -8,7 +8,7 @@ export async function POST(request: NextRequest) {
   try {
     const response = request.json();
     const { blog, content } = await response;
-    if (![blog && content]) {
+    if (!(blog && content)) {
       return NextResponse.json(
         {
           message: 'Server Error',

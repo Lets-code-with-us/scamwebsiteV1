@@ -32,6 +32,14 @@
   npm install
   ```
 
+- Add the env variables
+
+| Name                                 | Description                                          | Required? |
+| ------------------------------------ | ---------------------------------------------------- | --------- |
+| `MONGO_URL`                          | The Mongo DB connection string to connect to the DB. | ✔️        |
+| `SECERT_KEY`                         | The JWT Secret Key                                   | ✔️        |
+| `NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME!` | The Cloudinary Cloud Name(For Uploads)               | ✔️        |
+
 - Run the development server
 
   ```bash
