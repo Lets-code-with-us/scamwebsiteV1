@@ -1,3 +1,4 @@
+
 'use client';
 
 import React from 'react';
@@ -15,6 +16,7 @@ function Page() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [disabled, setDisabled] = useState(false);
+  const [loginLoading, setLoginLoading] = useState(false);
   const login = useAuthStore((state: any) => state.login);
 
   useEffect(() => {
@@ -34,6 +36,13 @@ function Page() {
     } else {
       toast.error('Wrong email or password');
     }
+    setLoginLoading(false);
+  }
+
+  async function handleLogin() {
+    setLoginLoading(true);
+    await userLogin();
+    setLoginLoading(false);
   }
 
   return (
@@ -107,15 +116,25 @@ function Page() {
                     </div>
                   </div>
                   <div>
-                    <button
-                      type="button"
-                      disabled={disabled}
-                      onClick={userLogin}
-                      className="inline-flex w-full items-center justify-center rounded-md bg-black px-3.5 py-2.5 font-semibold leading-7 text-white hover:bg-black/80"
-                    >
-                      Get started <ArrowRight className="ml-2" size={16} />
-                    </button>
-                  </div>
+                    {loginLoading ? (
+                      <button
+                        type="button"
+                        disabled={disabled}
+                        className="inline-flex w-full items-center justify-center rounded-md bg-black px-3.5 py-2.5 font-semibold leading-7 text-white hover:bg-black/80 active:scale-98 active:bg-black/95"
+                      >
+                        <div className="h-5 w-5 border-2 border-t-transparent border-white rounded-full animate-spin"></div>
+                      </button>
+                    ) : (
+                      <button
+                        type="button"
+                        disabled={disabled}
+                        onClick={handleLogin}
+                        className="inline-flex w-full items-center justify-center rounded-md bg-black px-3.5 py-2.5 font-semibold leading-7 text-white hover:bg-black/80 active:scale-98 active:bg-black/95"
+                      >
+                        Get started <ArrowRight className="ml-2" size={16} />
+                      </button>
+                    )}
+                  </div>'
                 </div>
               </div>
             </div>
@@ -136,3 +155,4 @@ function Page() {
 }
 
 export default Page;
+
