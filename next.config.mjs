@@ -13,6 +13,7 @@ const nextConfig = {
       'nextjs.org',
       'randomuser.me',
       'images.remotePatterns',
+      'images.generated.photos'
     ],
   },
 };
