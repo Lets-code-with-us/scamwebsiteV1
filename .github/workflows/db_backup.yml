@@ -1,0 +1,39 @@
+name: Database Backup
+
+on:
+  schedule:
+    - cron: '0 0 * * *' # This will run the workflow daily at midnight
+  workflow_dispatch: 
+
+jobs:
+  backup:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: '16'
+
+      - name: Cache Node.js modules
+        uses: actions/cache@v2
+        with:
+          path: ~/.npm
+          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-node-
+            
+      - name: Install dependencies
+        run: npm install
+
+      - name: Run Backup Script
+        env:
+            PRIMARY_DB_URI: ${{ secrets.PRIMARY_DB_URI }}
+            PRIMARY_DB_NAME: ${{ secrets.PRIMARY_DB_NAME }}
+            BACKUP_RETENTION_LIMIT: ${{ secrets.BACKUP_RETENTION_LIMIT }} 
+            BACKUP_TIMESTAMP_FIELD: ${{ secrets.BACKUP_TIMESTAMP_FIELD }}
+        run: node scripts/databaseBackup.js
+
