@@ -13,13 +13,11 @@ const ZodValidation = z.object({
 });
 
 // Post the data
-export async function POST(request: NextRequest, context:any) {
-
+export async function POST(request: NextRequest, context: any) {
   // Get the user details
   try {
-    
-    const {params} = context
-    const email = params.email
+    const { params } = context;
+    const email = params.email;
 
     // Inputs validation using zod
     if (!ZodValidation.safeParse({ email }).success) {
